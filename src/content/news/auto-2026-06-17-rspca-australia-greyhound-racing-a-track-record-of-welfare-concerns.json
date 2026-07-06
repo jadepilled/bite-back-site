@@ -3,10 +3,12 @@
   "outlet": "RSPCA Australia",
   "url": "https://www.rspca.org.au/latest-news/blog/greyhound-racing-a-track-record-of-welfare-concerns/",
   "publishedDate": "2026-06-17",
-  "summary": "Greyhound racing; a track record of welfare concerns",
-  "campaignIds": [],
+  "summary": "Greyhound racing in Australia has long exemplified the tension between using animals in sport and entertainment, and concern for animal welfare. To its...",
+  "campaignIds": [
+    "sentience-statute"
+  ],
   "topics": [
-    "animal welfare"
+    "racing"
   ],
   "image": {
     "src": "/images/news/auto-2026-06-17-rspca-australia-greyhound-racing-a-track-record-of-welfare-concerns.webp",
@@ -14,6 +16,7 @@
     "sourceUrl": "https://rspca.sfo2.cdn.digitaloceanspaces.com/public/Uploads/greyhound-blog__FocusFillWzEyMDAsNjMwLCJ5IiwyODVd.jpg"
   },
   "automated": true,
-  "fetchedAt": "2026-07-05T16:25:48.301Z",
+  "fetchedAt": "2026-07-06T06:14:19.227Z",
+  "relevanceScore": 35,
   "reviewStatus": "review-needed"
 }

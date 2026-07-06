@@ -6,6 +6,7 @@
   "fetchMode": "rss",
   "sourceType": "independent-media",
   "country": "Australia",
+  "qualityWeight": 7,
   "notes": "Allowlisted non-Murdoch Australian news source. The updater keeps animal-welfare matches only.",
-  "enabled": true
+  "enabled": false
 }

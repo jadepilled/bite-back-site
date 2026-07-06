@@ -36,6 +36,7 @@ const progress = readJsonDir('progress');
 const products = readJsonDir('products');
 const friends = readJsonDir('friends');
 const newsSources = readJsonDir('news-sources');
+const platformUpdates = readJsonDir('platform-updates');
 
 const sourceIds = idsFor(sources);
 const imageIds = idsFor(images);
@@ -126,7 +127,15 @@ for (const entry of friends) {
   validateImageReference(entry.data.logo, `${entry.file}.logo`);
 }
 
-const publicText = JSON.stringify({ campaigns, sources, images, news, progress, products, friends, newsSources });
+for (const entry of platformUpdates) {
+  requireText(entry.data.title, `${entry.file}.title`);
+  requireText(entry.data.summary, `${entry.file}.summary`);
+  for (const id of entry.data.sourceIds ?? []) {
+    if (!sourceIds.has(id)) throw new Error(`${entry.file}: unknown sourceId ${id}`);
+  }
+}
+
+const publicText = JSON.stringify({ campaigns, sources, images, news, progress, products, friends, newsSources, platformUpdates });
 const secretPatterns = [
   /api[_-]?key/i,
   /bearer\s+[a-z0-9._-]{20,}/i,
@@ -140,4 +149,4 @@ for (const pattern of secretPatterns) {
   }
 }
 
-console.log(`Validated ${campaigns.length} campaigns, ${sources.length} sources, ${images.length} images, ${news.length} news entries, ${progress.length} progress updates, ${products.length} products, ${friends.length} friends, and ${newsSources.length} news sources.`);
+console.log(`Validated ${campaigns.length} campaigns, ${sources.length} sources, ${images.length} images, ${news.length} news entries, ${progress.length} progress updates, ${products.length} products, ${friends.length} friends, ${newsSources.length} news sources, and ${platformUpdates.length} platform updates.`);

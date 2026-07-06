@@ -18,6 +18,8 @@ const imageReference = z.object({
   sourceUrl: z.url().optional()
 });
 
+const reviewOrStatus = z.enum(['draft', 'review-needed', 'legal-review-needed', 'scientific-review-needed', 'reviewed', 'approved']);
+
 const actionSchema = z.object({
   type: actionType,
   label: z.string().min(2),
@@ -119,6 +121,7 @@ const news = defineCollection({
     image: imageReference.optional(),
     automated: z.boolean().default(false),
     fetchedAt: z.string().optional(),
+    relevanceScore: z.number().min(0).max(100).optional(),
     reviewStatus
   })
 });
@@ -130,9 +133,10 @@ const newsSources = defineCollection({
     publisher: z.string().min(2),
     url: z.url(),
     feedUrl: z.url(),
-    fetchMode: z.enum(['rss', 'html']).default('rss'),
-    sourceType: z.enum(['public-broadcaster', 'independent-media', 'government', 'ngo']),
+    fetchMode: z.enum(['rss', 'html', 'google-news']).default('rss'),
+    sourceType: z.enum(['public-broadcaster', 'independent-media', 'government', 'ngo', 'aggregator']),
     country: z.string().min(2),
+    qualityWeight: z.number().min(0).max(10).default(5),
     notes: z.string().optional(),
     enabled: z.boolean().default(true)
   })
@@ -151,6 +155,20 @@ const products = defineCollection({
     description: z.string().min(10),
     stickerText: z.string().min(2).optional(),
     colours: z.array(z.string()).min(1),
+    sku: z.string().min(2).optional(),
+    materials: z.array(z.string()).default([]),
+    dimensions: z.string().optional(),
+    variants: z.array(z.object({
+      name: z.string().min(2),
+      sku: z.string().min(2).optional(),
+      priceAud: z.number().nonnegative().optional(),
+      status: z.enum(['draft', 'preview', 'available', 'sold-out']).optional()
+    })).default([]),
+    impactNote: z.string().optional(),
+    checkoutUrl: z.string().optional(),
+    availableFrom: dateString.optional(),
+    fundraisingReviewStatus: reviewOrStatus.default('review-needed'),
+    fulfillmentStatus: z.enum(['not-started', 'supplier-review', 'sample-ordered', 'ready', 'paused']).default('not-started'),
     images: z.array(imageReference).default([]),
     tags: z.array(z.string()).default([]),
     fulfillmentNote: z.string().optional()
@@ -185,6 +203,18 @@ const progress = defineCollection({
   })
 });
 
+const platformUpdates = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/platform-updates' }),
+  schema: z.object({
+    date: dateString,
+    title: z.string().min(2),
+    summary: z.string().min(10),
+    status: z.enum(['planned', 'testing', 'published', 'paused']),
+    area: z.enum(['site', 'news', 'shop', 'campaigns', 'governance']),
+    sourceIds: z.array(z.string()).default([])
+  })
+});
+
 export const collections = {
   campaigns,
   actions,
@@ -194,5 +224,6 @@ export const collections = {
   newsSources,
   products,
   friends,
-  progress
+  progress,
+  platformUpdates
 };

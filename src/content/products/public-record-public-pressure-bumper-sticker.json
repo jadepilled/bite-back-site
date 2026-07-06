@@ -9,6 +9,16 @@
   "description": "Dummy shop item for testing the JSON-backed catalogue, product cards and donation routing before fulfilment is enabled.",
   "stickerText": "PUBLIC RECORD / PUBLIC PRESSURE",
   "colours": ["black", "white", "red"],
+  "sku": "BB-STK-PRPP",
+  "materials": ["weather-resistant vinyl", "matte laminate"],
+  "dimensions": "210 x 60 mm",
+  "variants": [
+    { "name": "Single sticker", "sku": "BB-STK-PRPP-S", "priceAud": 8, "status": "preview" },
+    { "name": "Three-pack", "sku": "BB-STK-PRPP-3", "priceAud": 20, "status": "preview" }
+  ],
+  "impactNote": "Designed for the open welfare data campaign and public-record accountability work.",
+  "fundraisingReviewStatus": "review-needed",
+  "fulfillmentStatus": "supplier-review",
   "tags": ["open data", "accountability"],
   "fulfillmentNote": "Preview item only."
 }

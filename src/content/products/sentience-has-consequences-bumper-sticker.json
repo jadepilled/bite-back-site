@@ -9,6 +9,16 @@
   "description": "Dummy product content used to test sort order, pricing, status labels and future product images.",
   "stickerText": "SENTIENCE HAS CONSEQUENCES",
   "colours": ["black", "white", "red"],
+  "sku": "BB-STK-SHC",
+  "materials": ["weather-resistant vinyl", "matte laminate"],
+  "dimensions": "210 x 60 mm",
+  "variants": [
+    { "name": "Single sticker", "sku": "BB-STK-SHC-S", "priceAud": 8, "status": "preview" },
+    { "name": "Three-pack", "sku": "BB-STK-SHC-3", "priceAud": 20, "status": "preview" }
+  ],
+  "impactNote": "Supports testing for the statutory sentience campaign range.",
+  "fundraisingReviewStatus": "review-needed",
+  "fulfillmentStatus": "supplier-review",
   "tags": ["sentience", "law reform"],
   "fulfillmentNote": "Preview item only."
 }

@@ -1,0 +1,23 @@
+{
+  "id": "bite-mark-sticker-sheet",
+  "slug": "bite-mark-sticker-sheet",
+  "name": "Bite Mark Sticker Sheet",
+  "category": "sticker",
+  "status": "preview",
+  "priceAud": 12,
+  "summary": "A sheet of pixel bite marks, red slashes and small campaign labels.",
+  "description": "Preview sticker sheet for early tester packs and volunteer mailouts. Final production awaits supplier proofing and fundraising review.",
+  "stickerText": "BITE MARKS / SOURCE NOTES / RED FLAGS",
+  "colours": ["black", "white", "red"],
+  "sku": "BB-SHEET-BITE",
+  "materials": ["die-cut vinyl", "matte laminate"],
+  "dimensions": "A6 sheet",
+  "variants": [
+    { "name": "A6 sheet", "sku": "BB-SHEET-BITE-A6", "priceAud": 12, "status": "preview" }
+  ],
+  "impactNote": "Useful for volunteer packs, laptop stickers and campaign table tests.",
+  "fundraisingReviewStatus": "review-needed",
+  "fulfillmentStatus": "supplier-review",
+  "tags": ["launch", "volunteer packs"],
+  "fulfillmentNote": "Preview item only."
+}

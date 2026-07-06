@@ -6,6 +6,7 @@
   "fetchMode": "rss",
   "sourceType": "public-broadcaster",
   "country": "Australia",
+  "qualityWeight": 8,
   "notes": "Allowlisted public broadcaster feed filtered by animal-welfare terms.",
   "enabled": true
 }

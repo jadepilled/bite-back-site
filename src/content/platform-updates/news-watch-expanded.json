@@ -1,0 +1,7 @@
+{
+  "date": "2026-07-06",
+  "title": "Automated animal welfare news watch expanded",
+  "summary": "The news pipeline now ranks source-watch items, classifies topics and pulls from a broader allowlist of Australian sources.",
+  "status": "testing",
+  "area": "news"
+}

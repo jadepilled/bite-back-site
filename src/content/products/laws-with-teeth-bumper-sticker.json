@@ -9,6 +9,16 @@
   "description": "Weather-resistant test merch for launch supporters. Fulfilment is not live until payment, stock and fundraising-law checks are complete.",
   "stickerText": "LAWS WITH TEETH",
   "colours": ["black", "white", "red"],
+  "sku": "BB-STK-LWT",
+  "materials": ["weather-resistant vinyl", "matte laminate"],
+  "dimensions": "210 x 60 mm",
+  "variants": [
+    { "name": "Single sticker", "sku": "BB-STK-LWT-S", "priceAud": 8, "status": "preview" },
+    { "name": "Three-pack", "sku": "BB-STK-LWT-3", "priceAud": 20, "status": "preview" }
+  ],
+  "impactNote": "Test item for law-reform campaign merch and fulfilment workflows.",
+  "fundraisingReviewStatus": "review-needed",
+  "fulfillmentStatus": "supplier-review",
   "tags": ["launch", "law reform"],
   "fulfillmentNote": "Preview item only."
 }

@@ -11,7 +11,8 @@ const routes = [
   '/track-record/',
   '/news/',
   '/friends/',
-  '/shop/'
+  '/shop/',
+  '/shop/laws-with-teeth-bumper-sticker/'
 ];
 
 for (const route of routes) {

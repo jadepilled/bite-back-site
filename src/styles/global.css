@@ -524,7 +524,10 @@ ul {
 .status-pill--reviewed,
 .status-pill--won,
 .status-pill--low,
-.status-pill--available {
+.status-pill--available,
+.status-pill--published,
+.status-pill--ready,
+.status-pill--none {
   color: var(--green);
   border-color: var(--green);
 }
@@ -536,7 +539,12 @@ ul {
 .status-pill--scientific-review-needed,
 .status-pill--foundation,
 .status-pill--medium,
-.status-pill--preview {
+.status-pill--preview,
+.status-pill--supplier-review,
+.status-pill--sample-ordered,
+.status-pill--planned,
+.status-pill--pending,
+.status-pill--minor {
   color: var(--amber);
   border-color: var(--amber);
 }
@@ -549,7 +557,9 @@ ul {
 .status-pill--closed,
 .status-pill--high,
 .status-pill--extreme,
-.status-pill--sold-out {
+.status-pill--sold-out,
+.status-pill--not-started,
+.status-pill--major {
   color: var(--red);
   border-color: var(--red);
 }
@@ -848,12 +858,44 @@ dd {
   font: inherit;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 .timeline-list,
 .product-grid,
 .friend-grid,
 .news-grid {
   display: grid;
   gap: 24px;
+}
+
+.track-dashboard,
+.product-detail-grid,
+.timeline-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.34fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.timeline-columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.readiness-grid,
+.correction-list {
+  display: grid;
+  gap: 18px;
+}
+
+.readiness-card {
+  border: 1px solid var(--white);
+  padding: 22px;
+}
+
+.readiness-card h3 {
+  font-size: 26px;
 }
 
 .timeline-item,
@@ -895,6 +937,20 @@ dd {
   overflow: hidden;
 }
 
+.product-card .button-row {
+  margin-top: 4px;
+}
+
+.shop-metrics,
+.news-metrics {
+  margin-bottom: 44px;
+}
+
+.shop-controls,
+.news-controls {
+  justify-content: flex-start;
+}
+
 .sticker-preview {
   aspect-ratio: 3.8 / 1;
   margin: 24px;
@@ -907,6 +963,22 @@ dd {
   background: var(--red);
   color: var(--white);
   transform: rotate(-1deg);
+}
+
+.sticker-preview--large {
+  aspect-ratio: 2.8 / 1;
+  min-height: 180px;
+  margin: 0;
+  transform: rotate(-1deg);
+}
+
+.sticker-preview--large img {
+  width: 80px;
+  height: 80px;
+}
+
+.sticker-preview--large span {
+  font-size: clamp(24px, 4vw, 52px);
 }
 
 .sticker-preview img {
@@ -967,6 +1039,38 @@ dd {
   image-rendering: pixelated;
 }
 
+.news-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.news-card__meta p {
+  margin-bottom: 0;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.tag-row span {
+  border: 1px solid var(--ink-45);
+  padding: 4px 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 .source-chip-list {
   display: flex;
   flex-wrap: wrap;
@@ -992,6 +1096,47 @@ dd {
   color: var(--black);
 }
 
+.feed-note {
+  max-width: 780px;
+  margin-top: 22px;
+  font-size: 14px;
+}
+
+.product-detail-hero {
+  border-bottom: 2px solid var(--white);
+}
+
+.product-detail-hero__inner {
+  width: min(var(--dashboard-width), calc(100% - 48px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(340px, 0.7fr) minmax(0, 0.8fr);
+  gap: 48px;
+  align-items: center;
+  padding: 72px 0;
+}
+
+.variant-list {
+  display: grid;
+  gap: 14px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.variant-list li {
+  display: grid;
+  gap: 8px;
+  border-top: 1px solid var(--ink-20);
+  padding-top: 14px;
+}
+
+.variant-list span {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1013,7 +1158,11 @@ dd {
   }
 
   .campaign-hero__inner,
-  .campaign-body {
+  .campaign-body,
+  .product-detail-hero__inner,
+  .product-detail-grid,
+  .track-dashboard,
+  .timeline-columns {
     grid-template-columns: 1fr;
   }
 
@@ -1071,6 +1220,7 @@ dd {
 
   .home-hero__inner,
   .campaign-hero__inner,
+  .product-detail-hero__inner,
   .campaign-body,
   .site-footer__inner {
     width: calc(100% - 32px);

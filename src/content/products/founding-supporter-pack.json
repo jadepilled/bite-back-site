@@ -1,0 +1,23 @@
+{
+  "id": "founding-supporter-pack",
+  "slug": "founding-supporter-pack",
+  "name": "Founding Supporter Pack",
+  "category": "donation",
+  "status": "draft",
+  "priceAud": 35,
+  "summary": "A test bundle combining stickers, a poster and a campaign briefing card.",
+  "description": "Draft bundle for testing donation-adjacent fulfilment after fundraising-law and payment-provider review.",
+  "stickerText": "FOUNDING SUPPORTER PACK",
+  "colours": ["black", "white", "red"],
+  "sku": "BB-PACK-FOUNDING",
+  "materials": ["vinyl stickers", "matte print stock", "briefing card"],
+  "dimensions": "Flat mailer",
+  "variants": [
+    { "name": "Launch pack", "sku": "BB-PACK-FOUNDING-L", "priceAud": 35, "status": "draft" }
+  ],
+  "impactNote": "Tests whether supporters want small physical campaign kits before any public checkout goes live.",
+  "fundraisingReviewStatus": "legal-review-needed",
+  "fulfillmentStatus": "not-started",
+  "tags": ["bundle", "fundraising review"],
+  "fulfillmentNote": "Draft item."
+}

@@ -1,0 +1,111 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ButtonLink from '@components/ButtonLink.astro';
+import StatusPill from '@components/StatusPill.astro';
+import { reviewLabel, statusLabel } from '@lib/content';
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map((product) => ({
+    params: { slug: product.data.slug },
+    props: { product }
+  }));
+}
+
+const { product } = Astro.props;
+const variantCount = product.data.variants.length;
+---
+
+<BaseLayout
+  title={product.data.name}
+  description={product.data.summary}
+>
+  <section class="product-detail-hero">
+    <div class="product-detail-hero__inner">
+      <div class="sticker-preview sticker-preview--large" aria-hidden="true">
+        <img src="/brand/bite-mark-transparent-192.png" width="80" height="80" alt="" loading="eager" decoding="async" />
+        <span>{product.data.stickerText ?? product.data.name}</span>
+      </div>
+      <div>
+        <div class="campaign-meta">
+          <StatusPill value={product.data.status} />
+          <StatusPill value={product.data.fulfillmentStatus} />
+        </div>
+        <p class="section-label">{product.data.category.replace(/-/g, ' ')}</p>
+        <h1>{product.data.name}</h1>
+        <p class="lede">{product.data.description}</p>
+        <div class="button-row">
+          {product.data.checkoutUrl ? (
+            <ButtonLink href={product.data.checkoutUrl} variant="urgent" external>Open checkout</ButtonLink>
+          ) : (
+            <ButtonLink href="/contact/" variant="urgent">Register interest</ButtonLink>
+          )}
+          <ButtonLink href="/shop/" variant="secondary">Back to shop</ButtonLink>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="product-detail-grid">
+        <section class="document-section" aria-labelledby="product-details-heading">
+          <p class="section-label">Product details</p>
+          <h2 id="product-details-heading">What testers should check</h2>
+          <p>{product.data.impactNote ?? product.data.summary}</p>
+          <dl class="metadata-list">
+            <div>
+              <dt>Price</dt>
+              <dd>${product.data.priceAud.toFixed(2)} AUD</dd>
+            </div>
+            {product.data.sku && (
+              <div>
+                <dt>SKU</dt>
+                <dd>{product.data.sku}</dd>
+              </div>
+            )}
+            {product.data.dimensions && (
+              <div>
+                <dt>Dimensions</dt>
+                <dd>{product.data.dimensions}</dd>
+              </div>
+            )}
+            {product.data.materials.length > 0 && (
+              <div>
+                <dt>Materials</dt>
+                <dd>{product.data.materials.join(', ')}</dd>
+              </div>
+            )}
+            <div>
+              <dt>Fundraising review</dt>
+              <dd>{reviewLabel(product.data.fundraisingReviewStatus)}</dd>
+            </div>
+            <div>
+              <dt>Fulfilment</dt>
+              <dd>{statusLabel(product.data.fulfillmentStatus)}. {product.data.fulfillmentNote ?? ''}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <aside class="sidebar-panel" aria-label="Variants">
+          <p class="section-label">Variants</p>
+          <h2>{variantCount} option{variantCount === 1 ? '' : 's'}</h2>
+          {product.data.variants.length > 0 ? (
+            <ul class="variant-list">
+              {product.data.variants.map((variant) => (
+                <li>
+                  <strong>{variant.name}</strong>
+                  <span>{variant.priceAud ? `$${variant.priceAud.toFixed(2)} AUD` : `$${product.data.priceAud.toFixed(2)} AUD`}</span>
+                  <StatusPill value={variant.status ?? product.data.status} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No variants configured yet.</p>
+          )}
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

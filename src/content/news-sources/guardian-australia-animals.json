@@ -1,0 +1,12 @@
+{
+  "name": "Guardian Australia Animals",
+  "publisher": "Guardian News & Media",
+  "url": "https://www.theguardian.com/australia-news",
+  "feedUrl": "https://www.theguardian.com/australia-news+environment/animals/rss",
+  "fetchMode": "rss",
+  "sourceType": "independent-media",
+  "country": "Australia",
+  "qualityWeight": 8,
+  "notes": "Focused Guardian Australia animals/environment feed filtered by welfare and law terms.",
+  "enabled": false
+}

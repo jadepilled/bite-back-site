@@ -6,6 +6,10 @@ import StatusPill from '@components/StatusPill.astro';
 
 const news = (await getCollection('news')).sort((a, b) => b.data.publishedDate.localeCompare(a.data.publishedDate));
 const sources = (await getCollection('newsSources')).filter((source) => source.data.enabled);
+const automatedCount = news.filter((item) => item.data.automated).length;
+const curatedCount = news.length - automatedCount;
+const topics = [...new Set(news.flatMap((item) => item.data.topics))].sort((a, b) => a.localeCompare(b));
+const outlets = [...new Set(news.map((item) => item.data.outlet))].sort((a, b) => a.localeCompare(b));
 ---
 
 <BaseLayout
@@ -14,15 +18,66 @@ const sources = (await getCollection('newsSources')).filter((source) => source.d
 >
   <PageHeader
     eyebrow="News"
-    title="Animal welfare stories worth tracking."
-    intro="Curated entries and automated source-watch items are stored as JSON, with cached images where the source provides them."
+    title="Animal welfare stories worth tracking, ranked and sourced."
+    intro="Curated entries and automated source-watch items are stored as JSON, scored for relevance and cached with images where the source provides them."
   />
 
   <section class="section">
     <div class="container">
-      <div class="news-grid">
+      <div class="metric-grid news-metrics" aria-label="News feed summary">
+        <article class="pathway">
+          <strong>{news.length}</strong>
+          <p>Stories in the current feed</p>
+        </article>
+        <article class="pathway">
+          <strong>{automatedCount}</strong>
+          <p>Automated source-watch items</p>
+        </article>
+        <article class="pathway">
+          <strong>{curatedCount}</strong>
+          <p>Curated or reviewed background entries</p>
+        </article>
+      </div>
+
+      <div class="sort-bar news-controls" aria-label="News controls">
+        <label for="news-topic">Topic</label>
+        <select id="news-topic" name="news-topic">
+          <option value="all">All topics</option>
+          {topics.map((topic) => <option value={topic}>{topic}</option>)}
+        </select>
+
+        <label for="news-source">Source</label>
+        <select id="news-source" name="news-source">
+          <option value="all">All sources</option>
+          {outlets.map((outlet) => <option value={outlet}>{outlet}</option>)}
+        </select>
+
+        <label for="news-type">Feed type</label>
+        <select id="news-type" name="news-type">
+          <option value="all">All entries</option>
+          <option value="curated">Curated</option>
+          <option value="automated">Automated watch</option>
+        </select>
+
+        <label for="news-sort">Sort</label>
+        <select id="news-sort" name="news-sort">
+          <option value="date-desc">Newest first</option>
+          <option value="score-desc">Highest relevance</option>
+          <option value="source-asc">Source A-Z</option>
+        </select>
+      </div>
+
+      <div class="news-grid" data-news-grid>
         {news.map((item) => (
-          <article class="news-card">
+          <article
+            class="news-card"
+            data-news-card
+            data-topic={item.data.topics.join('|')}
+            data-source={item.data.outlet}
+            data-type={item.data.automated ? 'automated' : 'curated'}
+            data-date={item.data.publishedDate}
+            data-score={item.data.relevanceScore ?? (item.data.reviewStatus === 'reviewed' ? 80 : 50)}
+          >
             {item.data.image ? (
               <a class="news-card__image" href={item.data.url} target="_blank" rel="noreferrer" aria-label={`Read ${item.data.title}`}>
                 <img src={item.data.image.src} alt={item.data.image.alt} loading="lazy" decoding="async" />
@@ -39,7 +94,15 @@ const sources = (await getCollection('newsSources')).filter((source) => source.d
               </div>
               <h2><a href={item.data.url} target="_blank" rel="noreferrer">{item.data.title}</a></h2>
               <p>{item.data.summary}</p>
-              <p class="news-card__source">{item.data.outlet}{item.data.automated ? ' / automated watch' : ' / curated'}</p>
+              <div class="news-card__meta">
+                <p class="news-card__source">{item.data.outlet}{item.data.automated ? ' / automated watch' : ' / curated'}</p>
+                {item.data.relevanceScore && <span>Score {item.data.relevanceScore}</span>}
+              </div>
+              {item.data.topics.length > 0 && (
+                <div class="tag-row" aria-label="Story topics">
+                  {item.data.topics.map((topic) => <span>{topic}</span>)}
+                </div>
+              )}
             </div>
           </article>
         ))}
@@ -55,6 +118,47 @@ const sources = (await getCollection('newsSources')).filter((source) => source.d
           <a href={source.data.url} target="_blank" rel="noreferrer">{source.data.name}</a>
         ))}
       </div>
+      <p class="feed-note">
+        Automated discovery is allowlisted by source and publisher name, excludes known Murdoch/right-leaning outlets, and keeps uncertain items in review-needed state.
+      </p>
     </div>
   </section>
+
+  <script>
+    const topicSelect = document.querySelector<HTMLSelectElement>('#news-topic');
+    const sourceSelect = document.querySelector<HTMLSelectElement>('#news-source');
+    const typeSelect = document.querySelector<HTMLSelectElement>('#news-type');
+    const sortSelect = document.querySelector<HTMLSelectElement>('#news-sort');
+    const grid = document.querySelector<HTMLElement>('[data-news-grid]');
+
+    function updateNews() {
+      if (!grid) return;
+      const topic = topicSelect?.value ?? 'all';
+      const source = sourceSelect?.value ?? 'all';
+      const type = typeSelect?.value ?? 'all';
+      const cards = Array.from(grid.querySelectorAll<HTMLElement>('[data-news-card]'));
+
+      for (const card of cards) {
+        const topics = card.dataset.topic?.split('|') ?? [];
+        const topicMatch = topic === 'all' || topics.includes(topic);
+        const sourceMatch = source === 'all' || card.dataset.source === source;
+        const typeMatch = type === 'all' || card.dataset.type === type;
+        card.hidden = !(topicMatch && sourceMatch && typeMatch);
+      }
+
+      const sorted = cards.sort((a, b) => {
+        const sort = sortSelect?.value ?? 'date-desc';
+        if (sort === 'score-desc') return Number(b.dataset.score ?? 0) - Number(a.dataset.score ?? 0);
+        if (sort === 'source-asc') return (a.dataset.source ?? '').localeCompare(b.dataset.source ?? '');
+        return (b.dataset.date ?? '').localeCompare(a.dataset.date ?? '');
+      });
+
+      grid.replaceChildren(...sorted);
+    }
+
+    topicSelect?.addEventListener('change', updateNews);
+    sourceSelect?.addEventListener('change', updateNews);
+    typeSelect?.addEventListener('change', updateNews);
+    sortSelect?.addEventListener('change', updateNews);
+  </script>
 </BaseLayout>

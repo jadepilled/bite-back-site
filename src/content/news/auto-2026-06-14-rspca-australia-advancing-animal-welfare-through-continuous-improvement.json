@@ -3,7 +3,7 @@
   "outlet": "RSPCA Australia",
   "url": "https://www.rspca.org.au/latest-news/blog/advancing-animal-welfare-through-continuous-improvement/",
   "publishedDate": "2026-06-14",
-  "summary": "Advancing animal welfare through continuous improvement",
+  "summary": "Continuous improvement is at the centre of RSPCA Australia's approach to improving the lives of farmed animals. In a complex and evolving animal welfare...",
   "campaignIds": [],
   "topics": [
     "animal welfare"
@@ -14,6 +14,7 @@
     "sourceUrl": "https://rspca.sfo2.cdn.digitaloceanspaces.com/public/Uploads/blog-chiggums__FocusFillWzEyMDAsNjMwLCJ5Iiw2MV0.jpg"
   },
   "automated": true,
-  "fetchedAt": "2026-07-05T16:25:48.301Z",
+  "fetchedAt": "2026-07-06T06:14:19.227Z",
+  "relevanceScore": 38,
   "reviewStatus": "review-needed"
 }

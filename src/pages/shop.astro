@@ -3,8 +3,13 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PageHeader from '@components/PageHeader.astro';
 import StatusPill from '@components/StatusPill.astro';
+import ButtonLink from '@components/ButtonLink.astro';
+import { reviewLabel, statusLabel } from '@lib/content';
 
 const products = (await getCollection('products')).sort((a, b) => a.data.name.localeCompare(b.data.name));
+const previewCount = products.filter((product) => product.data.status === 'preview').length;
+const draftCount = products.filter((product) => product.data.status === 'draft').length;
+const categoryCount = new Set(products.map((product) => product.data.category)).size;
 ---
 
 <BaseLayout
@@ -13,15 +18,64 @@ const products = (await getCollection('products')).sort((a, b) => a.data.name.lo
 >
   <PageHeader
     eyebrow="Shop"
-    title="Campaign merch with the volume turned up."
-    intro="The shop is wired for JSON-backed products. These bumper stickers are preview items while fulfilment and fundraising checks are completed."
+    title="A test catalogue for campaign merch, bundles and fulfilment."
+    intro="Products are JSON-backed, status-labelled and held behind review gates until payment, fulfilment and fundraising obligations are ready."
   />
 
   <section class="section">
     <div class="container">
-      <div class="product-grid">
+      <div class="metric-grid shop-metrics" aria-label="Shop readiness">
+        <article class="pathway">
+          <strong>{products.length}</strong>
+          <p>Products in the test catalogue</p>
+        </article>
+        <article class="pathway">
+          <strong>{previewCount}</strong>
+          <p>Preview items ready for supporter feedback</p>
+        </article>
+        <article class="pathway">
+          <strong>{categoryCount}</strong>
+          <p>Product categories wired through JSON</p>
+        </article>
+      </div>
+
+      <div class="sort-bar shop-controls" aria-label="Shop controls">
+        <label for="shop-category">Category</label>
+        <select id="shop-category" name="shop-category">
+          <option value="all">All categories</option>
+          <option value="bumper-sticker">Bumper stickers</option>
+          <option value="sticker">Stickers</option>
+          <option value="print">Print</option>
+          <option value="donation">Bundles</option>
+        </select>
+
+        <label for="shop-status">Status</label>
+        <select id="shop-status" name="shop-status">
+          <option value="all">All statuses</option>
+          <option value="preview">Preview</option>
+          <option value="draft">Draft</option>
+          <option value="available">Available</option>
+        </select>
+
+        <label for="shop-sort">Sort</label>
+        <select id="shop-sort" name="shop-sort">
+          <option value="name-asc">Name A-Z</option>
+          <option value="price-asc">Price low-high</option>
+          <option value="price-desc">Price high-low</option>
+          <option value="status-asc">Status</option>
+        </select>
+      </div>
+
+      <div class="product-grid" data-product-grid>
         {products.map((product) => (
-          <article class="product-card">
+          <article
+            class="product-card"
+            data-product-card
+            data-category={product.data.category}
+            data-status={product.data.status}
+            data-name={product.data.name.toLowerCase()}
+            data-price={product.data.priceAud}
+          >
             <div class="sticker-preview" aria-hidden="true">
               <img src="/brand/bite-mark-transparent-64.png" width="42" height="42" alt="" loading="lazy" decoding="async" />
               <span>{product.data.stickerText ?? product.data.name}</span>
@@ -40,13 +94,71 @@ const products = (await getCollection('products')).sort((a, b) => a.data.name.lo
                 </div>
                 <div>
                   <dt>Fulfilment</dt>
-                  <dd>{product.data.fulfillmentNote ?? 'Pending'}</dd>
+                  <dd>{statusLabel(product.data.fulfillmentStatus)}</dd>
+                </div>
+                <div>
+                  <dt>Review</dt>
+                  <dd>{reviewLabel(product.data.fundraisingReviewStatus)}</dd>
                 </div>
               </dl>
+              <div class="button-row">
+                <ButtonLink href={`/shop/${product.data.slug}/`} variant="secondary">Inspect item</ButtonLink>
+                <ButtonLink href="/contact/" variant="plain">Register interest</ButtonLink>
+              </div>
             </div>
           </article>
         ))}
       </div>
     </div>
   </section>
+
+  <section class="callout-band">
+    <div class="container">
+      <div>
+        <p class="section-label">Launch gate</p>
+        <h2>{draftCount > 0 ? 'Checkout stays locked until the boring parts are solid.' : 'Checkout is ready to test.'}</h2>
+        <p>
+          Public sales should wait for stock proofing, payment routing, fulfilment costs, returns handling and fundraising-law review.
+        </p>
+      </div>
+      <ButtonLink href="/contact/" variant="primary">Send shop feedback</ButtonLink>
+    </div>
+  </section>
+
+  <script>
+    const categorySelect = document.querySelector<HTMLSelectElement>('#shop-category');
+    const statusSelect = document.querySelector<HTMLSelectElement>('#shop-status');
+    const sortSelect = document.querySelector<HTMLSelectElement>('#shop-sort');
+    const grid = document.querySelector<HTMLElement>('[data-product-grid]');
+    const statusOrder: Record<string, number> = {
+      available: 1,
+      preview: 2,
+      draft: 3,
+      'sold-out': 4
+    };
+
+    function updateProducts() {
+      if (!grid) return;
+      const category = categorySelect?.value ?? 'all';
+      const status = statusSelect?.value ?? 'all';
+      const cards = Array.from(grid.querySelectorAll<HTMLElement>('[data-product-card]'));
+      for (const card of cards) {
+        const categoryMatch = category === 'all' || card.dataset.category === category;
+        const statusMatch = status === 'all' || card.dataset.status === status;
+        card.hidden = !(categoryMatch && statusMatch);
+      }
+      const sorted = cards.sort((a, b) => {
+        const sort = sortSelect?.value ?? 'name-asc';
+        if (sort === 'price-asc') return Number(a.dataset.price ?? 0) - Number(b.dataset.price ?? 0);
+        if (sort === 'price-desc') return Number(b.dataset.price ?? 0) - Number(a.dataset.price ?? 0);
+        if (sort === 'status-asc') return (statusOrder[a.dataset.status ?? ''] ?? 99) - (statusOrder[b.dataset.status ?? ''] ?? 99);
+        return (a.dataset.name ?? '').localeCompare(b.dataset.name ?? '');
+      });
+      grid.replaceChildren(...sorted);
+    }
+
+    categorySelect?.addEventListener('change', updateProducts);
+    statusSelect?.addEventListener('change', updateProducts);
+    sortSelect?.addEventListener('change', updateProducts);
+  </script>
 </BaseLayout>

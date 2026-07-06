@@ -29,13 +29,13 @@ node scripts/serve-dist.mjs --host 127.0.0.1 --port 4321
 
 ## Content Model
 
-Campaigns are JSON files in `src/content/campaigns`. They reference structured sources, images, news/background entries and progress updates. Shop products, friend listings and news sources are also JSON-backed collections in `src/content/products`, `src/content/friends` and `src/content/news-sources`.
+Campaigns are JSON files in `src/content/campaigns`. They reference structured sources, images, news/background entries and progress updates. Shop products, friend listings, platform updates and news sources are also JSON-backed collections in `src/content/products`, `src/content/friends`, `src/content/platform-updates` and `src/content/news-sources`.
 
 Astro validates collection shapes at build time, and `scripts/validate-content.mjs` checks cross-references plus launch-specific guardrails.
 
 `scripts/process-logo.mjs` uses `bite_back_logo.png` to generate the favicon set and reusable black, white and transparent pixel-art bite-mark assets under `public/brand`.
 
-`scripts/update-news.mjs` refreshes automated news entries from allowlisted Australian sources, writes JSON to `src/content/news`, and caches available article images under `public/images/news`. The scheduled workflow in `.github/workflows/update-news.yml` runs the updater every six hours and commits changed news files.
+`scripts/update-news.mjs` refreshes automated news entries from allowlisted Australian sources, scores them for relevance, suppresses weak or duplicate items, writes JSON to `src/content/news`, and caches available article images under `public/images/news`. The scheduled workflow in `.github/workflows/update-news.yml` runs the updater every six hours and commits changed news files.
 
 No supporter data, Action Network credentials, MP target files, private legal notes or payment data belong in this repository.
 

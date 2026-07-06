@@ -6,6 +6,7 @@
   "fetchMode": "html",
   "sourceType": "ngo",
   "country": "Australia",
+  "qualityWeight": 6,
   "notes": "Allowlisted animal welfare NGO latest-news page filtered by the updater.",
   "enabled": true
 }

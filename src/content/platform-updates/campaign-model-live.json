@@ -1,0 +1,7 @@
+{
+  "date": "2026-07-06",
+  "title": "Campaign data model live",
+  "summary": "Campaign pages are generated from structured JSON with severity, sources, progress, review status and action gates.",
+  "status": "published",
+  "area": "campaigns"
+}

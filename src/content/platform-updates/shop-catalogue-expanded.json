@@ -1,0 +1,7 @@
+{
+  "date": "2026-07-06",
+  "title": "Shop catalogue expanded for early testing",
+  "summary": "The test shop now includes variants, fulfilment status, fundraising review fields and detail pages for each item.",
+  "status": "testing",
+  "area": "shop"
+}

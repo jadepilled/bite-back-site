@@ -1,0 +1,12 @@
+{
+  "name": "Australian Welfare News Search",
+  "publisher": "Google News",
+  "url": "https://news.google.com/",
+  "feedUrl": "https://news.google.com/rss/search?q=%22animal%20welfare%22%20Australia%20(ABC%20OR%20Guardian%20OR%20RSPCA)%20when:45d&hl=en-AU&gl=AU&ceid=AU:en",
+  "fetchMode": "google-news",
+  "sourceType": "aggregator",
+  "country": "Australia",
+  "qualityWeight": 5,
+  "notes": "Discovery-only feed. The updater accepts only allowlisted publisher names and keeps the Google News redirect link when no canonical URL is available.",
+  "enabled": true
+}

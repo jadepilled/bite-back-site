@@ -1,0 +1,24 @@
+{
+  "id": "evidence-first-poster",
+  "slug": "evidence-first-poster",
+  "name": "Evidence First Poster",
+  "category": "print",
+  "status": "draft",
+  "priceAud": 18,
+  "summary": "A stark black-and-white campaign poster for stalls, share houses and meeting rooms.",
+  "description": "Draft print item for early testing of poster sizing, print cost assumptions and campaign-kit bundles.",
+  "stickerText": "EVIDENCE FIRST / PRESSURE NEXT",
+  "colours": ["black", "white", "red"],
+  "sku": "BB-PRINT-EF",
+  "materials": ["recycled matte stock"],
+  "dimensions": "A3",
+  "variants": [
+    { "name": "A3 poster", "sku": "BB-PRINT-EF-A3", "priceAud": 18, "status": "draft" },
+    { "name": "A2 poster", "sku": "BB-PRINT-EF-A2", "priceAud": 28, "status": "draft" }
+  ],
+  "impactNote": "Built for campaign tables and local group organising once print quotes are tested.",
+  "fundraisingReviewStatus": "draft",
+  "fulfillmentStatus": "not-started",
+  "tags": ["campaign kit", "print"],
+  "fulfillmentNote": "Draft item."
+}
