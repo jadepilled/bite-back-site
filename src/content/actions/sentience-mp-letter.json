@@ -1,0 +1,16 @@
+{
+  "type": "mp-letter",
+  "label": "Contact your state MP",
+  "provider": "action-network",
+  "url": "/take-action/#mp-contact-testing",
+  "requiresAddress": true,
+  "consentNote": "This MP-contact action remains in testing until Australian electorate matching, delivery, confirmation, unsubscribe and export logs pass review.",
+  "status": "testing",
+  "campaignId": "sentience-statute",
+  "description": "State and territory MP-contact action for sentience recognition tied to enforceable duties.",
+  "testGate": [
+    "Federal and state electorate matching checked against official tools",
+    "Shared postcode and incomplete address scenarios tested",
+    "Confirmation email, unsubscribe and action export verified"
+  ]
+}

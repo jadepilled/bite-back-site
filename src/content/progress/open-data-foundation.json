@@ -1,0 +1,8 @@
+{
+  "campaignId": "open-welfare-data",
+  "date": "2026-07-06",
+  "title": "Open-data campaign scoped",
+  "summary": "The campaign is scoped around comparable regulator reporting and will not launch public targeting until data definitions and privacy risks are reviewed.",
+  "status": "foundation",
+  "sourceIds": ["animal-welfare-legislation-review-2019", "subordinate-legislation-2022"]
+}

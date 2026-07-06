@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHeader from '@components/PageHeader.astro';
+import StatusPill from '@components/StatusPill.astro';
+import ButtonLink from '@components/ButtonLink.astro';
+import { mapEntries } from '@lib/content';
+
+const campaignEntries = await getCollection('campaigns');
+const campaigns = mapEntries(campaignEntries);
+const campaignsById = new Map(campaignEntries.map((campaign) => [campaign.data.id, campaign]));
+const progress = (await getCollection('progress')).sort((a, b) => b.data.date.localeCompare(a.data.date));
+const corrections = [...campaigns.values()].flatMap((campaign) =>
+  campaign.data.correctionHistory.map((correction) => ({
+    campaign,
+    correction
+  }))
+);
+---
+
+<BaseLayout
+  title="Track Record"
+  description="Bite Back track record page for campaign progress, corrections, review status and launch readiness."
+>
+  <PageHeader
+    eyebrow="Track Record"
+    title="The public record starts at launch and keeps receipts."
+    intro="Progress updates, review status and correction history sit beside the campaigns they belong to."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="metric-grid">
+        <article class="pathway">
+          <strong>{campaigns.size}</strong>
+          <p>Public launch campaigns</p>
+        </article>
+        <article class="pathway">
+          <strong>{progress.length}</strong>
+          <p>Progress updates published</p>
+        </article>
+        <article class="pathway">
+          <strong>{corrections.length}</strong>
+          <p>Correction records attached to campaign pages</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-border">
+    <div class="container">
+      <p class="section-label">Campaign updates</p>
+      <div class="timeline-list">
+        {progress.map((item) => {
+          const campaign = campaignsById.get(item.data.campaignId);
+          return (
+            <article class="timeline-item">
+              <time datetime={item.data.date}>{item.data.date}</time>
+              <h2>{item.data.title}</h2>
+              {campaign && <p class="timeline-item__campaign">{campaign.data.title}</p>}
+              <p>{item.data.summary}</p>
+              <StatusPill value={item.data.status} />
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="callout-band">
+    <div class="container">
+      <div>
+        <p class="section-label">Corrections</p>
+        <h2>Challenge a claim, fix the record.</h2>
+        <p>Send the page, the disputed claim and the source material that should change it.</p>
+      </div>
+      <ButtonLink href="/corrections/" variant="primary">Request correction</ButtonLink>
+    </div>
+  </section>
+</BaseLayout>

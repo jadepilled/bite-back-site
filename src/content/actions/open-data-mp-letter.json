@@ -1,0 +1,16 @@
+{
+  "type": "mp-letter",
+  "label": "Ask for open enforcement data",
+  "provider": "action-network",
+  "url": "/take-action/#mp-contact-testing",
+  "requiresAddress": true,
+  "consentNote": "This MP-contact action remains in testing until jurisdiction targeting, message delivery and consent flows are proven.",
+  "status": "testing",
+  "campaignId": "open-welfare-data",
+  "description": "MP-contact action asking regulators and ministers to publish comparable animal welfare enforcement data.",
+  "testGate": [
+    "Jurisdiction and target type reviewed before launch",
+    "Messages sent to internal targets before any public delivery",
+    "Suppression and deletion request process documented"
+  ]
+}

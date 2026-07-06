@@ -1,0 +1,46 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHeader from '@components/PageHeader.astro';
+---
+
+<BaseLayout
+  title="Privacy"
+  description="Bite Back collects only the information needed for advocacy, donations, volunteering and updates."
+>
+  <PageHeader
+    eyebrow="Privacy"
+    title="Collect less. Explain clearly. Respect unsubscribe."
+    intro="Bite Back collects only the information needed for advocacy, donations, volunteering and updates. We record consent, respect unsubscribe requests and do not sell supporter data."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="page-grid">
+        <article class="pathway">
+          <strong>Static site</strong>
+          <p>This GitHub Pages site does not store supporter records, MP target files, API keys or payment data.</p>
+        </article>
+        <article class="pathway">
+          <strong>Advocacy provider</strong>
+          <p>Action Network actions must show privacy notice, consent source, confirmation, unsubscribe and export process.</p>
+        </article>
+        <article class="pathway">
+          <strong>Donations</strong>
+          <p>Donation data remains with the external donation provider and payment processor after fundraising review.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-border">
+    <div class="container reading-width">
+      <h2>Launch privacy requirements</h2>
+      <ul class="check-list">
+        <li><span>No pre-ticked marketing consent boxes.</span></li>
+        <li><span>Campaign consent is separate from donation processing.</span></li>
+        <li><span>Suppression lists and deletion request processes are tested before launch.</span></li>
+        <li><span>Supporter data is never sold.</span></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

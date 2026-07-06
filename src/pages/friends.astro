@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHeader from '@components/PageHeader.astro';
+import ButtonLink from '@components/ButtonLink.astro';
+
+const friends = (await getCollection('friends')).sort((a, b) => a.data.name.localeCompare(b.data.name));
+---
+
+<BaseLayout
+  title="Friends"
+  description="Australian organisations and public-interest groups with goals that overlap with Bite Back campaigns."
+>
+  <PageHeader
+    eyebrow="Friends"
+    title="Allies, references and useful pressure points."
+    intro="This JSON-backed directory starts with Australian organisations whose work overlaps with animal law, welfare transparency and democratic reform."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="friend-grid">
+        {friends.map((friend) => (
+          <article class="friend-card">
+            <p class="section-label">{friend.data.organisationType}</p>
+            <h2>{friend.data.name}</h2>
+            <p>{friend.data.summary}</p>
+            <dl class="metadata-list">
+              <div>
+                <dt>Region</dt>
+                <dd>{friend.data.region}</dd>
+              </div>
+              <div>
+                <dt>Connection</dt>
+                <dd>{friend.data.alignment}</dd>
+              </div>
+            </dl>
+            <ButtonLink href={friend.data.url} variant="secondary" external>Visit site</ButtonLink>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

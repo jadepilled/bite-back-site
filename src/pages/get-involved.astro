@@ -1,0 +1,44 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHeader from '@components/PageHeader.astro';
+import ButtonLink from '@components/ButtonLink.astro';
+---
+
+<BaseLayout
+  title="Get Involved"
+  description="Help Bite Back with research, design, data, legal analysis, media monitoring, volunteering, events, outreach and campaign testing."
+>
+  <PageHeader
+    eyebrow="Get Involved"
+    title="Careful work over noise."
+    intro="You can help with research, design, data, legal analysis, media monitoring, volunteering, events, outreach and campaign testing. Bite Back values careful work over noise."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="page-grid">
+        <div class="pathway">
+          <strong>Source checks</strong>
+          <p>Trace claims to primary sources, check dates, label uncertainty and prepare source notes.</p>
+        </div>
+        <div class="pathway">
+          <strong>Campaign testing</strong>
+          <p>Help test addresses, electorates, action confirmation emails, unsubscribe and export logs.</p>
+        </div>
+        <div class="pathway">
+          <strong>Communications</strong>
+          <p>Prepare evidence cards, media monitoring and plain-language explainers without hype or distortion.</p>
+        </div>
+      </div>
+      <div class="callout-band">
+        <div class="container">
+          <div>
+            <h2>Volunteer intake will run through the advocacy provider.</h2>
+            <p>No volunteer form is embedded until consent, privacy notice and suppression handling are configured.</p>
+          </div>
+          <ButtonLink href="/take-action/#campaign-briefs" variant="primary">View readiness gate</ButtonLink>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

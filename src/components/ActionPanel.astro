@@ -1,0 +1,86 @@
+---
+import { CircleCheck, ShieldCheck, TriangleAlert } from '@lucide/astro';
+import ButtonLink from '@components/ButtonLink.astro';
+import StatusPill from '@components/StatusPill.astro';
+import { statusLabel } from '@lib/content';
+
+interface ActionRef {
+  type: string;
+  label: string;
+  provider: 'action-network' | 'external' | 'internal';
+  url: string;
+  embedUrl?: string;
+  requiresAddress: boolean;
+  consentNote: string;
+  status: string;
+}
+
+interface Props {
+  action: ActionRef;
+  campaignTitle?: string;
+  testItems?: string[];
+}
+
+const { action, campaignTitle, testItems = [] } = Astro.props;
+const isExternal = action.url.startsWith('http');
+const isLiveEmbed = action.status === 'active' && action.provider === 'action-network' && action.embedUrl;
+---
+
+<section class="action-panel" id="action" aria-labelledby="action-heading">
+  <div class="section-label">Specific action</div>
+  <div class="action-panel__header">
+    <div>
+      <h2 id="action-heading">{action.label}</h2>
+      {campaignTitle && <p>{campaignTitle}</p>}
+    </div>
+    <StatusPill value={action.status} />
+  </div>
+
+  <div class="action-panel__body">
+    <p>{action.consentNote}</p>
+
+    {action.status !== 'active' && (
+      <div class="notice notice-caution">
+        <TriangleAlert size={22} aria-hidden="true" />
+        <div>
+          <strong>{statusLabel(action.status)}</strong>
+          <span>
+            This static site will not collect supporter data. Public MP-contact delivery starts only after Action Network targeting,
+            message delivery, confirmation, unsubscribe and export logs pass testing.
+          </span>
+        </div>
+      </div>
+    )}
+
+    {testItems.length > 0 && (
+      <ul class="check-list">
+        {testItems.map((item) => (
+          <li>
+            <CircleCheck size={20} aria-hidden="true" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {isLiveEmbed ? (
+      <iframe
+        class="action-embed"
+        title={`Action Network action for ${campaignTitle ?? action.label}`}
+        src={action.embedUrl}
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        sandbox="allow-forms allow-scripts allow-same-origin allow-popups"
+      ></iframe>
+    ) : (
+      <ButtonLink href={action.url} variant={action.status === 'active' ? 'urgent' : 'secondary'} external={isExternal}>
+        {action.status === 'active' ? action.label : 'View testing checklist'}
+      </ButtonLink>
+    )}
+  </div>
+
+  <p class="privacy-note">
+    <ShieldCheck size={18} aria-hidden="true" />
+    Address data is required only for representative matching and stays with the configured advocacy provider.
+  </p>
+</section>

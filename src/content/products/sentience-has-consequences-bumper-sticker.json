@@ -1,0 +1,14 @@
+{
+  "id": "sentience-has-consequences-bumper-sticker",
+  "slug": "sentience-has-consequences-bumper-sticker",
+  "name": "Sentience Has Consequences",
+  "category": "bumper-sticker",
+  "status": "preview",
+  "priceAud": 8,
+  "summary": "A launch bumper sticker tying statutory recognition to practical duties.",
+  "description": "Dummy product content used to test sort order, pricing, status labels and future product images.",
+  "stickerText": "SENTIENCE HAS CONSEQUENCES",
+  "colours": ["black", "white", "red"],
+  "tags": ["sentience", "law reform"],
+  "fulfillmentNote": "Preview item only."
+}

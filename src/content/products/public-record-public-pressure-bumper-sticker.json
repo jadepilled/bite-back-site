@@ -1,0 +1,14 @@
+{
+  "id": "public-record-public-pressure-bumper-sticker",
+  "slug": "public-record-public-pressure-bumper-sticker",
+  "name": "Public Record / Public Pressure",
+  "category": "bumper-sticker",
+  "status": "preview",
+  "priceAud": 8,
+  "summary": "A stark data-accountability bumper sticker for open reporting work.",
+  "description": "Dummy shop item for testing the JSON-backed catalogue, product cards and donation routing before fulfilment is enabled.",
+  "stickerText": "PUBLIC RECORD / PUBLIC PRESSURE",
+  "colours": ["black", "white", "red"],
+  "tags": ["open data", "accountability"],
+  "fulfillmentNote": "Preview item only."
+}

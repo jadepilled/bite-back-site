@@ -1,0 +1,11 @@
+{
+  "name": "RSPCA Australia",
+  "publisher": "RSPCA Australia",
+  "url": "https://www.rspca.org.au/",
+  "feedUrl": "https://www.rspca.org.au/latest-news/",
+  "fetchMode": "html",
+  "sourceType": "ngo",
+  "country": "Australia",
+  "notes": "Allowlisted animal welfare NGO latest-news page filtered by the updater.",
+  "enabled": true
+}

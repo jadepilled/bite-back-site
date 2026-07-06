@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import StatusPill from '@components/StatusPill.astro';
+
+interface Props {
+  sources: CollectionEntry<'sources'>[];
+}
+
+const { sources } = Astro.props;
+---
+
+<section class="source-list" aria-labelledby="sources-heading">
+  <div class="section-label">Source register</div>
+  <h2 id="sources-heading">Sources</h2>
+  <ol>
+    {sources.map((source) => (
+      <li>
+        <article>
+          <div class="source-list__top">
+            <h3>
+              <a href={source.data.url} target="_blank" rel="noreferrer">{source.data.title}</a>
+            </h3>
+            <StatusPill value={source.data.confidenceLabel} type="confidence" />
+          </div>
+          <p>{source.data.publisher}</p>
+          <dl class="metadata-list">
+            <div>
+              <dt>Type</dt>
+              <dd>{source.data.sourceType}</dd>
+            </div>
+            <div>
+              <dt>Claim</dt>
+              <dd>{source.data.claimCategory}</dd>
+            </div>
+            <div>
+              <dt>Accessed</dt>
+              <dd>{source.data.dateAccessed}</dd>
+            </div>
+          </dl>
+        </article>
+      </li>
+    ))}
+  </ol>
+</section>

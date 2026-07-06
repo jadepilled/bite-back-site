@@ -1,0 +1,70 @@
+{
+  "id": "open-welfare-data",
+  "slug": "open-animal-welfare-data",
+  "title": "Open Animal Welfare Data",
+  "status": "testing",
+  "issueType": "Transparency",
+  "affectedAnimals": ["Animals affected by enforceable welfare laws"],
+  "jurisdiction": "State and territory",
+  "decisionMakers": [
+    "State and territory agriculture departments",
+    "Animal welfare ministers",
+    "Ombudsmen and auditors-general",
+    "Parliamentary committees"
+  ],
+  "desiredOutcome": "Regulators publish comparable data on complaints, inspections, notices, prosecutions, outcomes, species and sectors.",
+  "measurableEndpoint": "At least one jurisdiction commits to an annual public dataset, data dictionary, species and sector breakdowns, trend reporting and enforcement outcomes.",
+  "summary": "Cruelty and neglect are harder to hide when enforcement data is public, comparable and usable. Bite Back is asking for open reporting that lets the public track whether welfare law works in practice.",
+  "problem": "Animal welfare law is fragmented and regulator reporting is inconsistent. Without comparable data, the public cannot see where complaints, inspections, notices and prosecutions are changing outcomes.",
+  "legalPathway": "The launch pathway is an audit of current reporting, a minimum open-data standard, and jurisdiction-specific MP or inquiry submissions after privacy and investigation-sensitivity review.",
+  "evidenceSummary": "Academic reviews identify fragmentation across jurisdictions. The campaign uses that evidence to argue for comparable regulator reporting rather than unsupported allegations.",
+  "severity": "medium",
+  "primaryAction": {
+    "type": "mp-letter",
+    "label": "Ask for open enforcement data",
+    "provider": "action-network",
+    "url": "/take-action/#mp-contact-testing",
+    "requiresAddress": true,
+    "consentNote": "This action is not live until jurisdiction targeting, delivery, consent, unsubscribe and export logs have been tested.",
+    "status": "testing"
+  },
+  "secondaryActions": [
+    {
+      "type": "submission",
+      "label": "Prepare inquiry submission",
+      "provider": "internal",
+      "url": "/take-action/#campaign-briefs",
+      "requiresAddress": false,
+      "consentNote": "No supporter data is collected by this static site. Submission workflows will be published after review.",
+      "status": "draft"
+    },
+    {
+      "type": "share",
+      "label": "Share the data standard",
+      "provider": "internal",
+      "url": "/campaigns/open-animal-welfare-data/",
+      "requiresAddress": false,
+      "consentNote": "Sharing this page does not provide Bite Back with personal data.",
+      "status": "active"
+    }
+  ],
+  "images": ["open-data-review"],
+  "sourceIds": [
+    "daff-animal-welfare-australia",
+    "animal-welfare-legislation-review-2019",
+    "subordinate-legislation-2022",
+    "oaic-nfp-privacy"
+  ],
+  "newsIds": [],
+  "progressIds": ["open-data-foundation"],
+  "legalReviewStatus": "legal-review-needed",
+  "scientificReviewStatus": "review-needed",
+  "confidenceLabel": "moderate",
+  "launchDate": "2026-07-06",
+  "correctionHistory": [
+    {
+      "summary": "No public corrections recorded for this launch page.",
+      "status": "none"
+    }
+  ]
+}

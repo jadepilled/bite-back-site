@@ -1,0 +1,11 @@
+{
+  "name": "ABC News",
+  "publisher": "Australian Broadcasting Corporation",
+  "url": "https://www.abc.net.au/news/",
+  "feedUrl": "https://www.abc.net.au/news/feed/51120/rss.xml",
+  "fetchMode": "rss",
+  "sourceType": "public-broadcaster",
+  "country": "Australia",
+  "notes": "Allowlisted public broadcaster feed filtered by animal-welfare terms.",
+  "enabled": true
+}

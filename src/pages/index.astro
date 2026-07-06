@@ -1,0 +1,93 @@
+---
+import { ArrowRight, FileText } from '@lucide/astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ButtonLink from '@components/ButtonLink.astro';
+import CampaignCard from '@components/CampaignCard.astro';
+import { mapEntries, sortCampaigns } from '@lib/content';
+
+const campaigns = sortCampaigns(await getCollection('campaigns'));
+const images = mapEntries(await getCollection('images'));
+const heroImageId = campaigns[0]?.data.images[0];
+const heroImage = heroImageId ? images.get(heroImageId)?.data : undefined;
+---
+
+<BaseLayout title="Bite Back" preloadImages={campaigns.flatMap((campaign) => {
+  const image = images.get(campaign.data.images[0])?.data;
+  return image ? [image.src] : [];
+})}>
+  <section class="home-hero" style={`--hero-image: url('${heroImage?.src ?? '/images/campaigns/sentience-statute-dark.webp'}')`}>
+    <div class="home-hero__inner">
+      <p class="section-label">Australian animal welfare advocacy</p>
+      <h1>Giving animal welfare laws teeth.</h1>
+      <p>
+        Bite Back turns animal welfare evidence into legal pressure, public tracking and practical action.
+      </p>
+      <div class="button-row">
+        <ButtonLink href="/take-action/" variant="urgent">
+          Take action
+          <ArrowRight slot="icon" size={18} aria-hidden="true" />
+        </ButtonLink>
+        <ButtonLink href="/campaigns/" variant="secondary">
+          Read the campaigns
+          <FileText slot="icon" size={18} aria-hidden="true" />
+        </ButtonLink>
+      </div>
+      <p class="hero-evidence">Sources open. Targets named. Outcomes tracked.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="reading-width">
+        <p class="lede">
+          Animals are still too often treated as property, production units, pests, resources or tools. But animals are
+          sentient beings with interests of their own. Laws that recognise welfare in principle must protect it in practice.
+        </p>
+        <p>Bite Back works where evidence, law and public pressure can be made to move something measurable.</p>
+      </div>
+      <div class="pathway-grid" aria-label="Bite Back pathways">
+        <div class="pathway">
+          <strong>Learn the issue</strong>
+          <p>Plain-language explainers, legal maps and source-backed campaign dossiers.</p>
+        </div>
+        <div class="pathway">
+          <strong>Act on the law</strong>
+          <p>Targeted petitions, MP-contact tools, submissions and public accountability campaigns.</p>
+        </div>
+        <div class="pathway">
+          <strong>Track the outcome</strong>
+          <p>Campaign progress, corrections, source notes and follow-up actions in one place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-border">
+    <div class="container">
+      <div class="eyebrow-row">
+        <span class="section-label">Featured campaigns</span>
+        <a href="/campaigns/">View all campaigns</a>
+      </div>
+      <div class="campaign-grid">
+        {campaigns.map((campaign) => (
+          <CampaignCard campaign={campaign} image={images.get(campaign.data.images[0])?.data} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="callout-band">
+    <div class="container">
+      <div>
+        <p class="section-label">Public action platform</p>
+        <h2>Evidence on the table. Pressure where it counts.</h2>
+        <p>
+          MP-contact actions stay behind a testing gate until representative targeting, delivery, consent, unsubscribe and
+          audit logs have been verified.
+        </p>
+      </div>
+      <ButtonLink href="/take-action/" variant="primary">Review action readiness</ButtonLink>
+    </div>
+  </section>
+</BaseLayout>

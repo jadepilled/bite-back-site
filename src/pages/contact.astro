@@ -1,0 +1,32 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHeader from '@components/PageHeader.astro';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Contact Bite Back for corrections, media, collaboration, volunteering, research leads or governance inquiries."
+>
+  <PageHeader
+    eyebrow="Contact"
+    title="Send the right kind of evidence to the right review path."
+    intro="Contact Bite Back for corrections, media, collaboration, volunteering, research leads or governance inquiries."
+  />
+
+  <section class="section">
+    <div class="container contact-strip">
+      <div>
+        <strong>Corrections</strong>
+        <p><a href="mailto:corrections@bitebackproject.au">corrections@bitebackproject.au</a></p>
+      </div>
+      <div>
+        <strong>Media</strong>
+        <p><a href="mailto:media@bitebackproject.au">media@bitebackproject.au</a></p>
+      </div>
+      <div>
+        <strong>General</strong>
+        <p><a href="mailto:hello@bitebackproject.au">hello@bitebackproject.au</a></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

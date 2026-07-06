@@ -1,0 +1,40 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHeader from '@components/PageHeader.astro';
+import ButtonLink from '@components/ButtonLink.astro';
+---
+
+<BaseLayout
+  title="Corrections"
+  description="If Bite Back gets something wrong, we correct it. Major corrections are dated and preserved."
+>
+  <PageHeader
+    eyebrow="Corrections"
+    title="If we get something wrong, we correct it."
+    intro="Send the disputed claim, page URL and supporting evidence. Major corrections are dated and preserved."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="page-grid">
+        <article class="pathway">
+          <strong>1. Identify the claim</strong>
+          <p>Include the exact wording, page URL and why the claim appears inaccurate or misleading.</p>
+        </article>
+        <article class="pathway">
+          <strong>2. Provide evidence</strong>
+          <p>Send primary sources, official records, peer-reviewed sources or other credible supporting material.</p>
+        </article>
+        <article class="pathway">
+          <strong>3. Public correction</strong>
+          <p>Material corrections are recorded on the affected page and preserved with date and summary.</p>
+        </article>
+      </div>
+      <div class="section-compact">
+        <ButtonLink href="mailto:corrections@bitebackproject.au" variant="primary" external>
+          Send a correction
+        </ButtonLink>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

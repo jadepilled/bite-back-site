@@ -1,0 +1,36 @@
+---
+const footerLinks = [
+  { href: '/mission/', label: 'Mission' },
+  { href: '/campaigns/', label: 'Campaigns' },
+  { href: '/track-record/', label: 'Track Record' },
+  { href: '/news/', label: 'News' },
+  { href: '/friends/', label: 'Friends' },
+  { href: '/shop/', label: 'Shop' },
+  { href: '/dossiers/', label: 'Dossiers' },
+  { href: '/media/', label: 'Media' },
+  { href: '/contact/', label: 'Contact' },
+  { href: '/privacy/', label: 'Privacy' },
+  { href: '/corrections/', label: 'Corrections' },
+  { href: '/governance/', label: 'Governance' }
+];
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <a class="wordmark wordmark--footer" href="/">
+        <img class="wordmark__logo" src="/brand/bite-mark-transparent-64.png" width="44" height="44" alt="" decoding="async" loading="lazy" />
+        <span class="wordmark__text">
+          <strong>BITE BACK</strong>
+          <small>Giving animal welfare laws teeth.</small>
+        </span>
+      </a>
+      <p>
+        Bite Back turns animal welfare evidence into lawful pressure, public tracking and practical reform work.
+      </p>
+    </div>
+    <nav aria-label="Footer navigation">
+      {footerLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+  </div>
+</footer>

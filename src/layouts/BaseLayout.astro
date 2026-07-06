@@ -1,0 +1,73 @@
+---
+import '@fontsource/ibm-plex-serif/latin-400.css';
+import '@fontsource/ibm-plex-serif/latin-600.css';
+import '@fontsource/ibm-plex-serif/latin-700.css';
+import '@fontsource/ibm-plex-sans/latin-400.css';
+import '@fontsource/ibm-plex-sans/latin-600.css';
+import '@fontsource/ibm-plex-sans/latin-700.css';
+import '@fontsource/ibm-plex-mono/latin-400.css';
+import '@fontsource/ibm-plex-mono/latin-600.css';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import '@styles/global.css';
+
+interface StickyAction {
+  label: string;
+  href: string;
+  status: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  stickyAction?: StickyAction;
+  preloadImages?: string[];
+}
+
+const {
+  title,
+  description = 'Bite Back turns animal welfare evidence into lawful public pressure, campaign tracking and practical reform work.',
+  stickyAction,
+  preloadImages = []
+} = Astro.props;
+
+const siteTitle = title === 'Bite Back' ? title : `${title} | Bite Back`;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://bitebackproject.au').toString();
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    {preloadImages.map((src) => <link rel="preload" as="image" href={src} />)}
+    <title>{siteTitle}</title>
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <Header currentPath={Astro.url.pathname} />
+    <main id="content">
+      <slot />
+    </main>
+    <Footer />
+    {stickyAction && (
+      <aside class="sticky-action" aria-label="Campaign action">
+        <a class="button button-urgent" href={stickyAction.href}>
+          <span>{stickyAction.label}</span>
+          <span class="button-meta">{stickyAction.status}</span>
+        </a>
+      </aside>
+    )}
+  </body>
+</html>

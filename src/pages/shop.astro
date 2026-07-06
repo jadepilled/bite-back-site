@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHeader from '@components/PageHeader.astro';
+import StatusPill from '@components/StatusPill.astro';
+
+const products = (await getCollection('products')).sort((a, b) => a.data.name.localeCompare(b.data.name));
+---
+
+<BaseLayout
+  title="Shop"
+  description="JSON-backed Bite Back shop preview for campaign merch and donation-adjacent products."
+>
+  <PageHeader
+    eyebrow="Shop"
+    title="Campaign merch with the volume turned up."
+    intro="The shop is wired for JSON-backed products. These bumper stickers are preview items while fulfilment and fundraising checks are completed."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="product-grid">
+        {products.map((product) => (
+          <article class="product-card">
+            <div class="sticker-preview" aria-hidden="true">
+              <img src="/brand/bite-mark-transparent-64.png" width="42" height="42" alt="" loading="lazy" decoding="async" />
+              <span>{product.data.stickerText ?? product.data.name}</span>
+            </div>
+            <div class="product-card__body">
+              <div class="eyebrow-row">
+                <span>{product.data.category.replace(/-/g, ' ')}</span>
+                <StatusPill value={product.data.status} />
+              </div>
+              <h2>{product.data.name}</h2>
+              <p>{product.data.summary}</p>
+              <dl class="metadata-list">
+                <div>
+                  <dt>Price</dt>
+                  <dd>${product.data.priceAud.toFixed(2)} AUD</dd>
+                </div>
+                <div>
+                  <dt>Fulfilment</dt>
+                  <dd>{product.data.fulfillmentNote ?? 'Pending'}</dd>
+                </div>
+              </dl>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

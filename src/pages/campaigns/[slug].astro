@@ -1,0 +1,190 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ActionPanel from '@components/ActionPanel.astro';
+import SourceList from '@components/SourceList.astro';
+import StatusPill from '@components/StatusPill.astro';
+import ButtonLink from '@components/ButtonLink.astro';
+import { confidenceLabel, mapEntries, reviewLabel, severityLabel, statusLabel } from '@lib/content';
+
+export async function getStaticPaths() {
+  const campaigns = await getCollection('campaigns');
+  return campaigns.map((campaign) => ({
+    params: { slug: campaign.data.slug },
+    props: { campaign }
+  }));
+}
+
+const { campaign } = Astro.props;
+const imageEntries = mapEntries(await getCollection('images'));
+const sourceEntries = mapEntries(await getCollection('sources'));
+const newsEntries = mapEntries(await getCollection('news'));
+const progressEntries = mapEntries(await getCollection('progress'));
+const actionEntries = await getCollection('actions');
+
+const campaignImage = imageEntries.get(campaign.data.images[0])?.data;
+const sources = campaign.data.sourceIds.flatMap((id) => {
+  const entry = sourceEntries.get(id);
+  return entry ? [entry] : [];
+});
+const progress = campaign.data.progressIds.flatMap((id) => {
+  const entry = progressEntries.get(id);
+  return entry ? [entry] : [];
+});
+const news = campaign.data.newsIds.flatMap((id) => {
+  const entry = newsEntries.get(id);
+  return entry ? [entry] : [];
+});
+const actionRecord = actionEntries.find((entry) => entry.data.campaignId === campaign.data.id);
+const testItems = actionRecord?.data.testGate ?? [];
+---
+
+<BaseLayout
+  title={campaign.data.title}
+  description={campaign.data.summary}
+  preloadImages={campaignImage ? [campaignImage.src] : []}
+  stickyAction={{
+    label: campaign.data.primaryAction.label,
+    href: '#action',
+    status: statusLabel(campaign.data.primaryAction.status)
+  }}
+>
+  <section class="campaign-hero">
+    <div class="campaign-hero__inner">
+      <div>
+        <div class="campaign-meta">
+          <StatusPill value={campaign.data.status} />
+          <StatusPill value={campaign.data.severity} type="severity" />
+        </div>
+        <p class="section-label">{campaign.data.issueType}</p>
+        <h1>{campaign.data.title}</h1>
+        <p class="lede">{campaign.data.summary}</p>
+      </div>
+      {campaignImage && (
+        <figure class="campaign-hero__media">
+          <img src={campaignImage.src} alt={campaignImage.alt} loading="eager" decoding="async" />
+          {campaignImage.caption && <figcaption>{campaignImage.caption}</figcaption>}
+        </figure>
+      )}
+    </div>
+  </section>
+
+  <section class="campaign-body">
+    <div class="campaign-body__main">
+      <section class="document-section" aria-labelledby="learn-heading">
+        <p class="section-label">Learn the issue</p>
+        <h2 id="learn-heading">The problem</h2>
+        <p>{campaign.data.problem}</p>
+      </section>
+
+      <section class="document-section" aria-labelledby="evidence-heading">
+        <p class="section-label">Read the evidence</p>
+        <h2 id="evidence-heading">Evidence summary</h2>
+        <p>{campaign.data.evidenceSummary}</p>
+        <p><strong>Evidence status:</strong> {confidenceLabel(campaign.data.confidenceLabel)}.</p>
+        <p><strong>Campaign severity:</strong> {severityLabel(campaign.data.severity)}.</p>
+      </section>
+
+      <section class="document-section" aria-labelledby="pathway-heading">
+        <p class="section-label">Legal or policy pathway</p>
+        <h2 id="pathway-heading">How change could happen</h2>
+        <p>{campaign.data.legalPathway}</p>
+        <p><strong>Desired outcome:</strong> {campaign.data.desiredOutcome}</p>
+        <p><strong>Measurable endpoint:</strong> {campaign.data.measurableEndpoint}</p>
+      </section>
+
+      <ActionPanel action={campaign.data.primaryAction} campaignTitle={campaign.data.title} testItems={testItems} />
+
+      <section class="document-section" aria-labelledby="progress-heading">
+        <p class="section-label">Track the outcome</p>
+        <h2 id="progress-heading">Progress</h2>
+        {progress.length > 0 ? (
+          <ul class="progress-list">
+            {progress.map((item) => (
+              <li>
+                <time datetime={item.data.date}>{item.data.date}</time>
+                <h3>{item.data.title}</h3>
+                <p>{item.data.summary}</p>
+                <StatusPill value={item.data.status} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No public progress update has been published yet.</p>
+        )}
+      </section>
+
+      <section class="document-section" aria-labelledby="news-heading">
+        <p class="section-label">Relevant news</p>
+        <h2 id="news-heading">Reviewed news and background</h2>
+        {news.length > 0 ? (
+          <ul class="progress-list">
+            {news.map((item) => (
+              <li>
+                <time datetime={item.data.publishedDate}>{item.data.publishedDate}</time>
+                <h3><a href={item.data.url} target="_blank" rel="noreferrer">{item.data.title}</a></h3>
+                <p>{item.data.summary}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="news-empty">No reviewed news or background stories are attached to this campaign yet.</p>
+        )}
+      </section>
+
+      <SourceList sources={sources} />
+    </div>
+
+    <aside aria-label="Campaign facts">
+      <div class="sidebar-panel">
+        <p class="section-label">Campaign facts</p>
+        <dl class="fact-list">
+          <div>
+            <dt>Affected animals</dt>
+            <dd>{campaign.data.affectedAnimals.join(', ')}</dd>
+          </div>
+          <div>
+            <dt>Severity</dt>
+            <dd>{severityLabel(campaign.data.severity)}</dd>
+          </div>
+          <div>
+            <dt>Jurisdiction</dt>
+            <dd>{campaign.data.jurisdiction}</dd>
+          </div>
+          <div>
+            <dt>Decision-maker</dt>
+            <dd>{campaign.data.decisionMakers.join('; ')}</dd>
+          </div>
+          <div>
+            <dt>Legal review</dt>
+            <dd>{reviewLabel(campaign.data.legalReviewStatus)}</dd>
+          </div>
+          <div>
+            <dt>Scientific review</dt>
+            <dd>{reviewLabel(campaign.data.scientificReviewStatus)}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="sidebar-panel">
+        <p class="section-label">Secondary actions</p>
+        <ul class="check-list">
+          {campaign.data.secondaryActions.map((action) => (
+            <li>
+              <span>{action.label}</span>
+              <StatusPill value={action.status} />
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="sidebar-panel">
+        <p class="section-label">Corrections</p>
+        {campaign.data.correctionHistory.map((correction) => (
+          <p>{correction.summary}</p>
+        ))}
+        <ButtonLink href="/corrections/" variant="secondary">Request a correction</ButtonLink>
+      </div>
+    </aside>
+  </section>
+</BaseLayout>

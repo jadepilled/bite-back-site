@@ -1,0 +1,19 @@
+---
+import { confidenceLabel, reviewLabel, severityLabel, statusLabel } from '@lib/content';
+
+interface Props {
+  value: string;
+  type?: 'status' | 'confidence' | 'review' | 'severity';
+}
+
+const { value, type = 'status' } = Astro.props;
+const text = type === 'confidence'
+  ? confidenceLabel(value)
+  : type === 'review'
+    ? reviewLabel(value)
+    : type === 'severity'
+      ? severityLabel(value)
+      : statusLabel(value);
+---
+
+<span class:list={['status-pill', `status-pill--${value}`]}>{text}</span>

@@ -1,0 +1,57 @@
+---
+import { Menu } from '@lucide/astro';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const navItems = [
+  { href: '/campaigns/', label: 'Campaigns' },
+  { href: '/mission/', label: 'Mission' },
+  { href: '/track-record/', label: 'Track Record' },
+  { href: '/news/', label: 'News' },
+  { href: '/friends/', label: 'Friends' },
+  { href: '/shop/', label: 'Shop' },
+  { href: '/take-action/', label: 'Take Action' },
+  { href: '/get-involved/', label: 'Get Involved' }
+];
+
+const isActive = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="wordmark" href="/" aria-label="Bite Back home">
+      <img class="wordmark__logo" src="/brand/bite-mark-transparent-64.png" width="44" height="44" alt="" decoding="async" />
+      <span class="wordmark__text">
+        <strong>BITE BACK</strong>
+        <small>Giving animal welfare laws teeth.</small>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      {navItems.map((item) => (
+        <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <details class="mobile-nav">
+      <summary aria-label="Open navigation">
+        <Menu aria-hidden="true" size={24} />
+        <span>Menu</span>
+      </summary>
+      <nav aria-label="Mobile navigation">
+        {navItems.map((item) => (
+          <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </details>
+  </div>
+</header>

@@ -1,0 +1,38 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHeader from '@components/PageHeader.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="Bite Back mission and campaign approach."
+>
+  <PageHeader
+    eyebrow="About"
+    title="Bite Back is now framed through Mission."
+    intro="The public site keeps philosophy close to the work: campaigns, source trails, track record and action pathways."
+  />
+
+  <section class="section" id="mission">
+    <div class="container">
+      <div class="page-grid">
+        <article class="pathway">
+          <strong>Mission</strong>
+          <p>Strengthen welfare law and public accountability where evidence, legal duties and decision-maker pressure meet.</p>
+        </article>
+        <article class="pathway">
+          <strong>Campaigns</strong>
+          <p>An Australia where animals are recognised as sentient beings and welfare laws protect in practice.</p>
+        </article>
+        <article class="pathway">
+          <strong>Track Record</strong>
+          <p>Public progress notes, correction history and source trails stay attached to the work.</p>
+        </article>
+      </div>
+      <div class="button-row">
+        <a class="button button-secondary" href="/mission/">Open Mission</a>
+        <a class="button button-secondary" href="/track-record/">Open Track Record</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

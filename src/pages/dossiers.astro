@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHeader from '@components/PageHeader.astro';
+import ButtonLink from '@components/ButtonLink.astro';
+import { campaignPath, severityLabel, sortCampaigns } from '@lib/content';
+
+const campaigns = sortCampaigns(await getCollection('campaigns'));
+---
+
+<BaseLayout
+  title="Dossiers"
+  description="Bite Back dossiers gather the law, science, policy context and public-interest evidence behind a campaign."
+>
+  <PageHeader
+    eyebrow="Dossiers"
+    title="Campaign files, sources and working briefs."
+    intro="Dossiers gather the law, policy context, source notes and public-interest evidence behind active campaign pages."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="reading-width">
+        <p>
+          The launch foundation dossier remains an internal build source. Public dossiers appear through campaign pages once
+          source checks and correction history fields are ready.
+        </p>
+      </div>
+      <div class="page-grid">
+        {campaigns.map((campaign) => (
+          <article class="pathway">
+            <p class="section-label">{severityLabel(campaign.data.severity)}</p>
+            <h2>{campaign.data.title}</h2>
+            <p>{campaign.data.evidenceSummary}</p>
+            <ButtonLink href={campaignPath(campaign)} variant="secondary">Read campaign dossier</ButtonLink>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

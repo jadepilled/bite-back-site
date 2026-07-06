@@ -1,0 +1,70 @@
+{
+  "id": "sentience-statute",
+  "slug": "sentience-in-statute-teeth-in-practice",
+  "title": "Sentience in Statute, Teeth in Practice",
+  "status": "testing",
+  "issueType": "Legal reform",
+  "affectedAnimals": ["Animals covered by state and territory animal welfare legislation"],
+  "jurisdiction": "State and territory",
+  "decisionMakers": [
+    "State and territory agriculture ministers",
+    "Attorneys-general where relevant",
+    "Parliamentary committees",
+    "Shadow ministers and crossbenchers"
+  ],
+  "desiredOutcome": "Animal welfare laws recognise animals as sentient beings and connect that recognition to enforceable duties, welfare-impact consideration, reporting and review.",
+  "measurableEndpoint": "A ministerial commitment, consultation, bill, committee inquiry or statutory provision that links sentience recognition to duties and reporting.",
+  "summary": "Animals should be recognised in law as sentient beings whose welfare matters in its own right. Recognition must be tied to enforceable duties and transparent accountability.",
+  "problem": "Sentience recognition varies across Australian jurisdictions. A clause that sounds strong can still become symbolic if it is not connected to duties, enforcement, reporting and review.",
+  "legalPathway": "The launch pathway is state and territory reform: map existing provisions, identify one jurisdictional pilot, seek legal review of model wording, then test an MP-contact action.",
+  "evidenceSummary": "The ACT provides a clear statutory example, while legal scholarship shows that wording and placement affect legal consequences. National implementation remains fragmented.",
+  "severity": "high",
+  "primaryAction": {
+    "type": "mp-letter",
+    "label": "Contact your state MP",
+    "provider": "action-network",
+    "url": "/take-action/#mp-contact-testing",
+    "requiresAddress": true,
+    "consentNote": "This action is not live until Australian MP targeting, delivery, consent, unsubscribe and export logs have been tested.",
+    "status": "testing"
+  },
+  "secondaryActions": [
+    {
+      "type": "petition",
+      "label": "Prepare petition brief",
+      "provider": "internal",
+      "url": "/take-action/#campaign-briefs",
+      "requiresAddress": false,
+      "consentNote": "No supporter data is collected by this static site. Petition collection will happen only through a configured advocacy provider.",
+      "status": "draft"
+    },
+    {
+      "type": "share",
+      "label": "Share the dossier summary",
+      "provider": "internal",
+      "url": "/campaigns/sentience-in-statute-teeth-in-practice/",
+      "requiresAddress": false,
+      "consentNote": "Sharing this page does not provide Bite Back with personal data.",
+      "status": "active"
+    }
+  ],
+  "images": ["sentience-documents"],
+  "sourceIds": [
+    "daff-animal-welfare-australia",
+    "daff-standards-guidelines",
+    "act-animal-welfare-act-1992",
+    "sentience-typology-2024"
+  ],
+  "newsIds": ["sentience-typology-background"],
+  "progressIds": ["sentience-foundation"],
+  "legalReviewStatus": "legal-review-needed",
+  "scientificReviewStatus": "review-needed",
+  "confidenceLabel": "moderate",
+  "launchDate": "2026-07-06",
+  "correctionHistory": [
+    {
+      "summary": "No public corrections recorded for this launch page.",
+      "status": "none"
+    }
+  ]
+}

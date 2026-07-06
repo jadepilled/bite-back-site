@@ -1,0 +1,22 @@
+---
+import { ExternalLink } from '@lucide/astro';
+
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'urgent' | 'plain';
+  external?: boolean;
+}
+
+const { href, variant = 'primary', external = false } = Astro.props;
+---
+
+<a
+  class:list={['button', `button-${variant}`]}
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noreferrer' : undefined}
+>
+  <slot />
+  <slot name="icon" />
+  {external && <ExternalLink size={18} aria-hidden="true" />}
+</a>

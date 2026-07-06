@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHeader from '@components/PageHeader.astro';
+import StatusPill from '@components/StatusPill.astro';
+
+const news = (await getCollection('news')).sort((a, b) => b.data.publishedDate.localeCompare(a.data.publishedDate));
+const sources = (await getCollection('newsSources')).filter((source) => source.data.enabled);
+---
+
+<BaseLayout
+  title="News"
+  description="Recent Australian animal welfare stories from curated JSON and allowlisted automated source feeds."
+>
+  <PageHeader
+    eyebrow="News"
+    title="Animal welfare stories worth tracking."
+    intro="Curated entries and automated source-watch items are stored as JSON, with cached images where the source provides them."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="news-grid">
+        {news.map((item) => (
+          <article class="news-card">
+            {item.data.image ? (
+              <a class="news-card__image" href={item.data.url} target="_blank" rel="noreferrer" aria-label={`Read ${item.data.title}`}>
+                <img src={item.data.image.src} alt={item.data.image.alt} loading="lazy" decoding="async" />
+              </a>
+            ) : (
+              <a class="news-card__image news-card__image--fallback" href={item.data.url} target="_blank" rel="noreferrer" aria-label={`Read ${item.data.title}`}>
+                <img src="/brand/bite-mark-transparent-192.png" alt="" loading="lazy" decoding="async" />
+              </a>
+            )}
+            <div class="news-card__body">
+              <div class="eyebrow-row">
+                <time datetime={item.data.publishedDate}>{item.data.publishedDate}</time>
+                <StatusPill value={item.data.reviewStatus} type="review" />
+              </div>
+              <h2><a href={item.data.url} target="_blank" rel="noreferrer">{item.data.title}</a></h2>
+              <p>{item.data.summary}</p>
+              <p class="news-card__source">{item.data.outlet}{item.data.automated ? ' / automated watch' : ' / curated'}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-border">
+    <div class="container">
+      <p class="section-label">Watch sources</p>
+      <div class="source-chip-list">
+        {sources.map((source) => (
+          <a href={source.data.url} target="_blank" rel="noreferrer">{source.data.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

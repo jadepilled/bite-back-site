@@ -1,0 +1,11 @@
+{
+  "title": "Federal electoral boundary GIS data for free download",
+  "publisher": "Australian Electoral Commission",
+  "url": "https://www.aec.gov.au/electorates/gis/gis_datadownload.htm",
+  "sourceType": "government",
+  "claimCategory": "technical",
+  "dateAccessed": "2026-07-06",
+  "confidenceLabel": "strong",
+  "jurisdiction": "Australia",
+  "notes": "Primary source for federal electoral boundary GIS downloads."
+}

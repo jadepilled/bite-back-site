@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHeader from '@components/PageHeader.astro';
+import CampaignCard from '@components/CampaignCard.astro';
+import { mapEntries, sortCampaigns } from '@lib/content';
+
+const campaigns = sortCampaigns(await getCollection('campaigns'));
+const images = mapEntries(await getCollection('images'));
+---
+
+<BaseLayout
+  title="Campaigns"
+  description="Bite Back campaigns identify affected animals, legal or policy failures, decision-makers, public actions and measurable endpoints."
+>
+  <PageHeader
+    eyebrow="Campaigns"
+    title="Campaigns built for pressure, proof and follow-through."
+    intro="Each campaign names the affected animals, the target, the ask, the pathway and the point at which progress can be measured."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="sort-bar" aria-label="Campaign sorting">
+        <label for="campaign-sort">Sort campaigns</label>
+        <select id="campaign-sort" name="campaign-sort">
+          <option value="date-desc">Newest first</option>
+          <option value="title-asc">Name A-Z</option>
+          <option value="severity-desc">Severity high-low</option>
+          <option value="status-asc">Action status</option>
+        </select>
+      </div>
+
+      <div class="campaign-grid" data-campaign-grid>
+        {campaigns.map((campaign) => (
+          <CampaignCard campaign={campaign} image={images.get(campaign.data.images[0])?.data} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const sortSelect = document.querySelector<HTMLSelectElement>('#campaign-sort');
+    const grid = document.querySelector<HTMLElement>('[data-campaign-grid]');
+    const statusOrder: Record<string, number> = {
+      active: 1,
+      testing: 2,
+      draft: 3,
+      paused: 4,
+      closed: 5
+    };
+
+    sortSelect?.addEventListener('change', () => {
+      if (!grid) return;
+      const cards = Array.from(grid.querySelectorAll<HTMLElement>('[data-campaign-card]'));
+      const sorted = cards.sort((a, b) => {
+        const mode = sortSelect.value;
+        if (mode === 'title-asc') return (a.dataset.title ?? '').localeCompare(b.dataset.title ?? '');
+        if (mode === 'severity-desc') return Number(b.dataset.severity ?? 0) - Number(a.dataset.severity ?? 0);
+        if (mode === 'status-asc') return (statusOrder[a.dataset.status ?? ''] ?? 99) - (statusOrder[b.dataset.status ?? ''] ?? 99);
+        return (b.dataset.date ?? '').localeCompare(a.dataset.date ?? '');
+      });
+      grid.replaceChildren(...sorted);
+    });
+  </script>
+</BaseLayout>

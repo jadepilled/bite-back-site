@@ -1,0 +1,11 @@
+{
+  "name": "Guardian Australia",
+  "publisher": "Guardian News & Media",
+  "url": "https://www.theguardian.com/au",
+  "feedUrl": "https://www.theguardian.com/australia-news/rss",
+  "fetchMode": "rss",
+  "sourceType": "independent-media",
+  "country": "Australia",
+  "notes": "Allowlisted non-Murdoch Australian news source. The updater keeps animal-welfare matches only.",
+  "enabled": true
+}

@@ -1,0 +1,110 @@
+---
+import { ArrowRight, ClipboardCheck, Database, Mail, ShieldCheck } from '@lucide/astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHeader from '@components/PageHeader.astro';
+import ButtonLink from '@components/ButtonLink.astro';
+import StatusPill from '@components/StatusPill.astro';
+import { campaignPath, sortCampaigns } from '@lib/content';
+
+const campaigns = sortCampaigns(await getCollection('campaigns'));
+const actions = await getCollection('actions');
+---
+
+<BaseLayout
+  title="Take Action"
+  description="Choose a current Bite Back action. Each action names the decision-maker, ask, source trail and testing status."
+>
+  <PageHeader
+    eyebrow="Take Action"
+    title="Act only where the ask, target and follow-up are clear."
+    intro="Choose a current action. Contact the relevant decision-maker, sign a petition, make a submission, volunteer, donate or share campaign materials after reading the campaign trail."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="page-grid">
+        {campaigns.map((campaign) => (
+          <article class="pathway">
+            <p class="section-label">{campaign.data.issueType}</p>
+            <h2>{campaign.data.title}</h2>
+            <p>{campaign.data.primaryAction.consentNote}</p>
+            <dl class="metadata-list">
+              <div>
+                <dt>Action</dt>
+                <dd>{campaign.data.primaryAction.label}</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd><StatusPill value={campaign.data.primaryAction.status} /></dd>
+              </div>
+              <div>
+                <dt>Decision-maker</dt>
+                <dd>{campaign.data.decisionMakers[0]}</dd>
+              </div>
+            </dl>
+            <ButtonLink href={campaignPath(campaign)} variant="secondary">
+              Read before acting
+              <ArrowRight slot="icon" size={18} aria-hidden="true" />
+            </ButtonLink>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-border" id="mp-contact-testing">
+    <div class="container">
+      <div class="reading-width">
+        <p class="section-label">MP-contact testing</p>
+        <h2>No public MP-contact action launches until matching and delivery pass.</h2>
+        <p>
+          GitHub Pages is static, so it does not run representative matching or store supporter data. Bite Back will use
+          Action Network public actions after Australian targets, shapefiles, consent, delivery and exports are tested.
+        </p>
+      </div>
+      <div class="metric-grid">
+        <div class="pathway">
+          <Mail aria-hidden="true" size={28} />
+          <strong>Representative matching</strong>
+          <p>Test federal lower house, Senate, state lower house and upper house targeting separately.</p>
+        </div>
+        <div class="pathway">
+          <ClipboardCheck aria-hidden="true" size={28} />
+          <strong>Delivery and logs</strong>
+          <p>Send to internal targets first, then export action logs and document known limitations.</p>
+        </div>
+        <div class="pathway">
+          <ShieldCheck aria-hidden="true" size={28} />
+          <strong>Consent and suppression</strong>
+          <p>Confirm privacy notice, confirmation email, unsubscribe and deletion request process.</p>
+        </div>
+      </div>
+      <ul class="check-list">
+        {actions.flatMap((action) => action.data.testGate).map((item) => (
+          <li>
+            <ClipboardCheck size={20} aria-hidden="true" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-black" id="campaign-briefs">
+    <div class="container">
+      <p class="section-label">Campaign briefs</p>
+      <h2>Actions publish with target, ask, source trail and endpoint.</h2>
+      <p class="lede">
+        Draft petitions, submissions and share materials remain internal until legal and scientific review status is clear.
+      </p>
+      <div class="button-row">
+        <ButtonLink href="/campaigns/" variant="secondary">View campaigns</ButtonLink>
+        <ButtonLink href="/track-record/" variant="secondary">
+          Track record
+          <Database slot="icon" size={18} aria-hidden="true" />
+        </ButtonLink>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PageHeader from '@components/PageHeader.astro';
+import ButtonLink from '@components/ButtonLink.astro';
+---
+
+<BaseLayout
+  title="Media"
+  description="Bite Back can provide evidence summaries, campaign statements, expert contacts and reviewed background material."
+>
+  <PageHeader
+    eyebrow="Media"
+    title="Evidence summaries, not unverifiable claims for headlines."
+    intro="Bite Back can provide evidence summaries, campaign statements, expert contacts and legally reviewed background material."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-strip">
+        <div>
+          <strong>Campaign statements</strong>
+          <p>Use public campaign pages for reviewed claims, source notes and correction status.</p>
+        </div>
+        <div>
+          <strong>Expert background</strong>
+          <p>Expert contacts are provided only where the claim category and review status support it.</p>
+        </div>
+        <div>
+          <strong>Corrections</strong>
+          <p>Send the disputed claim, page URL and supporting evidence for review.</p>
+        </div>
+      </div>
+      <div class="section-compact button-row">
+        <ButtonLink href="/campaigns/" variant="secondary">Current campaigns</ButtonLink>
+        <ButtonLink href="/contact/" variant="primary">Contact Bite Back</ButtonLink>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
