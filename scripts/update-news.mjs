@@ -9,9 +9,10 @@ const contentDir = path.join(root, 'src', 'content');
 const newsDir = path.join(contentDir, 'news');
 const sourceDir = path.join(contentDir, 'news-sources');
 const imageDir = path.join(root, 'public', 'images', 'news');
-const maxItems = Number.parseInt(process.env.BITE_BACK_NEWS_LIMIT ?? '18', 10);
+const maxItems = Number.parseInt(process.env.BITE_BACK_NEWS_LIMIT ?? '24', 10);
 const minScore = Number.parseInt(process.env.BITE_BACK_NEWS_MIN_SCORE ?? '8', 10);
 const earliestDate = process.env.BITE_BACK_NEWS_EARLIEST ?? '2024-01-01';
+const maxAgeDays = Number.parseInt(process.env.BITE_BACK_NEWS_MAX_AGE_DAYS ?? '180', 10);
 const fetchedAt = new Date().toISOString();
 
 const excludedDomains = new Set([
@@ -37,6 +38,7 @@ const weightedTerms = new Map([
   ['cruelty charges', 10],
   ['animal protection', 8],
   ['animal law', 8],
+  ['animal rescue', 7],
   ['sentience', 9],
   ['live export', 8],
   ['livestock', 5],
@@ -52,8 +54,11 @@ const weightedTerms = new Map([
   ['puppy farm', 8],
   ['dog breeding', 7],
   ['wildlife', 5],
+  ['monkey', 4],
+  ['orangutan', 4],
   ['kangaroo', 6],
   ['koala', 5],
+  ['sanctuary', 4],
   ['biosecurity', 4],
   ['inspectorate', 6],
   ['prosecution', 8],
@@ -62,6 +67,37 @@ const weightedTerms = new Map([
   ['standards', 5],
   ['regulator', 7]
 ]);
+
+const animalAnchorTerms = [
+  'animal',
+  'animals',
+  'wildlife',
+  'livestock',
+  'farmed',
+  'abattoir',
+  'live export',
+  'piggery',
+  'pig',
+  'pigs',
+  'cattle',
+  'sheep',
+  'poultry',
+  'chicken',
+  'chickens',
+  'greyhound',
+  'horse',
+  'dog',
+  'dogs',
+  'cat',
+  'cats',
+  'puppy',
+  'kangaroo',
+  'koala',
+  'monkey',
+  'orangutan',
+  'bird',
+  'avian'
+];
 
 const excludedTitlePatterns = [
   /\bpodcast\b/i,
@@ -74,7 +110,15 @@ const excludedTitlePatterns = [
   /\bcertification trade mark\b/i,
   /\bapplications open\b/i,
   /\bscholarship\b/i,
-  /\bassessors\b/i
+  /\bassessors\b/i,
+  /\bfamily day care\b/i,
+  /\bchildcare\b/i,
+  /\bchild care\b/i,
+  /\bAFL\b/i,
+  /\bMRO\b/i,
+  /\bPies\b/i,
+  /\bMagpies\b/i,
+  /\bCollingwood\b/i
 ];
 
 const topicRules = [
@@ -92,7 +136,15 @@ const googlePublisherAllowlist = [
   /abc news/i,
   /australian broadcasting corporation/i,
   /guardian australia/i,
-  /rspca australia/i
+  /rspca australia/i,
+  /the conversation/i,
+  /reuters/i,
+  /bbc/i,
+  /world animal protection/i,
+  /animals australia/i,
+  /humane society international/i,
+  /eurogroup for animals/i,
+  /the australia institute/i
 ];
 
 const parser = new XMLParser({
@@ -114,6 +166,9 @@ function stripHtml(value = '') {
     .replace(/&amp;/g, '&')
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
+    .replace(/&#x27;/gi, "'")
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCharCode(Number.parseInt(code, 16)))
     .replace(/\u2018|\u2019/g, "'")
     .replace(/\u201c|\u201d/g, '"')
     .replace(/\u2013|\u2014/g, '-')
@@ -157,9 +212,17 @@ function isExcludedTitle(title) {
   return excludedTitlePatterns.some((pattern) => pattern.test(title));
 }
 
+function isTooOld(dateValue) {
+  if (!dateValue || maxAgeDays <= 0) return false;
+  const ageDays = (Date.now() - new Date(`${dateValue}T00:00:00Z`).getTime()) / 86400000;
+  return ageDays > maxAgeDays;
+}
+
 function scoreItem(item, source) {
   const title = `${item.title}`.toLowerCase();
-  const summary = `${item.summary}`.toLowerCase();
+  const summary = `${item.summary} ${item.keywords ?? ''}`.toLowerCase();
+  const haystack = `${title} ${summary}`;
+  if (!animalAnchorTerms.some((term) => haystack.includes(term))) return 0;
   let termScore = 0;
   for (const [term, weight] of weightedTerms) {
     if (title.includes(term)) termScore += weight * 2;
@@ -177,7 +240,7 @@ function scoreItem(item, source) {
 }
 
 function classifyTopics(item) {
-  const haystack = `${item.title} ${item.summary}`.toLowerCase();
+  const haystack = `${item.title} ${item.summary} ${item.keywords ?? ''}`.toLowerCase();
   const topics = topicRules
     .filter((rule) => rule.terms.some((term) => haystack.includes(term)))
     .map((rule) => rule.topic);
@@ -188,6 +251,14 @@ function normalizeOutletName(outlet) {
   if (/abc news|australian broadcasting corporation/i.test(outlet)) return 'ABC News';
   if (/guardian/i.test(outlet)) return 'Guardian Australia';
   if (/rspca/i.test(outlet)) return 'RSPCA Australia';
+  if (/conversation/i.test(outlet)) return 'The Conversation';
+  if (/reuters/i.test(outlet)) return 'Reuters';
+  if (/bbc/i.test(outlet)) return 'BBC';
+  if (/world animal protection/i.test(outlet)) return 'World Animal Protection';
+  if (/animals australia/i.test(outlet)) return 'Animals Australia';
+  if (/humane society international/i.test(outlet)) return 'Humane Society International';
+  if (/eurogroup for animals/i.test(outlet)) return 'Eurogroup for Animals';
+  if (/australia institute/i.test(outlet)) return 'The Australia Institute';
   return stripHtml(outlet);
 }
 
@@ -266,6 +337,8 @@ async function getArticleMeta(url) {
 
 async function downloadImage(imageUrl, slug, title) {
   if (!imageUrl || !isAllowedUrl(imageUrl)) return undefined;
+  const imageHost = new URL(imageUrl).hostname.toLowerCase();
+  if (imageHost.includes('googleusercontent.com') || imageHost.includes('gstatic.com')) return undefined;
 
   try {
     const response = await fetch(imageUrl, {
@@ -356,7 +429,7 @@ function parseGoogleNews(xml, source) {
     .filter((item) => googlePublisherAllowlist.some((pattern) => pattern.test(item.outlet)));
 }
 
-function parseHtmlLinks(html, source) {
+function parseRspcaHtmlLinks(html, source) {
   const items = [];
   const matches = html.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi);
 
@@ -380,6 +453,42 @@ function parseHtmlLinks(html, source) {
   }
 
   return items;
+}
+
+function parseWorldAnimalProtectionHtml(html, source) {
+  const items = [];
+  const matches = html.matchAll(/<div class=["']promoBlockWrap["'][^>]*>([\s\S]*?)<h3 class=["']promoBlockTitle["'][^>]*>\s*<a href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>\s*<\/h3>[\s\S]*?<time[^>]+datetime=["']([^"']+)["'][^>]*>[\s\S]*?<\/time>[\s\S]*?<p class=["']promoBlockSummary["'][^>]*>([\s\S]*?)<\/p>/gi);
+
+  for (const match of matches) {
+    const block = match[1];
+    const url = new URL(match[2], source.feedUrl).toString();
+    const title = stripHtml(match[3]);
+    const publishedDate = dateOnly(match[4]);
+    const summary = truncate(stripHtml(match[5]) || title);
+    const topics = [...block.matchAll(/<li class=["']topicsItem["'][^>]*>[\s\S]*?<a[^>]*>([\s\S]*?)<\/a>/gi)]
+      .map((topicMatch) => stripHtml(topicMatch[1]))
+      .filter(Boolean);
+    const imageMatch = block.match(/<img[^>]+src=["']([^"']+)["']/i);
+    const imageUrl = imageMatch?.[1] ? new URL(imageMatch[1], source.feedUrl).toString() : undefined;
+    items.push({
+      title,
+      outlet: source.name,
+      url,
+      publishedDate,
+      summary,
+      keywords: topics.join(' '),
+      imageUrl
+    });
+  }
+
+  return items;
+}
+
+function parseHtmlLinks(html, source) {
+  if (source.parser === 'world-animal-protection-news') {
+    return parseWorldAnimalProtectionHtml(html, source);
+  }
+  return parseRspcaHtmlLinks(html, source);
 }
 
 async function loadSources() {
@@ -446,6 +555,7 @@ async function main() {
         if (!item.title || !item.url || !item.publishedDate) continue;
         if (!isAllowedUrl(item.url)) continue;
         if (item.publishedDate < earliestDate) continue;
+        if (isTooOld(item.publishedDate)) continue;
         if (isExcludedTitle(item.title)) continue;
         const relevanceScore = scoreItem(item, source);
         if (relevanceScore < minScore) continue;

@@ -124,6 +124,7 @@ for (const entry of products) {
 }
 
 for (const entry of friends) {
+  validateImageReference(entry.data.image, `${entry.file}.image`);
   validateImageReference(entry.data.logo, `${entry.file}.logo`);
 }
 

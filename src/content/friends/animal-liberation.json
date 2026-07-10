@@ -3,9 +3,15 @@
   "name": "Animal Liberation",
   "url": "https://animal-lib.org.au/",
   "region": "Australia",
-  "organisationType": "Advocacy organisation",
+  "organisationType": "advocacy-group",
   "summary": "Long-running Australian animal advocacy organisation focused on ending institutionalised animal cruelty.",
+  "description": "Relevant for farmed-animal advocacy, public campaigning and reform work aimed at institutions where animal suffering is normalised.",
   "alignment": "Listed as a related advocacy organisation with overlapping concern for farmed-animal welfare, transparency and legislative change.",
+  "websiteLabel": "animal-lib.org.au",
+  "image": {
+    "src": "/images/friends/animal-liberation.webp",
+    "alt": "Dark Bite Back-style friend image for Animal Liberation with advocacy and reform reference marks."
+  },
   "relationship": "listed-resource",
   "tags": ["advocacy", "farmed animals", "law reform"]
 }

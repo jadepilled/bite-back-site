@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PageHeader from '@components/PageHeader.astro';
 import StatusPill from '@components/StatusPill.astro';
+import { formatDisplayDate } from '@lib/content';
 
 const news = (await getCollection('news')).sort((a, b) => b.data.publishedDate.localeCompare(a.data.publishedDate));
 const sources = (await getCollection('newsSources')).filter((source) => source.data.enabled);
@@ -89,7 +90,7 @@ const outlets = [...new Set(news.map((item) => item.data.outlet))].sort((a, b) =
             )}
             <div class="news-card__body">
               <div class="eyebrow-row">
-                <time datetime={item.data.publishedDate}>{item.data.publishedDate}</time>
+                <time datetime={item.data.publishedDate}>{formatDisplayDate(item.data.publishedDate)}</time>
                 <StatusPill value={item.data.reviewStatus} type="review" />
               </div>
               <h2><a href={item.data.url} target="_blank" rel="noreferrer">{item.data.title}</a></h2>

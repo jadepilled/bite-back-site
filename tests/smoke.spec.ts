@@ -61,7 +61,24 @@ test('news feed exposes source quality controls', async ({ page }) => {
 
   await page.getByLabel('Source').selectOption('ABC News');
   await expect(page.locator('[data-news-card]:visible').first()).toContainText('ABC News');
+  await expect(page.locator('[data-news-card]:visible').first()).toContainText(/\d+(st|nd|rd|th) [A-Z][a-z]{2}\. 2026/);
   await expect(page.getByText('excludes known Murdoch/right-leaning outlets')).toBeVisible();
+});
+
+test('friends directory supports search and type filtering', async ({ page }) => {
+  await page.goto('/friends/');
+  await expect(page.getByLabel('Friend directory filters')).toBeVisible();
+  await expect(page.getByRole('link', { name: /animaljusticeparty\.org/i })).toBeVisible();
+  const justiceCard = page.locator('[data-friend-card]').filter({ hasText: 'Animal Justice Party' });
+  await expect(justiceCard.getByText('Political organisation')).toBeVisible();
+  await expect(justiceCard.locator('.label-chip--region', { hasText: 'Australia' })).toBeVisible();
+
+  await page.getByLabel('Search by name').fill('liberation');
+  await expect(page.locator('[data-friend-card]:visible')).toHaveCount(1);
+  await expect(page.getByRole('heading', { name: 'Animal Liberation' })).toBeVisible();
+
+  await page.getByLabel('Advocacy group').uncheck({ force: true });
+  await expect(page.locator('[data-friend-card]:visible')).toHaveCount(0);
 });
 
 test('track record shows readiness, platform updates, and correction history', async ({ page }) => {

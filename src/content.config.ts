@@ -10,6 +10,14 @@ const confidenceLabel = z.enum(['strong', 'moderate', 'limited', 'emerging', 'un
 const severity = z.enum(['low', 'medium', 'high', 'extreme']);
 const actionType = z.enum(['petition', 'mp-letter', 'submission', 'volunteer', 'donate', 'share']);
 const actionProvider = z.enum(['action-network', 'external', 'internal']);
+const organisationType = z.enum([
+  'political-organisation',
+  'advocacy-group',
+  'charity',
+  'outreach-group',
+  'animal-rescue',
+  'think-tank'
+]);
 const imageReference = z.object({
   src: z.string().min(2),
   alt: z.string().min(8),
@@ -134,7 +142,8 @@ const newsSources = defineCollection({
     url: z.url(),
     feedUrl: z.url(),
     fetchMode: z.enum(['rss', 'html', 'google-news']).default('rss'),
-    sourceType: z.enum(['public-broadcaster', 'independent-media', 'government', 'ngo', 'aggregator']),
+    parser: z.enum(['rspca-latest-news', 'world-animal-protection-news', 'generic-card-list']).optional(),
+    sourceType: z.enum(['public-broadcaster', 'independent-media', 'government', 'ngo', 'research', 'aggregator']),
     country: z.string().min(2),
     qualityWeight: z.number().min(0).max(10).default(5),
     notes: z.string().optional(),
@@ -182,9 +191,12 @@ const friends = defineCollection({
     name: z.string().min(2),
     url: z.url(),
     region: z.string().min(2),
-    organisationType: z.string().min(2),
+    organisationType,
     summary: z.string().min(10),
+    description: z.string().min(10).optional(),
     alignment: z.string().min(10),
+    websiteLabel: z.string().min(2).optional(),
+    image: imageReference.optional(),
     logo: imageReference.optional(),
     relationship: z.enum(['listed-resource', 'campaign-ally', 'formal-partner']).default('listed-resource'),
     tags: z.array(z.string()).default([])

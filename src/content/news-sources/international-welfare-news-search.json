@@ -1,0 +1,12 @@
+{
+  "name": "International Welfare News Search",
+  "publisher": "Google News",
+  "url": "https://news.google.com/",
+  "feedUrl": "https://news.google.com/rss/search?q=(%22animal%20welfare%22%20OR%20%22animal%20cruelty%22%20OR%20%22live%20export%22)%20(%22The%20Conversation%22%20OR%20Reuters%20OR%20BBC%20OR%20%22World%20Animal%20Protection%22%20OR%20%22Eurogroup%20for%20Animals%22)%20when:45d&hl=en-AU&gl=AU&ceid=AU:en",
+  "fetchMode": "google-news",
+  "sourceType": "aggregator",
+  "country": "International",
+  "qualityWeight": 5,
+  "notes": "Discovery-only international source. The updater accepts only allowlisted publisher names and keeps uncertain items in review-needed state.",
+  "enabled": true
+}

@@ -31,6 +31,8 @@ node scripts/serve-dist.mjs --host 127.0.0.1 --port 4321
 
 Campaigns are JSON files in `src/content/campaigns`. They reference structured sources, images, news/background entries and progress updates. Shop products, friend listings, platform updates and news sources are also JSON-backed collections in `src/content/products`, `src/content/friends`, `src/content/platform-updates` and `src/content/news-sources`.
 
+For day-to-day editing, see `docs/site-maintenance-how-to.md`.
+
 Astro validates collection shapes at build time, and `scripts/validate-content.mjs` checks cross-references plus launch-specific guardrails.
 
 `scripts/process-logo.mjs` uses `bite_back_logo.png` to generate the favicon set and reusable black, white and transparent pixel-art bite-mark assets under `public/brand`.

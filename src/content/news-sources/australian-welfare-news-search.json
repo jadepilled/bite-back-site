@@ -2,7 +2,7 @@
   "name": "Australian Welfare News Search",
   "publisher": "Google News",
   "url": "https://news.google.com/",
-  "feedUrl": "https://news.google.com/rss/search?q=%22animal%20welfare%22%20Australia%20(ABC%20OR%20Guardian%20OR%20RSPCA)%20when:45d&hl=en-AU&gl=AU&ceid=AU:en",
+  "feedUrl": "https://news.google.com/rss/search?q=(%22animal%20welfare%22%20OR%20%22animal%20cruelty%22%20OR%20%22live%20export%22)%20Australia%20(ABC%20OR%20Guardian%20OR%20RSPCA%20OR%20%22The%20Conversation%22%20OR%20%22World%20Animal%20Protection%22%20OR%20%22Animals%20Australia%22%20OR%20%22Humane%20Society%20International%22)%20when:45d&hl=en-AU&gl=AU&ceid=AU:en",
   "fetchMode": "google-news",
   "sourceType": "aggregator",
   "country": "Australia",

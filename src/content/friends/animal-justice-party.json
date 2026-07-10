@@ -3,9 +3,15 @@
   "name": "Animal Justice Party",
   "url": "https://animaljusticeparty.org/",
   "region": "Australia",
-  "organisationType": "Political party",
+  "organisationType": "political-organisation",
   "summary": "Australian political party campaigning for stronger legal protection for animals, people and the environment.",
+  "description": "Useful for tracking parliamentary animal-law policy, election commitments and reform pressure across Australian jurisdictions.",
   "alignment": "Listed because its animal law and policy work overlaps with Bite Back campaign targets, while Bite Back remains a separate public-interest project.",
+  "websiteLabel": "animaljusticeparty.org",
+  "image": {
+    "src": "/images/friends/animal-justice-party.webp",
+    "alt": "Dark Bite Back-style friend image for Animal Justice Party with legal and parliamentary reference marks."
+  },
   "relationship": "listed-resource",
   "tags": ["law reform", "parliament", "animals"]
 }

@@ -1,10 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
+import { ExternalLink } from '@lucide/astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PageHeader from '@components/PageHeader.astro';
-import ButtonLink from '@components/ButtonLink.astro';
+import { organisationTypeClass, organisationTypeLabel, organisationTypeMeta } from '@lib/content';
 
 const friends = (await getCollection('friends')).sort((a, b) => a.data.name.localeCompare(b.data.name));
+const friendCards = friends.map((friend) => ({
+  friend,
+  image: friend.data.image ?? friend.data.logo
+}));
+const typeOptions = Object.entries(organisationTypeMeta);
 ---
 
 <BaseLayout
@@ -19,26 +25,109 @@ const friends = (await getCollection('friends')).sort((a, b) => a.data.name.loca
 
   <section class="section">
     <div class="container">
-      <div class="friend-grid">
-        {friends.map((friend) => (
-          <article class="friend-card">
-            <p class="section-label">{friend.data.organisationType}</p>
+      <div class="friend-controls" aria-label="Friend directory filters">
+        <label class="friend-search">
+          <span>Search by name</span>
+          <input type="search" id="friend-search" name="friend-search" placeholder="Search friends" autocomplete="off" />
+        </label>
+
+        <fieldset class="friend-type-filters">
+          <legend>Organisation type</legend>
+          <div class="filter-chip-row">
+            {typeOptions.map(([type, meta]) => (
+              <label class={`filter-chip ${meta.className}`}>
+                <input type="checkbox" name="friend-type" value={type} checked />
+                <span>{meta.label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+
+      <p class="friend-count" data-friend-count>{friends.length} listed friends</p>
+
+      <div class="friend-grid" data-friend-grid>
+        {friendCards.map(({ friend, image }) => (
+          <article
+            class="friend-card"
+            data-friend-card
+            data-name={friend.data.name.toLowerCase()}
+            data-organisation-type={friend.data.organisationType}
+          >
+            {image && (
+              <a class="friend-card__image" href={friend.data.url} target="_blank" rel="noreferrer" aria-label={`Visit ${friend.data.name}`}>
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            )}
+            <div class="friend-card__body">
+              <div class="label-chip-row">
+                <span class={`label-chip ${organisationTypeClass(friend.data.organisationType)}`}>
+                  {organisationTypeLabel(friend.data.organisationType)}
+                </span>
+                <span class="label-chip label-chip--region">{friend.data.region}</span>
+              </div>
             <h2>{friend.data.name}</h2>
+              <a class="friend-card__link" href={friend.data.url} target="_blank" rel="noreferrer">
+                <span>{friend.data.websiteLabel ?? new URL(friend.data.url).hostname.replace(/^www\./, '')}</span>
+                <ExternalLink size={15} aria-hidden="true" />
+              </a>
             <p>{friend.data.summary}</p>
-            <dl class="metadata-list">
-              <div>
-                <dt>Region</dt>
-                <dd>{friend.data.region}</dd>
-              </div>
-              <div>
-                <dt>Connection</dt>
-                <dd>{friend.data.alignment}</dd>
-              </div>
-            </dl>
-            <ButtonLink href={friend.data.url} variant="secondary" external>Visit site</ButtonLink>
+              <p class="friend-card__description">{friend.data.description ?? friend.data.alignment}</p>
+            </div>
           </article>
         ))}
       </div>
     </div>
   </section>
+
+  <script>
+    const searchInput = document.querySelector<HTMLInputElement>('#friend-search');
+    const typeInputs = Array.from(document.querySelectorAll<HTMLInputElement>('input[name="friend-type"]'));
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-friend-card]'));
+    const count = document.querySelector<HTMLElement>('[data-friend-count]');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function updateFriendFilters() {
+      const query = (searchInput?.value ?? '').trim().toLowerCase();
+      const activeTypes = new Set(typeInputs.filter((input) => input.checked).map((input) => input.value));
+      let visibleCount = 0;
+
+      for (const card of cards) {
+        const nameMatch = (card.dataset.name ?? '').includes(query);
+        const typeMatch = activeTypes.has(card.dataset.organisationType ?? '');
+        const visible = nameMatch && typeMatch;
+        card.setAttribute('aria-hidden', String(!visible));
+        window.clearTimeout(Number(card.dataset.hideTimer ?? 0));
+
+        if (visible) {
+          card.hidden = false;
+          requestAnimationFrame(() => card.classList.remove('is-hidden'));
+        } else {
+          card.classList.add('is-hidden');
+          const hide = () => {
+            if (card.classList.contains('is-hidden')) {
+              card.hidden = true;
+            }
+          };
+          if (reduceMotion) hide();
+          else card.dataset.hideTimer = String(window.setTimeout(hide, 190));
+        }
+        if (visible) visibleCount += 1;
+      }
+
+      if (count) {
+        count.textContent = `${visibleCount} listed friend${visibleCount === 1 ? '' : 's'}`;
+      }
+    }
+
+    searchInput?.addEventListener('input', updateFriendFilters);
+    for (const input of typeInputs) {
+      input.addEventListener('change', updateFriendFilters);
+    }
+  </script>
 </BaseLayout>

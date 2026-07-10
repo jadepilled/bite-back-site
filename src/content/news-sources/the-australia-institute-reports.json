@@ -1,0 +1,12 @@
+{
+  "name": "The Australia Institute",
+  "publisher": "The Australia Institute",
+  "url": "https://australiainstitute.org.au/research/topic/animal-welfare/",
+  "feedUrl": "https://australiainstitute.org.au/feed/?post_type=tai_cpt_report",
+  "fetchMode": "rss",
+  "sourceType": "research",
+  "country": "Australia",
+  "qualityWeight": 6,
+  "notes": "Independent Australian research institute feed filtered by animal welfare terms.",
+  "enabled": true
+}

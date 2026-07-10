@@ -1,0 +1,13 @@
+{
+  "name": "World Animal Protection Australia",
+  "publisher": "World Animal Protection",
+  "url": "https://www.worldanimalprotection.org.au/news/",
+  "feedUrl": "https://www.worldanimalprotection.org.au/news/",
+  "fetchMode": "html",
+  "parser": "world-animal-protection-news",
+  "sourceType": "ngo",
+  "country": "Australia",
+  "qualityWeight": 7,
+  "notes": "Australian animal welfare NGO news listing with structured article cards, filtered by the updater.",
+  "enabled": true
+}
