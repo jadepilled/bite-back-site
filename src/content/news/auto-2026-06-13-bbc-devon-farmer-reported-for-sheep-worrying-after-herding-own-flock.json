@@ -3,7 +3,7 @@
   "outlet": "BBC",
   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9IWG5Id0ZZX1NtdXhYWlZvVmdNYkpnUndKSThnMkI1ZDRQaVFKOXpMZU80ZkgzeWFBX29CTV9sSHplWWlSTEpMaEtrQ1QyWXZKbktqRzJmcXlndw?oc=5",
   "publishedDate": "2026-06-13",
-  "summary": "Comprehensive, up-to-date news coverage, aggregated from sources all over the world by Google News.",
+  "summary": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
   "campaignIds": [
     "sentience-statute"
   ],
@@ -11,7 +11,7 @@
     "farmed animals"
   ],
   "automated": true,
-  "fetchedAt": "2026-07-10T17:09:09.158Z",
+  "fetchedAt": "2026-07-10T19:54:47.022Z",
   "relevanceScore": 22,
   "reviewStatus": "review-needed"
 }

@@ -3,7 +3,7 @@
   "outlet": "BBC",
   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE11eG1wWGJqV3VSRXphR3gzcXgxa2hQV1BvdVRkd1BkTTNPWFNMT3FfRTZRM2pnb0NVY2RFeFR1RnJHRE5aZFZRSXk4YjN1X0kwVi13QUpfYjFTVWd1?oc=5",
   "publishedDate": "2026-06-04",
-  "summary": "Comprehensive, up-to-date news coverage, aggregated from sources all over the world by Google News.",
+  "summary": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
   "campaignIds": [
     "sentience-statute"
   ],
@@ -11,7 +11,7 @@
     "companion animals"
   ],
   "automated": true,
-  "fetchedAt": "2026-07-10T17:09:09.158Z",
+  "fetchedAt": "2026-07-10T19:54:47.022Z",
   "relevanceScore": 31,
   "reviewStatus": "review-needed"
 }
