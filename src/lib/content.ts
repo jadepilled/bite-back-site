@@ -19,6 +19,7 @@ export function mapEntries<T extends { id: string }>(entries: T[]) {
 export function statusLabel(status: string) {
   const labels: Record<string, string> = {
     draft: 'Draft',
+    'pre-launch': 'Pre-launch',
     testing: 'Testing gate',
     active: 'Active',
     paused: 'Paused',

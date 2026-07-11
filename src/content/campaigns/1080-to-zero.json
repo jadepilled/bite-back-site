@@ -2,8 +2,8 @@
   "id": "1080-to-zero",
   "slug": "1080-to-zero",
   "title": "1080 to Zero",
-  "status": "testing",
-  "issueType": "Poison phase-out",
+  "status": "pre-launch",
+  "issueType": "Applied Animal Welfare",
   "affectedAnimals": [
     "Foxes, rabbits, wild dogs, dingoes and feral pigs targeted by 1080 programs",
     "Non-target wildlife and companion animals exposed through baiting incidents"
@@ -16,12 +16,12 @@
     "Animal Welfare Task Group",
     "APVMA and state chemical regulators for implementation"
   ],
-  "desiredOutcome": "The renewed Australian Animal Welfare Strategy commits every jurisdiction to eliminate sodium fluoroacetate, or 1080, for vertebrate animal control no later than 31 December 2030.",
-  "measurableEndpoint": "AAWS 2027 includes phase-out wording, a 2030 final prohibition date, annual public reporting, funded replacement pathways and independent welfare and efficacy review for every remaining use.",
-  "summary": "Australia is rewriting its animal welfare strategy. 1080 should not remain a permanent default when lower-impact methods already exist for several uses and unresolved uses need a funded deadline.",
-  "problem": "1080 remains a restricted poison used in pest-animal control. Governments cite conservation, biosecurity and livestock-protection goals, but welfare evidence identifies severe and potentially prolonged suffering, non-target risk and weak public reporting of use and incidents.",
-  "legalPathway": "The AAWS cannot itself ban 1080, because states and territories control use after APVMA-regulated retail supply. It can still secure a national commitment, timetable and accountability framework through the Animal Welfare Task Group, senior officials and agriculture ministers.",
-  "evidenceSummary": "RSPCA Australia does not support describing 1080 as humane. Agriculture Victoria's recent review found lower relative welfare impacts for PAPP in foxes and wild dogs, sodium nitrite in feral pigs and properly performed shooting where feasible, while also identifying hard replacement gaps that require funded transition work.",
+  "desiredOutcome": "Australia permanently ends the use of sodium fluoroacetate, or 1080, for vertebrate animal control by 31 December 2030. The renewed Australian Animal Welfare Strategy establishes this as an agreed national commitment and requires the Commonwealth, states and territories to implement a coordinated phase-out, regulatory prohibition and funded transition to effective methods with lower animal welfare impacts.",
+  "measurableEndpoint": "The final 2027 Australian Animal Welfare Strategy includes an explicit national commitment to eliminate 1080 by 31 December 2030, supported by published implementation milestones, Commonwealth reform of the agricultural and veterinary chemical approval framework, formal APVMA reconsideration and withdrawal of relevant approvals, corresponding state and territory prohibitions, funded replacement programs, annual public reporting and independent assessment of every remaining use during the transition.",
+  "summary": "1080 has no place in Australia's animal welfare future. Through the renewed Australian Animal Welfare Strategy, Bite Back is seeking a nationally coordinated and legally implemented end to 1080: replace existing programs with effective lower-welfare-impact methods, reform the regulatory system that continues to authorise it and prohibit all remaining use by 2030.",
+  "problem": "Australia continues to authorise and deploy 1080 despite evidence that poisoning can cause severe and prolonged suffering, expose companion and non-target animals, and occur without consistent national reporting of quantities used, locations, outcomes or adverse incidents. The regulatory framework compounds this failure because the welfare of the deliberately targeted animal is not presently a standalone criterion determining whether an agricultural or veterinary chemical may be approved or remain registered. This omission allows a poison with serious and avoidable welfare impacts to remain embedded in government conservation, biosecurity and livestock-protection programs.",
+  "legalPathway": "The renewed Australian Animal Welfare Strategy should establish elimination of 1080 as an agreed national policy and implementation commitment under its Animals in the Wild chapter, endorsed through the Animal Welfare Task Group, Agriculture Senior Officials' Committee and Agriculture Ministers' Meeting. The Commonwealth should then amend the Agricultural and Veterinary Chemicals Code to make target-animal welfare and the availability of effective lower-impact alternatives mandatory approval and reconsideration criteria, impose a statutory 2030 sunset on 1080 approvals and registrations, and translate the intergovernmental commitment into formal policy and ministerial direction to the APVMA. The APVMA should reconsider and withdraw all relevant active-constituent approvals, product registrations, labels and permits. States and territories should concurrently prohibit the supply, possession and use of 1080 through their chemical-control laws, authorisations, operating standards, procurement rules and public-land management programs, completing a nationally consistent prohibition by 31 December 2030.",
+  "evidenceSummary": "The available evidence does not support describing 1080 as humane. Documented poisoning effects include severe neurological and behavioural distress, convulsions and potentially prolonged suffering. Government and animal-welfare assessments identify methods with lower relative welfare impacts for several major applications, including PAPP for foxes and wild dogs and sodium nitrite for feral pigs, together with targeted shooting, exclusion, guardian-animal programs and other integrated controls where appropriate. The APVMA's previous 1080 review recorded substantial humaneness concerns but acknowledged that target-animal welfare was not a statutory criterion on which registration could be determined. The evidence supports immediate replacement wherever established alternatives are suitable, a funded and time-limited transition for more difficult applications, and legislative reform ensuring that severe avoidable suffering can no longer be excluded from chemical approval decisions.",
   "severity": "extreme",
   "primaryAction": {
     "type": "mp-letter",
@@ -39,7 +39,7 @@
       "provider": "internal",
       "url": "/take-action/#campaign-briefs",
       "requiresAddress": false,
-      "consentNote": "No supporter data is collected by this static site. Submission materials will publish after legal and scientific review.",
+      "consentNote": "Submission materials will publish after legal and scientific review.",
       "status": "draft"
     },
     {

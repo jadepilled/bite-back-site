@@ -1,0 +1,19 @@
+{
+  "id": "australian-animal-protection",
+  "name": "Australian Animal Protection Society",
+  "url": "https://aaps.org.au/",
+  "region": "Victoria",
+  "organisationType": "animal-rescue",
+  "summary": "Animal shelter and protection organisation caring for vulnerable companion animals.",
+  "description": "Relevant for companion-animal welfare, shelter operations, adoption pathways and community animal protection.",
+  "alignment": "Listed because shelter and protection work provides practical context for welfare policy and cruelty prevention.",
+  "websiteLabel": "aaps.org.au",
+  "image": {
+    "src": "/images/friends/australian-animal-protection.webp",
+    "alt": "Dark Bite Back-style friend image for Australian Animal Protection Society.",
+    "credit": "Card generated from Australian Animal Protection Society brand material",
+    "sourceUrl": "https://aaps.org.au/"
+  },
+  "relationship": "listed-resource",
+  "tags": ["shelter", "companion animals", "protection"]
+}

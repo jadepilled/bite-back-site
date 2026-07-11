@@ -35,7 +35,7 @@
       "provider": "internal",
       "url": "/take-action/#campaign-briefs",
       "requiresAddress": false,
-      "consentNote": "No supporter data is collected by this static site. Submission workflows will be published after review.",
+      "consentNote": "Submission workflows will publish after review.",
       "status": "draft"
     },
     {

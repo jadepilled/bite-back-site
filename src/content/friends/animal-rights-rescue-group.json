@@ -1,0 +1,19 @@
+{
+  "id": "animal-rights-rescue-group",
+  "name": "Animal Rights & Rescue Group",
+  "url": "https://animalrights.org.au/",
+  "region": "Northern NSW",
+  "organisationType": "animal-rescue",
+  "summary": "Northern Rivers animal rescue and advocacy organisation supporting animals in need.",
+  "description": "Relevant for rescue-sector perspective, companion-animal welfare, community advocacy and local cruelty-prevention work.",
+  "alignment": "Listed because rescue work and animal-rights advocacy both inform Bite Back's campaign priorities.",
+  "websiteLabel": "animalrights.org.au",
+  "image": {
+    "src": "/images/friends/animal-rights-rescue-group.webp",
+    "alt": "Dark Bite Back-style friend image for Animal Rights & Rescue Group.",
+    "credit": "Card generated from Animal Rights & Rescue Group brand material",
+    "sourceUrl": "https://animalrights.org.au/"
+  },
+  "relationship": "listed-resource",
+  "tags": ["rescue", "community advocacy", "companion animals"]
+}

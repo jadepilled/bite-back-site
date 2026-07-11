@@ -1,0 +1,19 @@
+{
+  "id": "humane-world-for-animals-australia",
+  "name": "Humane World for Animals Australia",
+  "url": "https://hsi.org.au/",
+  "region": "Australia",
+  "organisationType": "charity",
+  "summary": "Animal protection organisation working on wildlife conservation, animal welfare and ending exploitation in trade and industry.",
+  "description": "Relevant for wildlife policy, trade reform, farmed-animal welfare, conservation and national campaign coalitions.",
+  "alignment": "Listed because its policy and protection work overlaps with Bite Back campaigns across wildlife, law and welfare.",
+  "websiteLabel": "hsi.org.au",
+  "image": {
+    "src": "/images/friends/humane-world-for-animals-australia.webp",
+    "alt": "Dark Bite Back-style friend image for Humane World for Animals Australia.",
+    "credit": "Card generated from Humane World for Animals Australia brand material",
+    "sourceUrl": "https://hsi.org.au/"
+  },
+  "relationship": "listed-resource",
+  "tags": ["wildlife", "conservation", "animal welfare"]
+}

@@ -15,12 +15,12 @@ const outlets = [...new Set(news.map((item) => item.data.outlet))].sort((a, b) =
 
 <BaseLayout
   title="News"
-  description="Recent Australian animal welfare stories from curated JSON and allowlisted automated source feeds."
+  description="Recent animal welfare stories from reputable Australian and international sources."
 >
   <PageHeader
     eyebrow="News"
-    title="Animal welfare stories worth tracking, ranked and sourced."
-    intro="Curated entries and automated source-watch items are stored as JSON, scored for relevance and cached with images where the source provides them."
+    title="Animal welfare stories worth tracking."
+    intro="Recent reporting and background material connected to Bite Back campaigns."
   />
 
   <section class="section">
@@ -32,11 +32,11 @@ const outlets = [...new Set(news.map((item) => item.data.outlet))].sort((a, b) =
         </article>
         <article class="pathway">
           <strong>{automatedCount}</strong>
-          <p>Automated source-watch items</p>
+          <p>Fresh source-watch items</p>
         </article>
         <article class="pathway">
           <strong>{curatedCount}</strong>
-          <p>Curated or reviewed background entries</p>
+          <p>Reviewed background entries</p>
         </article>
       </div>
 
@@ -57,7 +57,7 @@ const outlets = [...new Set(news.map((item) => item.data.outlet))].sort((a, b) =
         <select id="news-type" name="news-type">
           <option value="all">All entries</option>
           <option value="curated">Curated</option>
-          <option value="automated">Automated watch</option>
+          <option value="automated">Source watch</option>
         </select>
 
         <label for="news-sort">Sort</label>
@@ -96,7 +96,7 @@ const outlets = [...new Set(news.map((item) => item.data.outlet))].sort((a, b) =
               <h2><a href={item.data.url} target="_blank" rel="noreferrer">{item.data.title}</a></h2>
               <p>{item.data.summary}</p>
               <div class="news-card__meta">
-                <p class="news-card__source">{item.data.outlet}{item.data.automated ? ' / automated watch' : ' / curated'}</p>
+                <p class="news-card__source">{item.data.outlet}{item.data.automated ? ' / source watch' : ' / reviewed'}</p>
                 {item.data.relevanceScore && <span>Score {item.data.relevanceScore}</span>}
               </div>
               {item.data.topics.length > 0 && (
@@ -120,7 +120,7 @@ const outlets = [...new Set(news.map((item) => item.data.outlet))].sort((a, b) =
         ))}
       </div>
       <p class="feed-note">
-        Automated discovery is allowlisted by source and publisher name, excludes known Murdoch/right-leaning outlets, and keeps uncertain items in review-needed state.
+        Sources are selected for reliability, public-interest value and relevance to animal welfare in Australia.
       </p>
     </div>
   </section>

@@ -11,6 +11,12 @@ This site is a static Astro project deployed from `main` to GitHub Pages. Public
 5. Add progress entries in `src/content/progress` if the campaign already has milestones, then reference them from `progressIds`.
 6. Keep Action Network URLs public only. Never commit API keys, supporter data, target CSVs, private legal notes, or MP boundary files.
 
+Campaign image template:
+
+- Editable PSD: `public/templates/bite-back-campaign-image-template.psd`.
+- Regenerate it with `npm run template:campaign-image`.
+- The main number, final zero, top strapline and footer line are editable text layers. The guide, arrow and silhouette layers preserve the Bite Back campaign-card style.
+
 Run:
 
 ```bash

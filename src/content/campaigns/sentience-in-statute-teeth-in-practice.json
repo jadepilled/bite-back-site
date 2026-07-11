@@ -35,7 +35,7 @@
       "provider": "internal",
       "url": "/take-action/#campaign-briefs",
       "requiresAddress": false,
-      "consentNote": "No supporter data is collected by this static site. Petition collection will happen only through a configured advocacy provider.",
+      "consentNote": "Petition collection will open only through a configured advocacy provider after consent and delivery checks pass.",
       "status": "draft"
     },
     {

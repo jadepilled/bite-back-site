@@ -29,7 +29,7 @@ test('campaign index can sort by severity', async ({ page }) => {
 test('1080 to Zero campaign exposes AAWS pathway and phase-out ask', async ({ page }) => {
   await page.goto('/campaigns/1080-to-zero/');
   await expect(page.getByRole('heading', { name: '1080 to Zero', exact: true })).toBeVisible();
-  await expect(page.getByText('31 December 2030')).toBeVisible();
+  await expect(page.getByText('31 December 2030').first()).toBeVisible();
   await expect(page.getByRole('link', { name: /Animal Welfare Task Group members/i })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Tell ministers: 1080 to Zero' })).toBeVisible();
   await expect(page.getByRole('link', { name: /RSPCA/i })).toBeVisible();
@@ -62,17 +62,17 @@ test('shop supports catalogue filtering and product detail pages', async ({ page
 
 test('news feed exposes source quality controls', async ({ page }) => {
   await page.goto('/news/');
-  await expect(page.getByLabel('News feed summary')).toContainText('Automated source-watch items');
+  await expect(page.getByLabel('News feed summary')).toContainText('Fresh source-watch items');
   await page.getByLabel('Feed type').selectOption('automated');
   await page.getByLabel('Sort').selectOption('score-desc');
 
   const firstStory = page.locator('[data-news-card]:visible').first();
-  await expect(firstStory).toContainText(/Score|automated watch/);
+  await expect(firstStory).toContainText(/Score|source watch/);
 
   await page.getByLabel('Source').selectOption('ABC News');
   await expect(page.locator('[data-news-card]:visible').first()).toContainText('ABC News');
   await expect(page.locator('[data-news-card]:visible').first()).toContainText(/\d+(st|nd|rd|th) [A-Z][a-z]{2}\. 2026/);
-  await expect(page.getByText('excludes known Murdoch/right-leaning outlets')).toBeVisible();
+  await expect(page.getByText('Sources are selected for reliability')).toBeVisible();
 });
 
 test('friends directory supports search and type filtering', async ({ page }) => {

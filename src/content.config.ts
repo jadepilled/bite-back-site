@@ -4,7 +4,7 @@ import { z } from 'astro/zod';
 
 const dateString = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
 
-const status = z.enum(['draft', 'testing', 'active', 'paused', 'closed']);
+const status = z.enum(['draft', 'pre-launch', 'testing', 'active', 'paused', 'closed']);
 const reviewStatus = z.enum(['draft', 'review-needed', 'legal-review-needed', 'scientific-review-needed', 'reviewed', 'approved']);
 const confidenceLabel = z.enum(['strong', 'moderate', 'limited', 'emerging', 'unverified']);
 const severity = z.enum(['low', 'medium', 'high', 'extreme']);

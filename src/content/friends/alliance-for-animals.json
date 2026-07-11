@@ -1,0 +1,19 @@
+{
+  "id": "alliance-for-animals",
+  "name": "Australian Alliance for Animals",
+  "url": "https://www.allianceforanimals.org.au/",
+  "region": "Australia",
+  "organisationType": "advocacy-group",
+  "summary": "National animal protection charity working to shift policy, law and institutions for animals.",
+  "description": "Useful for national reform strategy, political engagement, welfare standards and cross-sector campaign alignment.",
+  "alignment": "Listed because its national policy and law-reform work overlaps with Bite Back campaign pathways.",
+  "websiteLabel": "allianceforanimals.org.au",
+  "image": {
+    "src": "/images/friends/alliance-for-animals.webp",
+    "alt": "Dark Bite Back-style friend image for Australian Alliance for Animals.",
+    "credit": "Card generated from Australian Alliance for Animals brand material",
+    "sourceUrl": "https://www.allianceforanimals.org.au/"
+  },
+  "relationship": "listed-resource",
+  "tags": ["law reform", "policy", "animal protection"]
+}

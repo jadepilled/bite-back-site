@@ -1,0 +1,19 @@
+{
+  "id": "four-paws-australia",
+  "name": "FOUR PAWS Australia",
+  "url": "https://www.four-paws.org.au/",
+  "region": "Australia",
+  "organisationType": "charity",
+  "summary": "Animal welfare organisation revealing suffering, rescuing animals and campaigning for animals under human influence.",
+  "description": "Relevant for farmed-animal welfare, companion animals, wildlife, disaster response and international campaign expertise.",
+  "alignment": "Listed because its welfare and rescue work overlaps with Bite Back's evidence and reform campaigns.",
+  "websiteLabel": "four-paws.org.au",
+  "image": {
+    "src": "/images/friends/four-paws-australia.webp",
+    "alt": "Dark Bite Back-style friend image for FOUR PAWS Australia.",
+    "credit": "Card generated from FOUR PAWS brand material",
+    "sourceUrl": "https://www.four-paws.org.au/"
+  },
+  "relationship": "listed-resource",
+  "tags": ["charity", "rescue", "welfare"]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "wires",
+  "name": "WIRES",
+  "url": "https://www.wires.org.au/",
+  "region": "Australia",
+  "organisationType": "animal-rescue",
+  "summary": "Wildlife Information, Rescue and Education Service supporting rescue and rehabilitation of native animals.",
+  "description": "Relevant for wildlife emergency response, rehabilitation data, public education and animal welfare during disasters.",
+  "alignment": "Listed because wildlife rescue experience is important to campaigns about public-land management and animal protection.",
+  "websiteLabel": "wires.org.au",
+  "image": {
+    "src": "/images/friends/wires.webp",
+    "alt": "Dark Bite Back-style friend image for WIRES.",
+    "credit": "Card generated from WIRES brand material",
+    "sourceUrl": "https://www.wires.org.au/"
+  },
+  "relationship": "listed-resource",
+  "tags": ["wildlife rescue", "rehabilitation", "education"]
+}
