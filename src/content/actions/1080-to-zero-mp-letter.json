@@ -1,0 +1,18 @@
+{
+  "type": "mp-letter",
+  "label": "Tell ministers: 1080 to Zero",
+  "provider": "action-network",
+  "url": "/take-action/#mp-contact-testing",
+  "requiresAddress": true,
+  "consentNote": "This MP-contact action remains in testing until Australian electorate matching, agriculture-minister target lists, consent language, delivery logs and exports pass review.",
+  "status": "testing",
+  "campaignId": "1080-to-zero",
+  "description": "Postcode-based representative action asking federal, state and territory decision-makers to put a funded 1080 phase-out and final prohibition date in the renewed AAWS.",
+  "testGate": [
+    "Current federal, state and territory agriculture minister offices verified by role before launch",
+    "Federal and state electorate matching tested for metropolitan, regional, remote and boundary addresses",
+    "Action Network custom targets and shapefile workflows tested against official AEC and state lookup tools",
+    "Messages sent to internal targets first, with separate delivery logs for each target type",
+    "Privacy notice, confirmation email, unsubscribe, suppression, export and deletion workflows documented"
+  ]
+}

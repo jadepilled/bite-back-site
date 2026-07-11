@@ -1,0 +1,90 @@
+{
+  "id": "1080-to-zero",
+  "slug": "1080-to-zero",
+  "title": "1080 to Zero",
+  "status": "testing",
+  "issueType": "Poison phase-out",
+  "affectedAnimals": [
+    "Foxes, rabbits, wild dogs, dingoes and feral pigs targeted by 1080 programs",
+    "Non-target wildlife and companion animals exposed through baiting incidents"
+  ],
+  "jurisdiction": "Commonwealth, state and territory",
+  "decisionMakers": [
+    "Commonwealth Agriculture Minister",
+    "State and territory agriculture and animal welfare ministers",
+    "Agriculture Ministers' Meeting",
+    "Animal Welfare Task Group",
+    "APVMA and state chemical regulators for implementation"
+  ],
+  "desiredOutcome": "The renewed Australian Animal Welfare Strategy commits every jurisdiction to eliminate sodium fluoroacetate, or 1080, for vertebrate animal control no later than 31 December 2030.",
+  "measurableEndpoint": "AAWS 2027 includes phase-out wording, a 2030 final prohibition date, annual public reporting, funded replacement pathways and independent welfare and efficacy review for every remaining use.",
+  "summary": "Australia is rewriting its animal welfare strategy. 1080 should not remain a permanent default when lower-impact methods already exist for several uses and unresolved uses need a funded deadline.",
+  "problem": "1080 remains a restricted poison used in pest-animal control. Governments cite conservation, biosecurity and livestock-protection goals, but welfare evidence identifies severe and potentially prolonged suffering, non-target risk and weak public reporting of use and incidents.",
+  "legalPathway": "The AAWS cannot itself ban 1080, because states and territories control use after APVMA-regulated retail supply. It can still secure a national commitment, timetable and accountability framework through the Animal Welfare Task Group, senior officials and agriculture ministers.",
+  "evidenceSummary": "RSPCA Australia does not support describing 1080 as humane. Agriculture Victoria's recent review found lower relative welfare impacts for PAPP in foxes and wild dogs, sodium nitrite in feral pigs and properly performed shooting where feasible, while also identifying hard replacement gaps that require funded transition work.",
+  "severity": "extreme",
+  "primaryAction": {
+    "type": "mp-letter",
+    "label": "Tell ministers: 1080 to Zero",
+    "provider": "action-network",
+    "url": "/take-action/#mp-contact-testing",
+    "requiresAddress": true,
+    "consentNote": "This action is not live until representative matching, ministerial target lists, consent wording, delivery logs and export processes have passed testing.",
+    "status": "testing"
+  },
+  "secondaryActions": [
+    {
+      "type": "submission",
+      "label": "Prepare the AAWS submission",
+      "provider": "internal",
+      "url": "/take-action/#campaign-briefs",
+      "requiresAddress": false,
+      "consentNote": "No supporter data is collected by this static site. Submission materials will publish after legal and scientific review.",
+      "status": "draft"
+    },
+    {
+      "type": "volunteer",
+      "label": "Join the evidence and target tracker",
+      "provider": "internal",
+      "url": "/get-involved/",
+      "requiresAddress": false,
+      "consentNote": "Volunteer intake happens only through the configured form provider after privacy review.",
+      "status": "testing"
+    },
+    {
+      "type": "share",
+      "label": "Share 1080 to Zero",
+      "provider": "internal",
+      "url": "/campaigns/1080-to-zero/",
+      "requiresAddress": false,
+      "consentNote": "Sharing this page does not provide Bite Back with personal data.",
+      "status": "active"
+    }
+  ],
+  "images": ["1080-to-zero-dark"],
+  "sourceIds": [
+    "daff-renewed-aaws",
+    "daff-aaws-roadmap",
+    "daff-aaws-governance",
+    "daff-awtg-members",
+    "apvma-1080-overview",
+    "apvma-1080-chemical-review",
+    "rspca-1080-view",
+    "agriculture-victoria-1080-alternatives-review",
+    "pestsmart-papp-wild-dogs",
+    "pestsmart-papp-foxes",
+    "pestsmart-hoggone-feral-pigs"
+  ],
+  "newsIds": ["agriculture-victoria-1080-review-2026"],
+  "progressIds": ["1080-to-zero-foundation"],
+  "legalReviewStatus": "legal-review-needed",
+  "scientificReviewStatus": "scientific-review-needed",
+  "confidenceLabel": "moderate",
+  "launchDate": "2026-07-11",
+  "correctionHistory": [
+    {
+      "summary": "No public corrections recorded for this launch page.",
+      "status": "none"
+    }
+  ]
+}

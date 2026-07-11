@@ -22,7 +22,17 @@ test('campaign index can sort by severity', async ({ page }) => {
   await expect(page.getByLabel('Sort campaigns')).toBeVisible();
   await page.getByLabel('Sort campaigns').selectOption('severity-desc');
   const firstCampaign = page.locator('[data-campaign-card]').first();
-  await expect(firstCampaign).toContainText('High severity');
+  await expect(firstCampaign).toContainText('Extreme severity');
+  await expect(firstCampaign).toContainText('1080 to Zero');
+});
+
+test('1080 to Zero campaign exposes AAWS pathway and phase-out ask', async ({ page }) => {
+  await page.goto('/campaigns/1080-to-zero/');
+  await expect(page.getByRole('heading', { name: '1080 to Zero', exact: true })).toBeVisible();
+  await expect(page.getByText('31 December 2030')).toBeVisible();
+  await expect(page.getByRole('link', { name: /Animal Welfare Task Group members/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tell ministers: 1080 to Zero' })).toBeVisible();
+  await expect(page.getByRole('link', { name: /RSPCA/i })).toBeVisible();
 });
 
 test('mobile campaign sticky action does not cover footer content', async ({ page }) => {

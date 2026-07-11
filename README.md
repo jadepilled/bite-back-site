@@ -33,6 +33,8 @@ Campaigns are JSON files in `src/content/campaigns`. They reference structured s
 
 For day-to-day editing, see `docs/site-maintenance-how-to.md`.
 
+Campaign planning packs live under `docs/campaigns`. The 1080 phase-out campaign source-of-truth begins at `docs/campaigns/1080-to-zero/00-master-campaign-plan.md`.
+
 Astro validates collection shapes at build time, and `scripts/validate-content.mjs` checks cross-references plus launch-specific guardrails.
 
 `scripts/process-logo.mjs` uses `bite_back_logo.png` to generate the favicon set and reusable black, white and transparent pixel-art bite-mark assets under `public/brand`.

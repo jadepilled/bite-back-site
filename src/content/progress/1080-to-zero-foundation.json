@@ -1,0 +1,13 @@
+{
+  "campaignId": "1080-to-zero",
+  "date": "2026-07-11",
+  "title": "1080 phase-out campaign scoped for AAWS renewal",
+  "summary": "The campaign is scoped around a national AAWS commitment, immediate replacement where lower-impact methods are suitable, funded transition for unresolved uses and public reporting of 1080 deployment and incidents.",
+  "status": "foundation",
+  "sourceIds": [
+    "daff-renewed-aaws",
+    "daff-aaws-roadmap",
+    "apvma-1080-overview",
+    "agriculture-victoria-1080-alternatives-review"
+  ]
+}
