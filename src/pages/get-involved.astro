@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import PageHeader from '@components/PageHeader.astro';
 import ButtonLink from '@components/ButtonLink.astro';
 ---
 
@@ -8,14 +7,16 @@ import ButtonLink from '@components/ButtonLink.astro';
   title="Get Involved"
   description="Help Bite Back with research, design, data, legal analysis, media monitoring, volunteering, events, outreach and campaign testing."
 >
-  <PageHeader
-    eyebrow="Get Involved"
-    title="Careful work over noise."
-    intro="You can help with research, design, data, legal analysis, media monitoring, volunteering, events, outreach and campaign testing. Bite Back values careful work over noise."
-  />
-
   <section class="section">
     <div class="container">
+      <div class="section-intro reading-width">
+        <p class="section-label">Get Involved</p>
+        <h1>Careful work over noise.</h1>
+        <p class="lede">
+          Help with research, design, data, legal analysis, media monitoring, volunteering, events, outreach and campaign testing.
+        </p>
+      </div>
+
       <div class="page-grid">
         <div class="pathway">
           <strong>Source checks</strong>
@@ -36,7 +37,7 @@ import ButtonLink from '@components/ButtonLink.astro';
             <h2>Volunteer intake will run through the advocacy provider.</h2>
             <p>No volunteer form is embedded until consent, privacy notice and suppression handling are configured.</p>
           </div>
-          <ButtonLink href="/take-action/#campaign-briefs" variant="primary">View readiness gate</ButtonLink>
+          <ButtonLink href="/contact/" variant="primary">Contact Bite Back</ButtonLink>
         </div>
       </div>
     </div>

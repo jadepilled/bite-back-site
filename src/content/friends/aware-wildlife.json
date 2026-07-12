@@ -3,7 +3,6 @@
   "name": "AWARE Wildlife Rescue",
   "url": "https://www.awarewildlife.org.au/",
   "region": "Victoria",
-  "organisationType": "animal-rescue",
   "summary": "Volunteer wildlife rescue and rehabilitation organisation operating around Frankston and surrounding suburbs.",
   "description": "Relevant for local rescue, rehabilitation, community education and practical wildlife welfare knowledge.",
   "alignment": "Listed because local wildlife rescue work supports humane policy and public understanding.",
@@ -15,5 +14,14 @@
     "sourceUrl": "https://www.awarewildlife.org.au/"
   },
   "relationship": "listed-resource",
-  "tags": ["wildlife rescue", "rehabilitation", "Victoria"]
+  "tags": [
+    "wildlife rescue",
+    "rehabilitation",
+    "Victoria"
+  ],
+  "organisationTypes": [
+    "animal-rescue",
+    "charity",
+    "outreach-group"
+  ]
 }

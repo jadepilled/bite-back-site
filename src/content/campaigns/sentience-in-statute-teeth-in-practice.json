@@ -4,7 +4,9 @@
   "title": "Sentience in Statute, Teeth in Practice",
   "status": "testing",
   "issueType": "Legal reform",
-  "affectedAnimals": ["Animals covered by state and territory animal welfare legislation"],
+  "affectedAnimals": [
+    "Animals covered by state and territory animal welfare legislation"
+  ],
   "jurisdiction": "State and territory",
   "decisionMakers": [
     "State and territory agriculture ministers",
@@ -23,7 +25,7 @@
     "type": "mp-letter",
     "label": "Contact your state MP",
     "provider": "action-network",
-    "url": "/take-action/#mp-contact-testing",
+    "url": "/get-involved/",
     "requiresAddress": true,
     "consentNote": "This action is not live until Australian MP targeting, delivery, consent, unsubscribe and export logs have been tested.",
     "status": "testing"
@@ -33,14 +35,14 @@
       "type": "petition",
       "label": "Prepare petition brief",
       "provider": "internal",
-      "url": "/take-action/#campaign-briefs",
+      "url": "/get-involved/",
       "requiresAddress": false,
       "consentNote": "Petition collection will open only through a configured advocacy provider after consent and delivery checks pass.",
       "status": "draft"
     },
     {
       "type": "share",
-      "label": "Share the dossier summary",
+      "label": "Share the campaign summary",
       "provider": "internal",
       "url": "/campaigns/sentience-in-statute-teeth-in-practice/",
       "requiresAddress": false,
@@ -48,15 +50,21 @@
       "status": "active"
     }
   ],
-  "images": ["sentience-documents"],
+  "images": [
+    "sentience-documents"
+  ],
   "sourceIds": [
     "daff-animal-welfare-australia",
     "daff-standards-guidelines",
     "act-animal-welfare-act-1992",
     "sentience-typology-2024"
   ],
-  "newsIds": ["sentience-typology-background"],
-  "progressIds": ["sentience-foundation"],
+  "newsIds": [
+    "sentience-typology-background"
+  ],
+  "progressIds": [
+    "sentience-foundation"
+  ],
   "legalReviewStatus": "legal-review-needed",
   "scientificReviewStatus": "review-needed",
   "confidenceLabel": "moderate",
@@ -66,5 +74,10 @@
       "summary": "No public corrections recorded for this launch page.",
       "status": "none"
     }
-  ]
+  ],
+  "origin": "bite-back",
+  "regions": [
+    "australia-wide"
+  ],
+  "isPublic": false
 }

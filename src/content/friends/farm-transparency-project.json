@@ -3,7 +3,6 @@
   "name": "Farm Transparency Project",
   "url": "https://www.farmtransparency.org/",
   "region": "Australia",
-  "organisationType": "advocacy-group",
   "summary": "Australian animal protection charity focused on transparency in industries that use animals.",
   "description": "Relevant for public-interest evidence, industrial animal welfare, investigations, open records and accountability campaigns.",
   "alignment": "Listed because transparency and evidence are central to Bite Back's campaign model.",
@@ -15,5 +14,14 @@
     "sourceUrl": "https://www.farmtransparency.org/"
   },
   "relationship": "listed-resource",
-  "tags": ["transparency", "farmed animals", "investigations"]
+  "tags": [
+    "transparency",
+    "farmed animals",
+    "investigations"
+  ],
+  "organisationTypes": [
+    "advocacy-group",
+    "charity",
+    "think-tank"
+  ]
 }

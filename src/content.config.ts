@@ -8,6 +8,19 @@ const status = z.enum(['draft', 'pre-launch', 'testing', 'active', 'paused', 'cl
 const reviewStatus = z.enum(['draft', 'review-needed', 'legal-review-needed', 'scientific-review-needed', 'reviewed', 'approved']);
 const confidenceLabel = z.enum(['strong', 'moderate', 'limited', 'emerging', 'unverified']);
 const severity = z.enum(['low', 'medium', 'high', 'extreme']);
+const campaignOrigin = z.enum(['bite-back', 'allied']);
+const campaignRegion = z.enum([
+  'act',
+  'nsw',
+  'nt',
+  'qld',
+  'sa',
+  'tas',
+  'vic',
+  'wa',
+  'australia-wide',
+  'international'
+]);
 const actionType = z.enum(['petition', 'mp-letter', 'submission', 'volunteer', 'donate', 'share']);
 const actionProvider = z.enum(['action-network', 'external', 'internal']);
 const organisationType = z.enum([
@@ -46,6 +59,10 @@ const campaigns = defineCollection({
     slug: z.string().min(2),
     title: z.string().min(2),
     status,
+    origin: campaignOrigin,
+    regions: z.array(campaignRegion).min(1),
+    timeLeftLabel: z.string().min(2).optional(),
+    isPublic: z.boolean().default(true),
     issueType: z.string().min(2),
     affectedAnimals: z.array(z.string().min(2)).min(1),
     jurisdiction: z.string().min(2),
@@ -191,7 +208,7 @@ const friends = defineCollection({
     name: z.string().min(2),
     url: z.url(),
     region: z.string().min(2),
-    organisationType,
+    organisationTypes: z.array(organisationType).min(1),
     summary: z.string().min(10),
     description: z.string().min(10).optional(),
     alignment: z.string().min(10),

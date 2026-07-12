@@ -5,10 +5,22 @@ import ActionPanel from '@components/ActionPanel.astro';
 import SourceList from '@components/SourceList.astro';
 import StatusPill from '@components/StatusPill.astro';
 import ButtonLink from '@components/ButtonLink.astro';
-import { confidenceLabel, mapEntries, reviewLabel, severityLabel, statusLabel } from '@lib/content';
+import {
+  campaignOriginClass,
+  campaignOriginLabel,
+  campaignRegionClass,
+  campaignRegionLabel,
+  confidenceLabel,
+  formatDisplayDate,
+  mapEntries,
+  publicCampaigns,
+  reviewLabel,
+  severityLabel,
+  statusLabel
+} from '@lib/content';
 
 export async function getStaticPaths() {
-  const campaigns = await getCollection('campaigns');
+  const campaigns = publicCampaigns(await getCollection('campaigns'));
   return campaigns.map((campaign) => ({
     params: { slug: campaign.data.slug },
     props: { campaign }
@@ -53,8 +65,13 @@ const testItems = actionRecord?.data.testGate ?? [];
     <div class="campaign-hero__inner">
       <div>
         <div class="campaign-meta">
-          <StatusPill value={campaign.data.status} />
-          <StatusPill value={campaign.data.severity} type="severity" />
+          <span class={`label-chip label-chip--status-${campaign.data.status}`}>{statusLabel(campaign.data.status)}</span>
+          <span class={`label-chip ${campaignOriginClass(campaign.data.origin)}`}>{campaignOriginLabel(campaign.data.origin)}</span>
+          {campaign.data.regions.map((region) => (
+            <span class={`label-chip ${campaignRegionClass(region)}`}>{campaignRegionLabel(region)}</span>
+          ))}
+          <span class={`label-chip label-chip--severity-${campaign.data.severity}`}>{severityLabel(campaign.data.severity)}</span>
+          {campaign.data.timeLeftLabel && <span class="label-chip label-chip--time-left">{campaign.data.timeLeftLabel}</span>}
         </div>
         <p class="section-label">{campaign.data.issueType}</p>
         <h1>{campaign.data.title}</h1>
@@ -102,7 +119,7 @@ const testItems = actionRecord?.data.testGate ?? [];
           <ul class="progress-list">
             {progress.map((item) => (
               <li>
-                <time datetime={item.data.date}>{item.data.date}</time>
+                <time datetime={item.data.date}>{formatDisplayDate(item.data.date)}</time>
                 <h3>{item.data.title}</h3>
                 <p>{item.data.summary}</p>
                 <StatusPill value={item.data.status} />
@@ -121,7 +138,7 @@ const testItems = actionRecord?.data.testGate ?? [];
           <ul class="progress-list">
             {news.map((item) => (
               <li>
-                <time datetime={item.data.publishedDate}>{item.data.publishedDate}</time>
+                <time datetime={item.data.publishedDate}>{formatDisplayDate(item.data.publishedDate)}</time>
                 <h3><a href={item.data.url} target="_blank" rel="noreferrer">{item.data.title}</a></h3>
                 <p>{item.data.summary}</p>
               </li>
@@ -150,6 +167,14 @@ const testItems = actionRecord?.data.testGate ?? [];
           <div>
             <dt>Jurisdiction</dt>
             <dd>{campaign.data.jurisdiction}</dd>
+          </div>
+          <div>
+            <dt>Origin</dt>
+            <dd>{campaignOriginLabel(campaign.data.origin)}</dd>
+          </div>
+          <div>
+            <dt>Region</dt>
+            <dd>{campaign.data.regions.map(campaignRegionLabel).join(', ')}</dd>
           </div>
           <div>
             <dt>Decision-maker</dt>

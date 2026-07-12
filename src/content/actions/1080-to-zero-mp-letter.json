@@ -2,7 +2,7 @@
   "type": "mp-letter",
   "label": "Tell ministers: 1080 to Zero",
   "provider": "action-network",
-  "url": "/take-action/#mp-contact-testing",
+  "url": "/get-involved/",
   "requiresAddress": true,
   "consentNote": "This MP-contact action remains in testing until Australian electorate matching, agriculture-minister target lists, consent language, delivery logs and exports pass review.",
   "status": "testing",

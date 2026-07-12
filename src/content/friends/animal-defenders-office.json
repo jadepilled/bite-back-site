@@ -3,7 +3,6 @@
   "name": "Animal Defenders Office",
   "url": "https://www.ado.org.au/",
   "region": "Australia",
-  "organisationType": "advocacy-group",
   "summary": "Community legal centre specialising in animals and the law.",
   "description": "Relevant for animal-law education, legal pathways, law reform submissions and rights-aware campaign design.",
   "alignment": "Listed because legal strategy and animal-law expertise are directly relevant to Bite Back campaigns.",
@@ -15,5 +14,14 @@
     "sourceUrl": "https://www.ado.org.au/"
   },
   "relationship": "listed-resource",
-  "tags": ["animal law", "legal support", "law reform"]
+  "tags": [
+    "animal law",
+    "legal support",
+    "law reform"
+  ],
+  "organisationTypes": [
+    "advocacy-group",
+    "charity",
+    "think-tank"
+  ]
 }

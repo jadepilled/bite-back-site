@@ -3,7 +3,6 @@
   "name": "Defend The Wild",
   "url": "https://www.defendthewild.org/",
   "region": "Australia",
-  "organisationType": "advocacy-group",
   "summary": "Wildlife advocacy organisation campaigning for stronger protection of native animals and Country.",
   "description": "Relevant where Bite Back campaigns intersect with wildlife protection, dingo policy, public-land management and non-lethal alternatives.",
   "alignment": "Listed because its wildlife advocacy overlaps with campaigns about humane management and government accountability.",
@@ -15,5 +14,14 @@
     "sourceUrl": "https://www.defendthewild.org/"
   },
   "relationship": "listed-resource",
-  "tags": ["wildlife", "dingo policy", "advocacy"]
+  "tags": [
+    "wildlife",
+    "dingo policy",
+    "advocacy"
+  ],
+  "organisationTypes": [
+    "advocacy-group",
+    "charity",
+    "outreach-group"
+  ]
 }

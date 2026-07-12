@@ -3,7 +3,6 @@
   "name": "Humane World for Animals Australia",
   "url": "https://hsi.org.au/",
   "region": "Australia",
-  "organisationType": "charity",
   "summary": "Animal protection organisation working on wildlife conservation, animal welfare and ending exploitation in trade and industry.",
   "description": "Relevant for wildlife policy, trade reform, farmed-animal welfare, conservation and national campaign coalitions.",
   "alignment": "Listed because its policy and protection work overlaps with Bite Back campaigns across wildlife, law and welfare.",
@@ -15,5 +14,14 @@
     "sourceUrl": "https://hsi.org.au/"
   },
   "relationship": "listed-resource",
-  "tags": ["wildlife", "conservation", "animal welfare"]
+  "tags": [
+    "wildlife",
+    "conservation",
+    "animal welfare"
+  ],
+  "organisationTypes": [
+    "charity",
+    "advocacy-group",
+    "think-tank"
+  ]
 }

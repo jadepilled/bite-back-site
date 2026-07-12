@@ -3,7 +3,6 @@
   "name": "Australian Animal Protection Society",
   "url": "https://aaps.org.au/",
   "region": "Victoria",
-  "organisationType": "animal-rescue",
   "summary": "Animal shelter and protection organisation caring for vulnerable companion animals.",
   "description": "Relevant for companion-animal welfare, shelter operations, adoption pathways and community animal protection.",
   "alignment": "Listed because shelter and protection work provides practical context for welfare policy and cruelty prevention.",
@@ -15,5 +14,14 @@
     "sourceUrl": "https://aaps.org.au/"
   },
   "relationship": "listed-resource",
-  "tags": ["shelter", "companion animals", "protection"]
+  "tags": [
+    "shelter",
+    "companion animals",
+    "protection"
+  ],
+  "organisationTypes": [
+    "animal-rescue",
+    "charity",
+    "outreach-group"
+  ]
 }

@@ -1,8 +1,17 @@
 ---
 import { ArrowRight } from '@lucide/astro';
-import StatusPill from '@components/StatusPill.astro';
 import ButtonLink from '@components/ButtonLink.astro';
-import { campaignPath, formatList, severityRank } from '@lib/content';
+import {
+  campaignOriginClass,
+  campaignOriginLabel,
+  campaignPath,
+  campaignRegionClass,
+  campaignRegionLabel,
+  formatList,
+  severityLabel,
+  severityRank,
+  statusLabel
+} from '@lib/content';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -11,15 +20,26 @@ interface Props {
 }
 
 const { campaign, image } = Astro.props;
+const searchText = [
+  campaign.data.title,
+  campaign.data.summary,
+  campaign.data.issueType,
+  campaign.data.desiredOutcome,
+  campaign.data.affectedAnimals.join(' ')
+].join(' ').toLowerCase();
 ---
 
 <article
   class="campaign-card"
   data-campaign-card
   data-title={campaign.data.title.toLowerCase()}
+  data-search={searchText}
   data-date={campaign.data.launchDate ?? ''}
   data-severity={severityRank(campaign.data.severity)}
   data-status={campaign.data.status}
+  data-origin={campaign.data.origin}
+  data-regions={campaign.data.regions.join('|')}
+  data-time-left={campaign.data.timeLeftLabel ?? ''}
 >
   {image && (
     <a class="campaign-card__image" href={campaignPath(campaign)} aria-label={`Read ${campaign.data.title}`}>
@@ -27,10 +47,16 @@ const { campaign, image } = Astro.props;
     </a>
   )}
   <div class="campaign-card__body">
-    <div class="eyebrow-row">
-      <span>{campaign.data.issueType}</span>
-      <StatusPill value={campaign.data.status} />
+    <div class="campaign-tag-row" aria-label="Campaign tags">
+      <span class={`label-chip label-chip--status-${campaign.data.status}`}>{statusLabel(campaign.data.status)}</span>
+      <span class={`label-chip ${campaignOriginClass(campaign.data.origin)}`}>{campaignOriginLabel(campaign.data.origin)}</span>
+      {campaign.data.regions.map((region) => (
+        <span class={`label-chip ${campaignRegionClass(region)}`}>{campaignRegionLabel(region)}</span>
+      ))}
+      <span class={`label-chip label-chip--severity-${campaign.data.severity}`}>{severityLabel(campaign.data.severity)}</span>
+      {campaign.data.timeLeftLabel && <span class="label-chip label-chip--time-left">{campaign.data.timeLeftLabel}</span>}
     </div>
+    <p class="section-label">{campaign.data.issueType}</p>
     <h2>
       <a href={campaignPath(campaign)}>{campaign.data.title}</a>
     </h2>
@@ -47,10 +73,6 @@ const { campaign, image } = Astro.props;
       <div>
         <dt>Current action</dt>
         <dd>{campaign.data.primaryAction.label}</dd>
-      </div>
-      <div>
-        <dt>Severity</dt>
-        <dd><StatusPill value={campaign.data.severity} type="severity" /></dd>
       </div>
     </dl>
     <ButtonLink href={campaignPath(campaign)} variant="secondary">

@@ -2,7 +2,7 @@
   "type": "mp-letter",
   "label": "Contact your state MP",
   "provider": "action-network",
-  "url": "/take-action/#mp-contact-testing",
+  "url": "/get-involved/",
   "requiresAddress": true,
   "consentNote": "This MP-contact action remains in testing until Australian electorate matching, delivery, confirmation, unsubscribe and export logs pass review.",
   "status": "testing",

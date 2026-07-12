@@ -20,12 +20,12 @@ interface Props {
 
 const {
   title,
-  description = 'Bite Back turns animal welfare evidence into lawful public pressure, campaign tracking and practical reform work.',
+  description = 'Bite Back Project turns animal welfare evidence into lawful public pressure, campaign tracking and practical reform work.',
   stickyAction,
   preloadImages = []
 } = Astro.props;
 
-const siteTitle = title === 'Bite Back' ? title : `${title} | Bite Back`;
+const siteTitle = title === 'Bite Back' ? 'Bite Back Project' : `${title} | Bite Back Project`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://bitebackproject.au').toString();
 ---
 

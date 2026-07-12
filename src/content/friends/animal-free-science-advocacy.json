@@ -3,7 +3,6 @@
   "name": "Animal-Free Science Advocacy",
   "url": "https://animalfreescienceadvocacy.org.au/",
   "region": "Australia",
-  "organisationType": "advocacy-group",
   "summary": "Organisation championing ethical scientific research without animals.",
   "description": "Relevant for scientific integrity, replacement methods, research policy and campaigns against avoidable animal use in science.",
   "alignment": "Listed because its replacement-focused science advocacy overlaps with Bite Back's welfare and evidence standards.",
@@ -15,5 +14,14 @@
     "sourceUrl": "https://animalfreescienceadvocacy.org.au/"
   },
   "relationship": "listed-resource",
-  "tags": ["animal-free science", "replacement", "research"]
+  "tags": [
+    "animal-free science",
+    "replacement",
+    "research"
+  ],
+  "organisationTypes": [
+    "advocacy-group",
+    "charity",
+    "think-tank"
+  ]
 }

@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import PageHeader from '@components/PageHeader.astro';
 import StatusPill from '@components/StatusPill.astro';
 import ButtonLink from '@components/ButtonLink.astro';
 import { reviewLabel, statusLabel } from '@lib/content';
@@ -16,14 +15,14 @@ const categoryCount = new Set(products.map((product) => product.data.category)).
   title="Shop"
   description="Bite Back campaign merch and supporter items."
 >
-  <PageHeader
-    eyebrow="Shop"
-    title="Campaign merch for early supporter feedback."
-    intro="Sticker, print and bundle concepts are being shaped before public checkout opens."
-  />
-
   <section class="section">
     <div class="container">
+      <div class="section-intro reading-width">
+        <p class="section-label">Shop</p>
+        <h1>Campaign merch for early supporter feedback.</h1>
+        <p class="lede">Sticker, print and bundle concepts before public checkout opens.</p>
+      </div>
+
       <div class="metric-grid shop-metrics" aria-label="Shop readiness">
         <article class="pathway">
           <strong>{products.length}</strong>
@@ -116,9 +115,9 @@ const categoryCount = new Set(products.map((product) => product.data.category)).
     <div class="container">
       <div>
         <p class="section-label">Launch gate</p>
-        <h2>{draftCount > 0 ? 'Checkout stays locked until the boring parts are solid.' : 'Checkout is ready to test.'}</h2>
+        <h2>{draftCount > 0 ? 'Checkout opens after payment and fulfilment checks.' : 'Checkout is ready to test.'}</h2>
         <p>
-          Public sales should wait for stock proofing, payment routing, fulfilment costs, returns handling and fundraising-law review.
+          Public sales wait for stock proofing, payment routing, fulfilment costs, returns handling and fundraising review.
         </p>
       </div>
       <ButtonLink href="/contact/" variant="primary">Send shop feedback</ButtonLink>

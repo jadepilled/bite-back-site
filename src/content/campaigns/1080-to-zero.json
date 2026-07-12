@@ -27,7 +27,7 @@
     "type": "mp-letter",
     "label": "Tell ministers: 1080 to Zero",
     "provider": "action-network",
-    "url": "/take-action/#mp-contact-testing",
+    "url": "/get-involved/",
     "requiresAddress": true,
     "consentNote": "This action is not live until representative matching, ministerial target lists, consent wording, delivery logs and export processes have passed testing.",
     "status": "testing"
@@ -37,7 +37,7 @@
       "type": "submission",
       "label": "Prepare the AAWS submission",
       "provider": "internal",
-      "url": "/take-action/#campaign-briefs",
+      "url": "/get-involved/",
       "requiresAddress": false,
       "consentNote": "Submission materials will publish after legal and scientific review.",
       "status": "draft"
@@ -61,7 +61,9 @@
       "status": "active"
     }
   ],
-  "images": ["1080-to-zero-dark"],
+  "images": [
+    "1080-to-zero-dark"
+  ],
   "sourceIds": [
     "daff-renewed-aaws",
     "daff-aaws-roadmap",
@@ -75,8 +77,12 @@
     "pestsmart-papp-foxes",
     "pestsmart-hoggone-feral-pigs"
   ],
-  "newsIds": ["agriculture-victoria-1080-review-2026"],
-  "progressIds": ["1080-to-zero-foundation"],
+  "newsIds": [
+    "agriculture-victoria-1080-review-2026"
+  ],
+  "progressIds": [
+    "1080-to-zero-foundation"
+  ],
   "legalReviewStatus": "legal-review-needed",
   "scientificReviewStatus": "scientific-review-needed",
   "confidenceLabel": "moderate",
@@ -86,5 +92,11 @@
       "summary": "No public corrections recorded for this launch page.",
       "status": "none"
     }
-  ]
+  ],
+  "origin": "bite-back",
+  "regions": [
+    "australia-wide"
+  ],
+  "timeLeftLabel": "4y left",
+  "isPublic": true
 }

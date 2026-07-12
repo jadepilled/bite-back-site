@@ -3,7 +3,6 @@
   "name": "Coalition Against 1080 Poison",
   "url": "https://www.ban1080.org.au/",
   "region": "Australia",
-  "organisationType": "advocacy-group",
   "summary": "Campaign coalition focused on ending the use of 1080 poison in Australia.",
   "description": "Directly relevant to Bite Back's 1080 to Zero campaign, especially public pressure, community testimony and phase-out advocacy.",
   "alignment": "Listed because its campaign aim overlaps with Bite Back's national 1080 phase-out work.",
@@ -15,5 +14,13 @@
     "sourceUrl": "https://www.ban1080.org.au/"
   },
   "relationship": "listed-resource",
-  "tags": ["1080", "poison phase-out", "wildlife"]
+  "tags": [
+    "1080",
+    "poison phase-out",
+    "wildlife"
+  ],
+  "organisationTypes": [
+    "advocacy-group",
+    "outreach-group"
+  ]
 }

@@ -3,7 +3,6 @@
   "name": "The Wildlife Rescuers",
   "url": "https://wildliferescuers.org.au/",
   "region": "Melbourne",
-  "organisationType": "animal-rescue",
   "summary": "Melbourne wildlife rescue group responding to wildlife emergencies in and around the city.",
   "description": "Relevant for urban wildlife rescue, volunteer training, local incident response and public education.",
   "alignment": "Listed because local rescue knowledge helps ground broader welfare and coexistence campaigns.",
@@ -15,5 +14,14 @@
     "sourceUrl": "https://wildliferescuers.org.au/"
   },
   "relationship": "listed-resource",
-  "tags": ["wildlife rescue", "Melbourne", "training"]
+  "tags": [
+    "wildlife rescue",
+    "Melbourne",
+    "training"
+  ],
+  "organisationTypes": [
+    "animal-rescue",
+    "charity",
+    "outreach-group"
+  ]
 }

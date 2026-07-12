@@ -1,37 +1,102 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import PageHeader from '@components/PageHeader.astro';
 import CampaignCard from '@components/CampaignCard.astro';
-import { mapEntries, sortCampaigns } from '@lib/content';
+import {
+  campaignOriginMeta,
+  campaignRegionMeta,
+  mapEntries,
+  publicCampaigns,
+  severityLabel,
+  sortCampaigns
+} from '@lib/content';
 
-const campaigns = sortCampaigns(await getCollection('campaigns'));
+const campaigns = sortCampaigns(publicCampaigns(await getCollection('campaigns')));
 const images = mapEntries(await getCollection('images'));
+const origins = Object.entries(campaignOriginMeta);
+const activeRegions = Object.entries(campaignRegionMeta).filter(([region]) =>
+  campaigns.some((campaign) => (campaign.data.regions as readonly string[]).includes(region))
+);
+const severities = ['low', 'medium', 'high', 'extreme'];
 ---
 
 <BaseLayout
   title="Campaigns"
   description="Bite Back campaigns identify affected animals, legal or policy failures, decision-makers, public actions and measurable endpoints."
 >
-  <PageHeader
-    eyebrow="Campaigns"
-    title="Campaigns built for pressure, proof and follow-through."
-    intro="Each campaign names the affected animals, the target, the ask, the pathway and the point at which progress can be measured."
-  />
-
   <section class="section">
     <div class="container">
-      <div class="sort-bar" aria-label="Campaign sorting">
-        <label for="campaign-sort">Sort campaigns</label>
-        <select id="campaign-sort" name="campaign-sort">
-          <option value="date-desc">Newest first</option>
-          <option value="title-asc">Name A-Z</option>
-          <option value="severity-desc">Severity high-low</option>
-          <option value="status-asc">Action status</option>
-        </select>
+      <div class="section-intro reading-width">
+        <p class="section-label">Campaigns</p>
+        <h1>Current pressure points.</h1>
+        <p class="lede">
+          Campaigns name the animals affected, the decision-makers involved, the ask, the evidence and the endpoint.
+        </p>
       </div>
 
-      <div class="campaign-grid" data-campaign-grid>
+      <div class="campaign-controls" aria-label="Campaign filters">
+        <label class="friend-search">
+          <span>Search campaigns</span>
+          <input type="search" id="campaign-search" name="campaign-search" placeholder="Search by issue, title or animal" autocomplete="off" />
+        </label>
+
+        <fieldset class="friend-type-filters">
+          <legend>Origin</legend>
+          <div class="filter-chip-row">
+            {origins.map(([origin, meta]) => (
+              <label class="filter-chip">
+                <input type="checkbox" name="campaign-origin" value={origin} checked />
+                <span class={meta.className}>{meta.label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset class="friend-type-filters">
+          <legend>Region</legend>
+          <div class="filter-chip-row">
+            {activeRegions.map(([region, meta]) => (
+              <label class="filter-chip">
+                <input type="checkbox" name="campaign-region" value={region} checked />
+                <span class={meta.className}>{meta.label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset class="friend-type-filters">
+          <legend>Severity</legend>
+          <div class="filter-chip-row">
+            {severities.map((severity) => (
+              <label class="filter-chip">
+                <input type="checkbox" name="campaign-severity" value={severity} checked />
+                <span class={`label-chip--severity-${severity}`}>{severityLabel(severity)}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <div class="campaign-controls__bottom">
+          <label class="sort-bar sort-bar--inline" for="campaign-sort">
+            <span>Sort</span>
+            <select id="campaign-sort" name="campaign-sort">
+              <option value="date-desc">Newest first</option>
+              <option value="title-asc">Name A-Z</option>
+              <option value="severity-desc">Severity high-low</option>
+              <option value="status-asc">Action status</option>
+            </select>
+          </label>
+
+          <div class="view-toggle" aria-label="Campaign view">
+            <button type="button" data-view-button="gallery" aria-pressed="true">Gallery</button>
+            <button type="button" data-view-button="grid" aria-pressed="false">Grid</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="friend-count" data-campaign-count>{campaigns.length} public campaign{campaigns.length === 1 ? '' : 's'}</p>
+
+      <div class="campaign-grid" data-campaign-grid data-view="gallery">
         {campaigns.map((campaign) => (
           <CampaignCard campaign={campaign} image={images.get(campaign.data.images[0])?.data} />
         ))}
@@ -40,8 +105,14 @@ const images = mapEntries(await getCollection('images'));
   </section>
 
   <script>
+    const searchInput = document.querySelector<HTMLInputElement>('#campaign-search');
     const sortSelect = document.querySelector<HTMLSelectElement>('#campaign-sort');
     const grid = document.querySelector<HTMLElement>('[data-campaign-grid]');
+    const count = document.querySelector<HTMLElement>('[data-campaign-count]');
+    const originInputs = Array.from(document.querySelectorAll<HTMLInputElement>('input[name="campaign-origin"]'));
+    const regionInputs = Array.from(document.querySelectorAll<HTMLInputElement>('input[name="campaign-region"]'));
+    const severityInputs = Array.from(document.querySelectorAll<HTMLInputElement>('input[name="campaign-severity"]'));
+    const viewButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-view-button]'));
     const statusOrder: Record<string, number> = {
       active: 1,
       testing: 2,
@@ -51,17 +122,54 @@ const images = mapEntries(await getCollection('images'));
       closed: 6
     };
 
-    sortSelect?.addEventListener('change', () => {
+    function updateCampaigns() {
       if (!grid) return;
+      const query = (searchInput?.value ?? '').trim().toLowerCase();
+      const activeOrigins = new Set(originInputs.filter((input) => input.checked).map((input) => input.value));
+      const activeRegions = new Set(regionInputs.filter((input) => input.checked).map((input) => input.value));
+      const activeSeverities = new Set(severityInputs.filter((input) => input.checked).map((input) => input.value));
       const cards = Array.from(grid.querySelectorAll<HTMLElement>('[data-campaign-card]'));
+      let visibleCount = 0;
+
+      for (const card of cards) {
+        const regions = card.dataset.regions?.split('|').filter(Boolean) ?? [];
+        const searchMatch = (card.dataset.search ?? '').includes(query);
+        const originMatch = activeOrigins.has(card.dataset.origin ?? '');
+        const regionMatch = regions.some((region) => activeRegions.has(region));
+        const severityRank = Number(card.dataset.severity ?? 0);
+        const severityName = severityRank === 4 ? 'extreme' : severityRank === 3 ? 'high' : severityRank === 2 ? 'medium' : 'low';
+        const visible = searchMatch && originMatch && regionMatch && activeSeverities.has(severityName);
+        card.hidden = !visible;
+        if (visible) visibleCount += 1;
+      }
+
       const sorted = cards.sort((a, b) => {
-        const mode = sortSelect.value;
+        const mode = sortSelect?.value ?? 'date-desc';
         if (mode === 'title-asc') return (a.dataset.title ?? '').localeCompare(b.dataset.title ?? '');
         if (mode === 'severity-desc') return Number(b.dataset.severity ?? 0) - Number(a.dataset.severity ?? 0);
         if (mode === 'status-asc') return (statusOrder[a.dataset.status ?? ''] ?? 99) - (statusOrder[b.dataset.status ?? ''] ?? 99);
         return (b.dataset.date ?? '').localeCompare(a.dataset.date ?? '');
       });
+
       grid.replaceChildren(...sorted);
-    });
+      if (count) count.textContent = `${visibleCount} public campaign${visibleCount === 1 ? '' : 's'}`;
+    }
+
+    function setView(view: string) {
+      if (!grid) return;
+      grid.dataset.view = view;
+      for (const button of viewButtons) {
+        button.setAttribute('aria-pressed', String(button.dataset.viewButton === view));
+      }
+    }
+
+    searchInput?.addEventListener('input', updateCampaigns);
+    sortSelect?.addEventListener('change', updateCampaigns);
+    for (const input of [...originInputs, ...regionInputs, ...severityInputs]) {
+      input.addEventListener('change', updateCampaigns);
+    }
+    for (const button of viewButtons) {
+      button.addEventListener('click', () => setView(button.dataset.viewButton ?? 'gallery'));
+    }
   </script>
 </BaseLayout>

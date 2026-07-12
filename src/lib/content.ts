@@ -8,6 +8,20 @@ export type OrganisationType =
   | 'animal-rescue'
   | 'think-tank';
 
+export type CampaignOrigin = 'bite-back' | 'allied';
+
+export type CampaignRegion =
+  | 'act'
+  | 'nsw'
+  | 'nt'
+  | 'qld'
+  | 'sa'
+  | 'tas'
+  | 'vic'
+  | 'wa'
+  | 'australia-wide'
+  | 'international';
+
 export function entryId(entry: { id: string }) {
   return entry.id.replace(/\.json$/, '').replace(/\\/g, '/');
 }
@@ -76,6 +90,76 @@ export function severityRank(severity: string) {
   };
 
   return ranks[severity] ?? 0;
+}
+
+export const campaignOriginMeta: Record<CampaignOrigin, { label: string; className: string }> = {
+  'bite-back': {
+    label: 'Bite Back Campaign',
+    className: 'label-chip--origin-bite-back'
+  },
+  allied: {
+    label: 'Allied Campaign',
+    className: 'label-chip--origin-allied'
+  }
+};
+
+export const campaignRegionMeta: Record<CampaignRegion, { label: string; className: string }> = {
+  act: {
+    label: 'ACT',
+    className: 'label-chip--region-act'
+  },
+  nsw: {
+    label: 'NSW',
+    className: 'label-chip--region-nsw'
+  },
+  nt: {
+    label: 'NT',
+    className: 'label-chip--region-nt'
+  },
+  qld: {
+    label: 'QLD',
+    className: 'label-chip--region-qld'
+  },
+  sa: {
+    label: 'SA',
+    className: 'label-chip--region-sa'
+  },
+  tas: {
+    label: 'TAS',
+    className: 'label-chip--region-tas'
+  },
+  vic: {
+    label: 'VIC',
+    className: 'label-chip--region-vic'
+  },
+  wa: {
+    label: 'WA',
+    className: 'label-chip--region-wa'
+  },
+  'australia-wide': {
+    label: 'Australia-wide',
+    className: 'label-chip--region-national'
+  },
+  international: {
+    label: 'International',
+    className: 'label-chip--region-international'
+  }
+};
+
+export function campaignOriginLabel(origin: string) {
+  return campaignOriginMeta[origin as CampaignOrigin]?.label ?? origin;
+}
+
+export function campaignOriginClass(origin: string) {
+  return campaignOriginMeta[origin as CampaignOrigin]?.className ?? 'label-chip--default';
+}
+
+export function campaignRegionLabel(region: string) {
+  return campaignRegionMeta[region as CampaignRegion]?.label ?? region;
+}
+
+export function campaignRegionClass(region: string) {
+  return campaignRegionMeta[region as CampaignRegion]?.className ?? 'label-chip--region';
 }
 
 export function reviewLabel(review: string) {
@@ -148,6 +232,10 @@ export function sortCampaigns(
   campaigns: CollectionEntry<'campaigns'>[]
 ) {
   return [...campaigns].sort((a, b) => a.data.title.localeCompare(b.data.title));
+}
+
+export function publicCampaigns(campaigns: CollectionEntry<'campaigns'>[]) {
+  return campaigns.filter((campaign) => campaign.data.isPublic);
 }
 
 export function sortCampaignsByDate(

@@ -8,13 +8,11 @@ interface Props {
 const { currentPath } = Astro.props;
 
 const navItems = [
-  { href: '/campaigns/', label: 'Campaigns' },
-  { href: '/mission/', label: 'Mission' },
-  { href: '/track-record/', label: 'Track Record' },
+  { href: '/campaigns/', label: 'Campaigns', accent: true },
+  { href: '/about/', label: 'About' },
   { href: '/news/', label: 'News' },
   { href: '/friends/', label: 'Friends' },
   { href: '/shop/', label: 'Shop' },
-  { href: '/take-action/', label: 'Take Action' },
   { href: '/get-involved/', label: 'Get Involved' }
 ];
 
@@ -24,17 +22,17 @@ const isActive = (href: string) =>
 
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="wordmark" href="/" aria-label="Bite Back home">
+    <a class="wordmark" href="/" aria-label="Bite Back Project home">
       <img class="wordmark__logo" src="/brand/bite-mark-transparent-64.png" width="44" height="44" alt="" loading="eager" decoding="async" fetchpriority="high" />
       <span class="wordmark__text">
-        <strong>BITE BACK</strong>
-        <small>Giving animal welfare laws teeth.</small>
+        <strong>BITE BACK PROJECT</strong>
+        <small>ANIMAL ADVOCACY WITH TEETH</small>
       </span>
     </a>
 
     <nav class="desktop-nav" aria-label="Primary navigation">
       {navItems.map((item) => (
-        <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+        <a class:list={[item.accent && 'nav-link--accent']} href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
           {item.label}
         </a>
       ))}
@@ -47,7 +45,7 @@ const isActive = (href: string) =>
       </summary>
       <nav aria-label="Mobile navigation">
         {navItems.map((item) => (
-          <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+          <a class:list={[item.accent && 'nav-link--accent']} href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
             {item.label}
           </a>
         ))}

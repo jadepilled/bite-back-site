@@ -1,12 +1,10 @@
 ---
 const footerLinks = [
-  { href: '/mission/', label: 'Mission' },
+  { href: '/about/', label: 'About' },
   { href: '/campaigns/', label: 'Campaigns' },
-  { href: '/track-record/', label: 'Track Record' },
   { href: '/news/', label: 'News' },
   { href: '/friends/', label: 'Friends' },
   { href: '/shop/', label: 'Shop' },
-  { href: '/dossiers/', label: 'Dossiers' },
   { href: '/media/', label: 'Media' },
   { href: '/contact/', label: 'Contact' },
   { href: '/privacy/', label: 'Privacy' },
@@ -21,13 +19,21 @@ const footerLinks = [
       <a class="wordmark wordmark--footer" href="/">
         <img class="wordmark__logo" src="/brand/bite-mark-transparent-64.png" width="44" height="44" alt="" decoding="async" loading="lazy" />
         <span class="wordmark__text">
-          <strong>BITE BACK</strong>
-          <small>Giving animal welfare laws teeth.</small>
+          <strong>BITE BACK PROJECT</strong>
+          <small>ANIMAL ADVOCACY WITH TEETH</small>
         </span>
       </a>
       <p>
-        Bite Back turns animal welfare evidence into lawful pressure, public tracking and practical reform work.
+        Bite Back Project turns animal welfare evidence into lawful pressure, public tracking and practical reform work.
       </p>
+      <div class="site-footer__acknowledgement">
+        <p>BITE BACK PROJECT acknowledges the rightful owners and traditional caretakers of all land upon which it conducts operations.</p>
+        <p>
+          We recognise and pay respects to the Wurundjeri Woi Wurrung and Bunurong people of the Kulin Nation.
+          <img src="/brand/aboriginal-flag.svg" width="30" height="18" alt="Aboriginal Flag" loading="lazy" decoding="async" />
+        </p>
+        <p>All site-specific content copyright (c) BITE BACK PROJECT 2026</p>
+      </div>
     </div>
     <nav aria-label="Footer navigation">
       {footerLinks.map((link) => <a href={link.href}>{link.label}</a>)}

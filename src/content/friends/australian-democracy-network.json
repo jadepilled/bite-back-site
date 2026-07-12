@@ -3,7 +3,6 @@
   "name": "Australian Democracy Network",
   "url": "https://australiandemocracy.org.au/",
   "region": "Australia",
-  "organisationType": "advocacy-group",
   "summary": "Network working for a fairer, more accountable Australian democracy.",
   "description": "Relevant to Bite Back's transparency and public-accountability work where animal welfare reform depends on open institutions and clean decision-making.",
   "alignment": "Listed because democratic reform and public-interest accountability support stronger animal welfare campaigns.",
@@ -15,5 +14,13 @@
     "sourceUrl": "https://australiandemocracy.org.au/"
   },
   "relationship": "listed-resource",
-  "tags": ["democracy", "accountability", "transparency"]
+  "tags": [
+    "democracy",
+    "accountability",
+    "transparency"
+  ],
+  "organisationTypes": [
+    "advocacy-group",
+    "think-tank"
+  ]
 }

@@ -4,9 +4,9 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ButtonLink from '@components/ButtonLink.astro';
 import CampaignCard from '@components/CampaignCard.astro';
-import { mapEntries, sortCampaigns } from '@lib/content';
+import { mapEntries, publicCampaigns, sortCampaigns } from '@lib/content';
 
-const campaigns = sortCampaigns(await getCollection('campaigns'));
+const campaigns = sortCampaigns(publicCampaigns(await getCollection('campaigns')));
 const images = mapEntries(await getCollection('images'));
 const heroImageId = campaigns[0]?.data.images[0];
 const heroImage = heroImageId ? images.get(heroImageId)?.data : undefined;
@@ -24,12 +24,12 @@ const heroImage = heroImageId ? images.get(heroImageId)?.data : undefined;
         Bite Back turns animal welfare evidence into legal pressure, public tracking and practical action.
       </p>
       <div class="button-row">
-        <ButtonLink href="/take-action/" variant="urgent">
-          Take action
+        <ButtonLink href="/campaigns/" variant="urgent">
+          Read the campaign
           <ArrowRight slot="icon" size={18} aria-hidden="true" />
         </ButtonLink>
-        <ButtonLink href="/campaigns/" variant="secondary">
-          Read the campaigns
+        <ButtonLink href="/get-involved/" variant="secondary">
+          Get involved
           <FileText slot="icon" size={18} aria-hidden="true" />
         </ButtonLink>
       </div>
@@ -49,15 +49,15 @@ const heroImage = heroImageId ? images.get(heroImageId)?.data : undefined;
       <div class="pathway-grid" aria-label="Bite Back pathways">
         <div class="pathway">
           <strong>Learn the issue</strong>
-          <p>Plain-language explainers, legal maps and source-backed campaign dossiers.</p>
+          <p>Plain-language explainers, legal maps and source-backed campaign pages.</p>
         </div>
         <div class="pathway">
           <strong>Act on the law</strong>
-          <p>Targeted petitions, MP-contact tools, submissions and public accountability campaigns.</p>
+          <p>Targeted pressure, submissions and public accountability campaigns.</p>
         </div>
         <div class="pathway">
           <strong>Track the outcome</strong>
-          <p>Campaign progress, corrections, source notes and follow-up actions in one place.</p>
+          <p>Campaign progress, corrections, source notes and follow-up in one place.</p>
         </div>
       </div>
     </div>
@@ -87,7 +87,7 @@ const heroImage = heroImageId ? images.get(heroImageId)?.data : undefined;
           audit logs have been verified.
         </p>
       </div>
-      <ButtonLink href="/take-action/" variant="primary">Review action readiness</ButtonLink>
+      <ButtonLink href="/get-involved/" variant="primary">Help build pressure</ButtonLink>
     </div>
   </section>
 </BaseLayout>

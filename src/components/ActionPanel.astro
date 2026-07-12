@@ -74,7 +74,7 @@ const isLiveEmbed = action.status === 'active' && action.provider === 'action-ne
       ></iframe>
     ) : (
       <ButtonLink href={action.url} variant={action.status === 'active' ? 'urgent' : 'secondary'} external={isExternal}>
-        {action.status === 'active' ? action.label : 'View testing checklist'}
+        {action.status === 'active' ? action.label : 'Help prepare this action'}
       </ButtonLink>
     )}
   </div>

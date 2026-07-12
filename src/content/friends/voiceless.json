@@ -3,7 +3,6 @@
   "name": "Voiceless",
   "url": "https://voiceless.org.au/",
   "region": "Australia",
-  "organisationType": "think-tank",
   "summary": "Animal protection institute creating education, legal and policy resources for animal advocates.",
   "description": "Relevant for animal law education, policy background and source material that can strengthen reform campaigns.",
   "alignment": "Listed because its research and education work overlaps with Bite Back's evidence-first approach.",
@@ -15,5 +14,15 @@
     "sourceUrl": "https://voiceless.org.au/"
   },
   "relationship": "listed-resource",
-  "tags": ["animal law", "education", "policy"]
+  "tags": [
+    "animal law",
+    "education",
+    "policy"
+  ],
+  "organisationTypes": [
+    "advocacy-group",
+    "charity",
+    "think-tank",
+    "outreach-group"
+  ]
 }

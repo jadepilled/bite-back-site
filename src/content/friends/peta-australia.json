@@ -3,7 +3,6 @@
   "name": "People for the Ethical Treatment of Animals",
   "url": "https://www.peta.org.au/",
   "region": "Australia",
-  "organisationType": "advocacy-group",
   "summary": "Animal rights organisation campaigning against animal exploitation in food, clothing, entertainment and research.",
   "description": "Relevant for public campaigning, corporate pressure and national attention around animal suffering across industries.",
   "alignment": "Listed because its advocacy intersects with Bite Back's pressure campaigns, while Bite Back remains independent.",
@@ -15,5 +14,14 @@
     "sourceUrl": "https://www.peta.org.au/"
   },
   "relationship": "listed-resource",
-  "tags": ["animal rights", "corporate pressure", "advocacy"]
+  "tags": [
+    "animal rights",
+    "corporate pressure",
+    "advocacy"
+  ],
+  "organisationTypes": [
+    "advocacy-group",
+    "charity",
+    "outreach-group"
+  ]
 }

@@ -3,7 +3,6 @@
   "name": "Wildlife Rescue Australia",
   "url": "https://wildliferescue.net.au/",
   "region": "Australia",
-  "organisationType": "animal-rescue",
   "summary": "Wildlife rescue service operating a 24-hour call centre for sick, injured and orphaned animals.",
   "description": "Relevant for national rescue coordination, community response, volunteer training and incident pathways.",
   "alignment": "Listed because wildlife rescue infrastructure connects public concern to practical animal protection.",
@@ -15,5 +14,14 @@
     "sourceUrl": "https://wildliferescue.net.au/"
   },
   "relationship": "listed-resource",
-  "tags": ["wildlife rescue", "call centre", "volunteers"]
+  "tags": [
+    "wildlife rescue",
+    "call centre",
+    "volunteers"
+  ],
+  "organisationTypes": [
+    "animal-rescue",
+    "charity",
+    "outreach-group"
+  ]
 }

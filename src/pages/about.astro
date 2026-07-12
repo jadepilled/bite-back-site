@@ -1,37 +1,61 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import PageHeader from '@components/PageHeader.astro';
+import ButtonLink from '@components/ButtonLink.astro';
+import { publicCampaigns, sortCampaigns } from '@lib/content';
+
+const campaigns = sortCampaigns(publicCampaigns(await getCollection('campaigns')));
 ---
 
 <BaseLayout
   title="About"
-  description="Bite Back mission and campaign approach."
+  description="Bite Back Project turns animal welfare evidence into lawful public pressure, source-backed campaigns and measurable reform work."
 >
-  <PageHeader
-    eyebrow="About"
-    title="Bite Back is now framed through Mission."
-    intro="The public site keeps philosophy close to the work: campaigns, source trails, track record and action pathways."
-  />
-
-  <section class="section" id="mission">
+  <section class="section">
     <div class="container">
+      <div class="section-intro reading-width">
+        <p class="section-label">About</p>
+        <h1>Animal advocacy with teeth.</h1>
+        <p class="lede">
+          Bite Back Project works where evidence, legal duties and public pressure can be tied to a concrete reform path.
+        </p>
+      </div>
       <div class="page-grid">
         <article class="pathway">
-          <strong>Mission</strong>
-          <p>Strengthen welfare law and public accountability where evidence, legal duties and decision-maker pressure meet.</p>
+          <strong>Pressure</strong>
+          <p>Campaigns name the institution with power to move the issue and the endpoint that would count as progress.</p>
         </article>
         <article class="pathway">
-          <strong>Campaigns</strong>
-          <p>An Australia where animals are recognised as sentient beings and welfare laws protect in practice.</p>
+          <strong>Evidence</strong>
+          <p>Sources, review status, uncertainty and corrections stay close to the claims they support.</p>
         </article>
         <article class="pathway">
-          <strong>Track Record</strong>
-          <p>Public progress notes, correction history and source trails stay attached to the work.</p>
+          <strong>Follow-through</strong>
+          <p>Campaign updates, news, legal pathways and public records stay connected after the first click.</p>
         </article>
       </div>
-      <div class="button-row">
-        <a class="button button-secondary" href="/mission/">Open Mission</a>
-        <a class="button button-secondary" href="/track-record/">Open Track Record</a>
+    </div>
+  </section>
+
+  <section class="section section-border">
+    <div class="container">
+      <div class="reading-width">
+        <p class="section-label">Launch focus</p>
+        <h2>Start where the system can be moved.</h2>
+        <p>
+          The first public campaign focuses on ending 1080 poison through the renewed Australian Animal Welfare Strategy,
+          chemical regulation reform and state and territory implementation.
+        </p>
+      </div>
+      <div class="page-grid">
+        {campaigns.map((campaign) => (
+          <article class="pathway">
+            <p class="section-label">{campaign.data.issueType}</p>
+            <h2>{campaign.data.title}</h2>
+            <p>{campaign.data.desiredOutcome}</p>
+            <ButtonLink href={`/campaigns/${campaign.data.slug}/`} variant="secondary">Open campaign</ButtonLink>
+          </article>
+        ))}
       </div>
     </div>
   </section>

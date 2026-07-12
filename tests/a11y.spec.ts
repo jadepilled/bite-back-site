@@ -4,11 +4,8 @@ import AxeBuilder from '@axe-core/playwright';
 const routes = [
   '/',
   '/campaigns/',
-  '/campaigns/sentience-in-statute-teeth-in-practice/',
-  '/campaigns/open-animal-welfare-data/',
-  '/take-action/',
-  '/mission/',
-  '/track-record/',
+  '/campaigns/1080-to-zero/',
+  '/about/',
   '/news/',
   '/friends/',
   '/shop/',

@@ -3,7 +3,6 @@
   "name": "Royal Society for the Prevention of Cruelty to Animals",
   "url": "https://www.rspca.org.au/",
   "region": "Australia",
-  "organisationType": "charity",
   "summary": "Independent charity and federation providing animal care, protection services, policy work and welfare guidance.",
   "description": "Important for welfare evidence, policy positions, cruelty prevention, public education and source-backed campaign claims.",
   "alignment": "Listed because RSPCA welfare guidance and public policy work are relevant to Bite Back's evidence standards.",
@@ -15,5 +14,14 @@
     "sourceUrl": "https://www.rspca.org.au/"
   },
   "relationship": "listed-resource",
-  "tags": ["welfare guidance", "charity", "cruelty prevention"]
+  "tags": [
+    "welfare guidance",
+    "charity",
+    "cruelty prevention"
+  ],
+  "organisationTypes": [
+    "charity",
+    "animal-rescue",
+    "advocacy-group"
+  ]
 }

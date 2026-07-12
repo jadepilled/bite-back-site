@@ -2,7 +2,7 @@
   "type": "mp-letter",
   "label": "Ask for open enforcement data",
   "provider": "action-network",
-  "url": "/take-action/#mp-contact-testing",
+  "url": "/get-involved/",
   "requiresAddress": true,
   "consentNote": "This MP-contact action remains in testing until jurisdiction targeting, message delivery and consent flows are proven.",
   "status": "testing",

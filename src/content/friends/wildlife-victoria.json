@@ -3,7 +3,6 @@
   "name": "Wildlife Victoria",
   "url": "https://wildlifevictoria.org.au/",
   "region": "Victoria",
-  "organisationType": "animal-rescue",
   "summary": "Victorian wildlife rescue organisation connecting sick, injured and orphaned wildlife with help.",
   "description": "Relevant for wildlife incident response, rehabilitation pathways, public education and state-level animal welfare evidence.",
   "alignment": "Listed because wildlife rescue data and experience can inform public policy and welfare campaigns.",
@@ -15,5 +14,14 @@
     "sourceUrl": "https://wildlifevictoria.org.au/"
   },
   "relationship": "listed-resource",
-  "tags": ["wildlife rescue", "Victoria", "rehabilitation"]
+  "tags": [
+    "wildlife rescue",
+    "Victoria",
+    "rehabilitation"
+  ],
+  "organisationTypes": [
+    "animal-rescue",
+    "charity",
+    "outreach-group"
+  ]
 }

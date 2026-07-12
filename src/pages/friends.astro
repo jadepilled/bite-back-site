@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import { ExternalLink } from '@lucide/astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import PageHeader from '@components/PageHeader.astro';
 import { organisationTypeClass, organisationTypeLabel, organisationTypeMeta } from '@lib/content';
 
 const friends = (await getCollection('friends')).sort((a, b) => a.data.name.localeCompare(b.data.name));
@@ -17,14 +16,16 @@ const typeOptions = Object.entries(organisationTypeMeta);
   title="Friends"
   description="Australian organisations and public-interest groups with goals that overlap with Bite Back campaigns."
 >
-  <PageHeader
-    eyebrow="Friends"
-    title="Allies, references and useful pressure points."
-    intro="Organisations working across animal protection, rescue, law reform, public accountability and democratic pressure."
-  />
-
   <section class="section">
     <div class="container">
+      <div class="section-intro reading-width">
+        <p class="section-label">Friends</p>
+        <h1>Allies and useful pressure points.</h1>
+        <p class="lede">
+          Organisations working across animal protection, rescue, law reform, public accountability and democratic pressure.
+        </p>
+      </div>
+
       <div class="friend-controls" aria-label="Friend directory filters">
         <label class="friend-search">
           <span>Search by name</span>
@@ -35,9 +36,9 @@ const typeOptions = Object.entries(organisationTypeMeta);
           <legend>Organisation type</legend>
           <div class="filter-chip-row">
             {typeOptions.map(([type, meta]) => (
-              <label class={`filter-chip ${meta.className}`}>
+              <label class="filter-chip">
                 <input type="checkbox" name="friend-type" value={type} checked />
-                <span>{meta.label}</span>
+                <span class={meta.className}>{meta.label}</span>
               </label>
             ))}
           </div>
@@ -52,7 +53,7 @@ const typeOptions = Object.entries(organisationTypeMeta);
             class="friend-card"
             data-friend-card
             data-name={friend.data.name.toLowerCase()}
-            data-organisation-type={friend.data.organisationType}
+            data-organisation-types={friend.data.organisationTypes.join('|')}
           >
             {image && (
               <a class="friend-card__image" href={friend.data.url} target="_blank" rel="noreferrer" aria-label={`Visit ${friend.data.name}`}>
@@ -66,9 +67,11 @@ const typeOptions = Object.entries(organisationTypeMeta);
             )}
             <div class="friend-card__body">
               <div class="label-chip-row">
-                <span class={`label-chip ${organisationTypeClass(friend.data.organisationType)}`}>
-                  {organisationTypeLabel(friend.data.organisationType)}
-                </span>
+                {friend.data.organisationTypes.map((type) => (
+                  <span class={`label-chip ${organisationTypeClass(type)}`}>
+                    {organisationTypeLabel(type)}
+                  </span>
+                ))}
                 <span class="label-chip label-chip--region">{friend.data.region}</span>
               </div>
             <h2>{friend.data.name}</h2>
@@ -99,7 +102,8 @@ const typeOptions = Object.entries(organisationTypeMeta);
 
       for (const card of cards) {
         const nameMatch = (card.dataset.name ?? '').includes(query);
-        const typeMatch = activeTypes.has(card.dataset.organisationType ?? '');
+        const cardTypes = card.dataset.organisationTypes?.split('|').filter(Boolean) ?? [];
+        const typeMatch = cardTypes.some((type) => activeTypes.has(type));
         const visible = nameMatch && typeMatch;
         card.setAttribute('aria-hidden', String(!visible));
         window.clearTimeout(Number(card.dataset.hideTimer ?? 0));

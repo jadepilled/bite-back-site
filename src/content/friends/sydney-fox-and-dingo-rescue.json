@@ -3,7 +3,6 @@
   "name": "Sydney Fox and Dingo Rescue",
   "url": "https://sfdr.org/",
   "region": "New South Wales",
-  "organisationType": "animal-rescue",
   "summary": "Rescue organisation focused on foxes and dingoes in need of care and protection.",
   "description": "Relevant for the 1080 to Zero campaign, dingo policy, fox welfare and public education about targeted animals.",
   "alignment": "Listed because direct rescue experience can sharpen campaigns about poison, coexistence and humane transition.",
@@ -15,5 +14,14 @@
     "sourceUrl": "https://sfdr.org/"
   },
   "relationship": "listed-resource",
-  "tags": ["foxes", "dingoes", "rescue"]
+  "tags": [
+    "foxes",
+    "dingoes",
+    "rescue"
+  ],
+  "organisationTypes": [
+    "animal-rescue",
+    "charity",
+    "outreach-group"
+  ]
 }
