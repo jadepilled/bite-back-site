@@ -10,8 +10,13 @@
   "topics": [
     "farmed animals"
   ],
+  "image": {
+    "src": "/images/news/auto-2026-07-15-abc-news-australian-lamb-the-focus-of-us-trade-commission-review.webp",
+    "alt": "News image for Australian lamb the focus of US trade commission review",
+    "sourceUrl": "https://live-production.wcms.abc-cdn.net.au/4f9b17270e5771b6d5115ecd42810f8b?impolicy=wcms_watermark_news&amp;cropH=3087&amp;cropW=5488&amp;xPos=0&amp;yPos=572&amp;width=862&amp;height=485&amp;imformat=generic"
+  },
   "automated": true,
-  "fetchedAt": "2026-07-15T08:38:22.578Z",
+  "fetchedAt": "2026-07-15T14:14:14.870Z",
   "relevanceScore": 20,
   "reviewStatus": "review-needed"
 }
