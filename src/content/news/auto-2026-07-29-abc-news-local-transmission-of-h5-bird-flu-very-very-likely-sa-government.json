@@ -1,0 +1,24 @@
+{
+  "title": "Local transmission of H5 bird flu 'very, very likely', SA government says",
+  "outlet": "ABC News",
+  "url": "https://www.abc.net.au/news/2026-07-29/h5-bird-flu-strain-very-likely-spreading-locally-in-sa/106970486",
+  "publishedDate": "2026-07-29",
+  "summary": "A further 11 suspected cases of H5 bird flu have been detected in South Australia's south-east and Kangaroo Island.",
+  "campaignIds": [
+    "sentience-statute",
+    "open-welfare-data"
+  ],
+  "topics": [
+    "wildlife",
+    "biosecurity"
+  ],
+  "image": {
+    "src": "/images/news/auto-2026-07-29-abc-news-local-transmission-of-h5-bird-flu-very-very-likely-sa-government.webp",
+    "alt": "News image for Local transmission of H5 bird flu 'very, very likely', SA government says",
+    "sourceUrl": "https://live-production.wcms.abc-cdn.net.au/337c0d29e4571a3184ffa326299e2ac4?impolicy=wcms_watermark_news&amp;cropH=1152&amp;cropW=2048&amp;xPos=0&amp;yPos=144&amp;width=862&amp;height=485&amp;imformat=generic"
+  },
+  "automated": true,
+  "fetchedAt": "2026-07-29T03:44:43.246Z",
+  "relevanceScore": 22,
+  "reviewStatus": "review-needed"
+}
