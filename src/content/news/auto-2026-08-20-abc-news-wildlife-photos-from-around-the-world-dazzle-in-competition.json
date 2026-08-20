@@ -1,0 +1,22 @@
+{
+  "title": "Wildlife photos from around the world dazzle in competition",
+  "outlet": "ABC News",
+  "url": "https://www.abc.net.au/news/science/2026-08-21/ecology-image-competition-showcases-scientists-exploring/107050514",
+  "publishedDate": "2026-08-20",
+  "summary": "Australian scientists are among the winners of a photo competition featuring stunning images of peeking damsel flies, tree selfies and cuddling manatees.",
+  "campaignIds": [
+    "sentience-statute"
+  ],
+  "topics": [
+    "wildlife"
+  ],
+  "image": {
+    "src": "/images/news/auto-2026-08-20-abc-news-wildlife-photos-from-around-the-world-dazzle-in-competition.webp",
+    "alt": "News image for Wildlife photos from around the world dazzle in competition",
+    "sourceUrl": "https://live-production.wcms.abc-cdn.net.au/154ec48cea555e82c488fdd93c0eb8b8?impolicy=wcms_watermark_news&amp;cropH=2250&amp;cropW=4000&amp;xPos=0&amp;yPos=209&amp;width=862&amp;height=485&amp;imformat=generic"
+  },
+  "automated": true,
+  "fetchedAt": "2026-08-20T19:04:28.512Z",
+  "relevanceScore": 26,
+  "reviewStatus": "review-needed"
+}
