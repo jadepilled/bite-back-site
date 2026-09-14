@@ -3,7 +3,7 @@
   "outlet": "BBC",
   "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBGRlBsMWMzOGwwNDA1c0RMejFKVUMyVTFkN3I2V2oyQ0UwaEswR3llUENXbjdkUlN5Z3QwMGhkSmlQQncxalhFbmkwM0VxZkVj?oc=5",
   "publishedDate": "2026-08-21",
-  "summary": "Best of Nolan | Nolan animal welfare investigation Day 2 - major questions remain for authorities after two dogs died in cages inside house bbc.com",
+  "summary": "Best of Nolan | Nolan animal welfare investigation Day 2 - major questions remain for authorities after two dogs died in cages inside house BBC",
   "campaignIds": [
     "sentience-statute",
     "open-welfare-data"
@@ -13,7 +13,7 @@
     "companion animals"
   ],
   "automated": true,
-  "fetchedAt": "2026-09-14T12:59:40.177Z",
+  "fetchedAt": "2026-09-14T21:53:55.081Z",
   "relevanceScore": 55,
   "reviewStatus": "review-needed"
 }
