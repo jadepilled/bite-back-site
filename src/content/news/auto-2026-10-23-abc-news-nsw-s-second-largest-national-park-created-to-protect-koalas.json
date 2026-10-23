@@ -1,0 +1,22 @@
+{
+  "title": "NSW's second-largest national park created to protect koalas",
+  "outlet": "ABC News",
+  "url": "https://www.abc.net.au/news/2026-10-23/great-koala-national-park-legislation-passed/107296314",
+  "publishedDate": "2026-10-23",
+  "summary": "Spanning from Coffs Harbour to Kempsey, New South Wales's second-largest national park has been created after years of campaigning to protect koalas and their habitat.",
+  "campaignIds": [
+    "sentience-statute"
+  ],
+  "topics": [
+    "wildlife"
+  ],
+  "image": {
+    "src": "/images/news/auto-2026-10-23-abc-news-nsw-s-second-largest-national-park-created-to-protect-koalas.webp",
+    "alt": "News image for NSW's second-largest national park created to protect koalas",
+    "sourceUrl": "https://live-production.wcms.abc-cdn.net.au/09461809efca4447d5421ac5a4a2a6ae?impolicy=wcms_watermark_news&amp;cropH=562&amp;cropW=1000&amp;xPos=0&amp;yPos=0&amp;width=862&amp;height=485&amp;imformat=generic"
+  },
+  "automated": true,
+  "fetchedAt": "2026-10-23T11:48:43.613Z",
+  "relevanceScore": 31,
+  "reviewStatus": "review-needed"
+}
