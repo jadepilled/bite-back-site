@@ -1,22 +1,17 @@
 {
   "title": "Saleyard drone footage appears to show sheep thrown among dead animals",
   "outlet": "ABC News",
-  "url": "https://www.abc.net.au/news/2026-11-10/forbes-animal-cruelty-investigation/107351198",
+  "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNbk55U1JqWmxIWDlaRzNQXzllY3dRMlZEM09HMVhjV1Q1d0FMRVI0UUpDVzFvNEhqS0sxWjduM3g4LWwwNUg4WUFtNjBseWZvT2ttTXZtWDJqZU9RaTFDc1hpUTJMdHdzY1lxd1pnWm1Tc014dDhFNHNBZTkwd2RFZlotSkY2LVIzREtMRQ?oc=5",
   "publishedDate": "2026-11-09",
-  "summary": "Video seen by the ABC shows an injured sheep being thrown into a paddock surrounded by dozens of dead animals at one of Australia's largest livestock exchanges.",
+  "summary": "Saleyard drone footage appears to show sheep thrown among dead animals ABC News & Headlines - Australian Broadcasting Corporation",
   "campaignIds": [
     "sentience-statute"
   ],
   "topics": [
     "farmed animals"
   ],
-  "image": {
-    "src": "/images/news/auto-2026-11-09-abc-news-saleyard-drone-footage-appears-to-show-sheep-thrown-among-dead-a.webp",
-    "alt": "News image for Saleyard drone footage appears to show sheep thrown among dead animals",
-    "sourceUrl": "https://live-production.wcms.abc-cdn.net.au/c85728533ad1f0b54795a28e5a85f1a0?impolicy=wcms_watermark_news&amp;cropH=521&amp;cropW=927&amp;xPos=53&amp;yPos=244&amp;width=862&amp;height=485&amp;imformat=generic"
-  },
   "automated": true,
-  "fetchedAt": "2026-11-09T22:29:20.673Z",
-  "relevanceScore": 33,
+  "fetchedAt": "2026-11-10T07:28:30.623Z",
+  "relevanceScore": 25,
   "reviewStatus": "review-needed"
 }
