@@ -3,7 +3,7 @@
   "outlet": "BBC",
   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBRMWhKSEpwWlkyRTdfZEtQWk5CRllBbU1XdWZ5WDNqQml2WUhMcTlKNm1Od1JJSllYdGdSMmlGcnBQcVc2WFFrMkZuQjVkZzB2QjhWVy0xcFFRVXhZNXc?oc=5",
   "publishedDate": "2026-11-16",
-  "summary": "Arley abattoir worker sentenced for walking on sheep BBC",
+  "summary": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
   "campaignIds": [
     "sentience-statute"
   ],
@@ -11,7 +11,7 @@
     "farmed animals"
   ],
   "automated": true,
-  "fetchedAt": "2026-11-17T08:05:23.779Z",
+  "fetchedAt": "2026-11-17T21:03:24.419Z",
   "relevanceScore": 49,
   "reviewStatus": "review-needed"
 }
