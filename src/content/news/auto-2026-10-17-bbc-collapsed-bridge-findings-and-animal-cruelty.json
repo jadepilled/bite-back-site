@@ -3,13 +3,13 @@
   "outlet": "BBC",
   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE0xQ0lXNEVzblhyVUItSkNRa1daSDZRTF9sWGd2dU1UeFk3aVdWc0JvM3U5Y1VWN3dTMGJJOUNQZGFvMjNEZko1amxEWS1zTHppUlEtY3pUUEdMX0k?oc=5",
   "publishedDate": "2026-10-17",
-  "summary": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
+  "summary": "'Collapsed bridge findings' and 'Animal cruelty' BBC",
   "campaignIds": [],
   "topics": [
     "animal welfare"
   ],
   "automated": true,
-  "fetchedAt": "2026-11-16T22:16:52.966Z",
+  "fetchedAt": "2026-11-17T08:05:23.779Z",
   "relevanceScore": 37,
   "reviewStatus": "review-needed"
 }
