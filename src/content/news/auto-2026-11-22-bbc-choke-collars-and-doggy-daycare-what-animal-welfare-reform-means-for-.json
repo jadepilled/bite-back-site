@@ -3,7 +3,7 @@
   "outlet": "BBC",
   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE13Rnd6VTdnS0JOTjdzWWFNem53QjN2aXJOekp3VFg0WEd1RlZhcmlaR2w0ZU9EWC0yR184elloNWVpWkhHdURXZlljYllTNEM5MDRaNi1xaGl2bnBteFE?oc=5",
   "publishedDate": "2026-11-22",
-  "summary": "Choke collars and doggy daycare - what animal welfare reform means for you BBC",
+  "summary": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
   "campaignIds": [
     "sentience-statute"
   ],
@@ -11,7 +11,7 @@
     "law reform"
   ],
   "automated": true,
-  "fetchedAt": "2026-11-24T00:01:25.254Z",
+  "fetchedAt": "2026-11-24T10:03:40.612Z",
   "relevanceScore": 40,
   "reviewStatus": "review-needed"
 }
