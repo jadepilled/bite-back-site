@@ -1,0 +1,22 @@
+{
+  "title": "New breed of black sheep has hair instead of wool",
+  "outlet": "ABC News",
+  "url": "https://www.abc.net.au/news/2026-11-26/martinmore-australian-black-haired-sheep-breed/107419772",
+  "publishedDate": "2026-11-25",
+  "summary": "The black sheep on this family's farm grow hair rather than wool, and are naturally less susceptible to a potentially deadly skin condition.",
+  "campaignIds": [
+    "sentience-statute"
+  ],
+  "topics": [
+    "farmed animals"
+  ],
+  "image": {
+    "src": "/images/news/auto-2026-11-25-abc-news-new-breed-of-black-sheep-has-hair-instead-of-wool.webp",
+    "alt": "News image for New breed of black sheep has hair instead of wool",
+    "sourceUrl": "https://live-production.wcms.abc-cdn.net.au/4d25d9e81fdec237b3ed17d970b272fe?impolicy=wcms_watermark_news&amp;cropH=1265&amp;cropW=2249&amp;xPos=1&amp;yPos=0&amp;width=862&amp;height=485&amp;imformat=generic"
+  },
+  "automated": true,
+  "fetchedAt": "2026-11-25T21:48:48.994Z",
+  "relevanceScore": 28,
+  "reviewStatus": "review-needed"
+}
