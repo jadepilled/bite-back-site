@@ -1,0 +1,24 @@
+{
+  "title": "Company behind quashed Singleton Station water licence backs data centre plan",
+  "outlet": "ABC News",
+  "url": "https://www.abc.net.au/news/2026-11-27/singleton-station-data-centre-proposal-water-licence-dispute/107429770",
+  "publishedDate": "2026-11-27",
+  "summary": "A data centre has been proposed for a Central Australian cattle station at the centre of a High Court water licence fight.",
+  "campaignIds": [
+    "sentience-statute",
+    "open-welfare-data"
+  ],
+  "topics": [
+    "farmed animals",
+    "transparency"
+  ],
+  "image": {
+    "src": "/images/news/auto-2026-11-27-abc-news-company-behind-quashed-singleton-station-water-licence-backs-dat.webp",
+    "alt": "News image for Company behind quashed Singleton Station water licence backs data centre plan",
+    "sourceUrl": "https://live-production.wcms.abc-cdn.net.au/13a375771c6af372b1eb4f328dd27e02?impolicy=wcms_watermark_news&amp;cropH=1406&amp;cropW=2500&amp;xPos=0&amp;yPos=132&amp;width=862&amp;height=485&amp;imformat=generic"
+  },
+  "automated": true,
+  "fetchedAt": "2026-11-27T08:46:27.482Z",
+  "relevanceScore": 20,
+  "reviewStatus": "review-needed"
+}
